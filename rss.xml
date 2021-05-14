@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Forked</title><link>https://pspiagicw.github.io/</link><description>Fork all worries away</description><atom:link href="https://pspiagicw.github.io/rss.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2021 &lt;a href="mailto:pspiagicw@gmail.com"&gt;pspiagicw&lt;/a&gt; </copyright><lastBuildDate>Fri, 14 May 2021 09:51:02 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>A world full of SSG's</title><link>https://pspiagicw.github.io/posts/a-world-full-of-ssgs/</link><dc:creator>pspiagicw</dc:creator><description>&lt;section id="blog-dilemma"&gt;
+&lt;h2&gt;Blog Dilemma&lt;/h2&gt;
+&lt;section id="making-a-blog-is-hard"&gt;
+&lt;h3&gt;Making a blog is hard!&lt;/h3&gt;
+&lt;p&gt;The amount of preparation for a stable SSG system.
+Well SSG stands for Static Site Generators.&lt;/p&gt;
+&lt;p&gt;They allow anyone to have a solid and efficient way of writing blogs.
+The biggest problem being , which of them to choose.&lt;/p&gt;
+&lt;p&gt;Some are huge , some are written in other languages , some are discontinued.&lt;/p&gt;
+&lt;p&gt;Well right now I am using &lt;em&gt;Nikola&lt;/em&gt; . It is a python based SSG which worked well enough for me.
+I intend to push this to GitHub but I cannot promise it will happen!&lt;/p&gt;
+&lt;p&gt;Well if you are reading it , it has already happened , or has it.
+Writing from this perspective , anything can happen , this post can just be a RST document in my system or this can be read by anyone acessing the internet.&lt;/p&gt;
+&lt;p&gt;Whatever may happen , I have already read it which means the post will die with me irrespective of the outcome.&lt;/p&gt;
+&lt;p&gt;Just like Neil already saw the moon. It did not matter whether NASA showed it to everyone , the sight would already have been within Neil's memory.&lt;/p&gt;
+&lt;p&gt;Enough talking , I have to try posting this.&lt;/p&gt;
+&lt;/section&gt;
+&lt;/section&gt;</description><guid>https://pspiagicw.github.io/posts/a-world-full-of-ssgs/</guid><pubDate>Fri, 14 May 2021 09:41:24 GMT</pubDate></item></channel></rss>

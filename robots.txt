@@ -1,0 +1,4 @@
+Sitemap: https://pspiagicw.github.io/sitemapindex.xml
+
+User-Agent: *
+Host: pspiagicw.github.io
