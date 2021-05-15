@@ -6,12 +6,24 @@
     xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
                         http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
  <sitemap>
+  <loc>https://pspiagicw.github.io/categories/cat_personal.xml</loc>
+  <lastmod>2021-05-15T02:56:00Z</lastmod>
+ </sitemap>
+ <sitemap>
   <loc>https://pspiagicw.github.io/categories/cat_programming.xml</loc>
-  <lastmod>2021-05-15T00:48:00Z</lastmod>
+  <lastmod>2021-05-15T02:56:00Z</lastmod>
+ </sitemap>
+ <sitemap>
+  <loc>https://pspiagicw.github.io/categories/linux.xml</loc>
+  <lastmod>2021-05-15T02:56:00Z</lastmod>
  </sitemap>
  <sitemap>
   <loc>https://pspiagicw.github.io/categories/machinelearning-coding.xml</loc>
-  <lastmod>2021-05-15T00:48:00Z</lastmod>
+  <lastmod>2021-05-15T00:55:00Z</lastmod>
+ </sitemap>
+ <sitemap>
+  <loc>https://pspiagicw.github.io/categories/machinelearning.xml</loc>
+  <lastmod>2021-05-15T02:56:00Z</lastmod>
  </sitemap>
  <sitemap>
   <loc>https://pspiagicw.github.io/galleries/rss.xml</loc>
@@ -19,10 +31,10 @@
  </sitemap>
  <sitemap>
   <loc>https://pspiagicw.github.io/rss.xml</loc>
-  <lastmod>2021-05-15T00:48:00Z</lastmod>
+  <lastmod>2021-05-15T02:56:00Z</lastmod>
  </sitemap>
  <sitemap>
   <loc>https://pspiagicw.github.io/sitemap.xml</loc>
-  <lastmod>2021-05-15T00:48:00Z</lastmod>
+  <lastmod>2021-05-15T02:56:00Z</lastmod>
  </sitemap>
 </sitemapindex>

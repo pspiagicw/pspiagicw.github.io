@@ -2,7 +2,7 @@
 .. title: Write a blog they said!
 .. slug: write-a-blog-they-said
 .. date: 2021-05-15 05:16:01 UTC+05:30
-.. tags: machinelearning coding
+.. tags: machinelearning
 .. category: programming
 .. link: 
 .. description: 

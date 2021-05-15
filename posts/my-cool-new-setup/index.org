@@ -1,0 +1,86 @@
+#+BEGIN_COMMENT
+.. title: My cool new setup!
+.. slug: my-cool-new-setup
+.. date: 2021-05-15 06:28:53 UTC+05:30
+.. tags: linux
+.. category: personal
+.. link: 
+.. description: 
+.. type: text
+
+#+END_COMMENT
+
+
+* Linux is Sexy!
+  
+  My love for linux grows , day by day . It has the freedon that nobody can provide.
+  Well I don't think anybody thinks of making a car from scratch . 
+  Nor somebody talks how they would like to reconfigure their driving style for more productivity.
+
+  But in the Linux world this type of talk is very common.Due to a abundance of system-level packages we can customize our workflow with custom scripts,apps,etc.
+  
+  I always kept a GUI handy , kept a second OS or a second account with working GUI if anything went wrong with my tiling window manager setup.
+  I kept my college/school things in that account , I did not mix it with my coding/fun account.
+
+  _Until Now_
+
+  The biggest problem with my previous setup was I had to switch accounts or even OS for coding or attending classes.
+  This time I decided to integrate both.
+  
+  Now I had a choice , whether to keep a minimal setup with some GUI apps , or to keep only the required GUI apps.
+  I decided to go with the obvious no GUI apps.
+
+  The only GUI app I am using is for my classes.
+  
+** Keyboard is priority
+   
+   When making any setup , I make sure to remember all the keybindings,so that I can make things fast.
+   Well with linux , you don't have to remember keybindings, you make keybindings.
+
+   I don't think anyone in the Windows/MacOS world thinkgs in this way!Create Keybindings?
+   
+   For my display manager I went with nothing, a simple ~/etc/issue~ file suffice for bling.
+   My ~bash_profile~ automatically starts the window manager on login.
+
+   My window manager of choice is /XMonad/ .It is fast , very customizable and is written in haskell.
+   My bar to go with it was /xmobar/ . It provides lot of built-in widgets which makes it perfect, along with the fact that it is designed to work with xmonad.
+   
+   My text editor has been emacs for the last month now and I rolled with it.Vim already spoiled me , that means I went Evil on Emacs.
+   If you cannot understand that reference then you must join the dark side.I will not debate Emacs V/s Vim, but can say Emacs is good.
+   
+** My Apps
+
+   My other apps include:
+   
+   - /[[https://qutebrowser.org][QuteBrowser]]/: Web Browser with vim keybindings.
+   - /[[https://pwmt.org/projects/zathura/][Zathura]]/: PDF Viewer with vim keybindings
+   - /[[https://feh.finalrewind.org/][feh]]/: Image viewer with vim keybindings.
+   - /[[https://neomutt.org/][Neomutt]]/: Terminal Mail Client with vim keybindings.
+   - /[[https://newsboat.org/][NewsBoat]]/: Terminal RSS feed reader with vim keybindings.
+   - /[[https://github.com/dylanaraps/torque][torque]]/: Terminal torrent manager with vim keybindings.
+   - /[[https://github.com/alacritty/alacritty][Alacritty]]/: My terminal of choice comes with vim keybindings.
+   - /[[https://github.com/firecat53/urlscan][Urlscan]]/: Terminal Url Scanner and indexer with vim keybindings.
+     
+   One of the common things among apps is to have vim keybindings.
+   
+   It means all of them can be controlled by the keyboard and I flow through those apps without a hitch.
+   I even synced all the keybindings between them to allow seamless usage.
+   For Example pressing ~h~ always goes back no matter what , pressing ~l~ goes forward no matter what.
+   Pressing L on any page , opens urlscan  no matter what,independent of apps
+   
+** Aesthetics
+
+   For aesthetics I don't have much to offer.I used dracula themes from [[https://draculatheme.com][draculatheme.com]] as I love it.
+   Other aesthetics include
+   
+   - /[[https://github.com/jonaburg/picom][Picom]]/ (Jonaburg Fork): For animations , transparency , curved corners etc.
+   - /[[https://dunst-project.org/][Dunst]]/: Notification Manager
+   - /[[https://github.com/Airblader/unclutter-xfixes][Unclutter]]/: Mouse dissapear when not using.
+   - /[[http://jonls.dk/redshift/][redshift]]/: Night light support
+   
+   I think I can go on about how perfect my setup looks.
+   If you want to checkout my config , it's [[https://github.com/pspiagicw/dotfiles][here]].
+   
+** GoodBye!
+   
+   Keep being curious , Over and Out!

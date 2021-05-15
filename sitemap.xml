@@ -15,19 +15,31 @@
  </url>
  <url>
   <loc>https://pspiagicw.github.io/archive.html</loc>
-  <lastmod>2021-05-15T00:48:00Z</lastmod>
+  <lastmod>2021-05-15T02:56:00Z</lastmod>
  </url>
  <url>
   <loc>https://pspiagicw.github.io/categories/</loc>
-  <lastmod>2021-05-15T00:48:00Z</lastmod>
+  <lastmod>2021-05-15T02:56:00Z</lastmod>
+ </url>
+ <url>
+  <loc>https://pspiagicw.github.io/categories/cat_personal/</loc>
+  <lastmod>2021-05-15T02:56:00Z</lastmod>
  </url>
  <url>
   <loc>https://pspiagicw.github.io/categories/cat_programming/</loc>
   <lastmod>2021-05-15T00:48:00Z</lastmod>
  </url>
  <url>
+  <loc>https://pspiagicw.github.io/categories/linux/</loc>
+  <lastmod>2021-05-15T02:56:00Z</lastmod>
+ </url>
+ <url>
   <loc>https://pspiagicw.github.io/categories/machinelearning-coding/</loc>
   <lastmod>2021-05-15T00:48:00Z</lastmod>
+ </url>
+ <url>
+  <loc>https://pspiagicw.github.io/categories/machinelearning/</loc>
+  <lastmod>2021-05-15T02:56:00Z</lastmod>
  </url>
  <url>
   <loc>https://pspiagicw.github.io/galleries/</loc>
@@ -40,6 +52,10 @@
  <url>
   <loc>https://pspiagicw.github.io/posts/a-world-full-of-ssgs/</loc>
   <lastmod>2021-05-14T09:50:00Z</lastmod>
+ </url>
+ <url>
+  <loc>https://pspiagicw.github.io/posts/my-cool-new-setup/</loc>
+  <lastmod>2021-05-15T02:56:00Z</lastmod>
  </url>
  <url>
   <loc>https://pspiagicw.github.io/posts/write-a-blog-they-said/</loc>

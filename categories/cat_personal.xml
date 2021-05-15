@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Forked (Posts about personal)</title><link>https://pspiagicw.github.io/</link><description></description><atom:link href="https://pspiagicw.github.io/categories/cat_personal.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2021 &lt;a href="mailto:pspiagicw@gmail.com"&gt;pspiagicw&lt;/a&gt; </copyright><lastBuildDate>Sat, 15 May 2021 03:07:42 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>My cool new setup!</title><link>https://pspiagicw.github.io/posts/my-cool-new-setup/</link><dc:creator>pspiagicw</dc:creator><description>&lt;div id="outline-container-orgfb19aac" class="outline-2"&gt;
+&lt;h2 id="orgfb19aac"&gt;Linux is Sexy!&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-orgfb19aac"&gt;
+&lt;p&gt;
+My love for linux grows , day by day . It has the freedon that nobody can provide.
+Well I don't think anybody thinks of making a car from scratch . 
+Nor somebody talks how they would like to reconfigure their driving style for more productivity.
+&lt;/p&gt;
+
+&lt;p&gt;
+But in the Linux world this type of talk is very common.Due to a abundance of system-level packages we can customize our workflow with custom scripts,apps,etc.
+&lt;/p&gt;
+
+&lt;p&gt;
+I always kept a GUI handy , kept a second OS or a second account with working GUI if anything went wrong with my tiling window manager setup.
+I kept my college/school things in that account , I did not mix it with my coding/fun account.
+&lt;/p&gt;
+
+&lt;p&gt;
+&lt;span class="underline"&gt;Until Now&lt;/span&gt;
+&lt;/p&gt;
+
+&lt;p&gt;
+The biggest problem with my previous setup was I had to switch accounts or even OS for coding or attending classes.
+This time I decided to integrate both.
+&lt;/p&gt;
+
+&lt;p&gt;
+Now I had a choice , whether to keep a minimal setup with some GUI apps , or to keep only the required GUI apps.
+I decided to go with the obvious no GUI apps.
+&lt;/p&gt;
+
+&lt;p&gt;
+The only GUI app I am using is for my classes.
+&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-orgdbfbe8f" class="outline-3"&gt;
+&lt;h3 id="orgdbfbe8f"&gt;Keyboard is priority&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-orgdbfbe8f"&gt;
+&lt;p&gt;
+When making any setup , I make sure to remember all the keybindings,so that I can make things fast.
+Well with linux , you don't have to remember keybindings, you make keybindings.
+&lt;/p&gt;
+
+&lt;p&gt;
+I don't think anyone in the Windows/MacOS world thinkgs in this way!Create Keybindings?
+&lt;/p&gt;
+
+&lt;p&gt;
+For my display manager I went with nothing, a simple &lt;code&gt;/etc/issue&lt;/code&gt; file suffice for bling.
+My &lt;code&gt;bash_profile&lt;/code&gt; automatically starts the window manager on login.
+&lt;/p&gt;
+
+&lt;p&gt;
+My window manager of choice is &lt;i&gt;XMonad&lt;/i&gt; .It is fast , very customizable and is written in haskell.
+My bar to go with it was &lt;i&gt;xmobar&lt;/i&gt; . It provides lot of built-in widgets which makes it perfect, along with the fact that it is designed to work with xmonad.
+&lt;/p&gt;
+
+&lt;p&gt;
+My text editor has been emacs for the last month now and I rolled with it.Vim already spoiled me , that means I went Evil on Emacs.
+If you cannot understand that reference then you must join the dark side.I will not debate Emacs V/s Vim, but can say Emacs is good.
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org624edf4" class="outline-3"&gt;
+&lt;h3 id="org624edf4"&gt;My Apps&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-org624edf4"&gt;
+&lt;p&gt;
+My other apps include:
+&lt;/p&gt;
+
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;&lt;i&gt;&lt;a href="https://qutebrowser.org"&gt;QuteBrowser&lt;/a&gt;&lt;/i&gt;: Web Browser with vim keybindings.&lt;/li&gt;
+&lt;li&gt;&lt;i&gt;&lt;a href="https://pwmt.org/projects/zathura/"&gt;Zathura&lt;/a&gt;&lt;/i&gt;: PDF Viewer with vim keybindings&lt;/li&gt;
+&lt;li&gt;&lt;i&gt;&lt;a href="https://feh.finalrewind.org/"&gt;feh&lt;/a&gt;&lt;/i&gt;: Image viewer with vim keybindings.&lt;/li&gt;
+&lt;li&gt;&lt;i&gt;&lt;a href="https://neomutt.org/"&gt;Neomutt&lt;/a&gt;&lt;/i&gt;: Terminal Mail Client with vim keybindings.&lt;/li&gt;
+&lt;li&gt;&lt;i&gt;&lt;a href="https://newsboat.org/"&gt;NewsBoat&lt;/a&gt;&lt;/i&gt;: Terminal RSS feed reader with vim keybindings.&lt;/li&gt;
+&lt;li&gt;&lt;i&gt;&lt;a href="https://github.com/dylanaraps/torque"&gt;torque&lt;/a&gt;&lt;/i&gt;: Terminal torrent manager with vim keybindings.&lt;/li&gt;
+&lt;li&gt;&lt;i&gt;&lt;a href="https://github.com/alacritty/alacritty"&gt;Alacritty&lt;/a&gt;&lt;/i&gt;: My terminal of choice comes with vim keybindings.&lt;/li&gt;
+&lt;li&gt;&lt;i&gt;&lt;a href="https://github.com/firecat53/urlscan"&gt;Urlscan&lt;/a&gt;&lt;/i&gt;: Terminal Url Scanner and indexer with vim keybindings.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;
+One of the common things among apps is to have vim keybindings.
+&lt;/p&gt;
+
+&lt;p&gt;
+It means all of them can be controlled by the keyboard and I flow through those apps without a hitch.
+I even synced all the keybindings between them to allow seamless usage.
+For Example pressing &lt;code&gt;h&lt;/code&gt; always goes back no matter what , pressing &lt;code&gt;l&lt;/code&gt; goes forward no matter what.
+Pressing L on any page , opens urlscan  no matter what,independent of apps
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-orge4554a3" class="outline-3"&gt;
+&lt;h3 id="orge4554a3"&gt;Aesthetics&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-orge4554a3"&gt;
+&lt;p&gt;
+For aesthetics I don't have much to offer.I used dracula themes from &lt;a href="https://draculatheme.com"&gt;draculatheme.com&lt;/a&gt; as I love it.
+Other aesthetics include
+&lt;/p&gt;
+
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;&lt;i&gt;&lt;a href="https://github.com/jonaburg/picom"&gt;Picom&lt;/a&gt;&lt;/i&gt; (Jonaburg Fork): For animations , transparency , curved corners etc.&lt;/li&gt;
+&lt;li&gt;&lt;i&gt;&lt;a href="https://dunst-project.org/"&gt;Dunst&lt;/a&gt;&lt;/i&gt;: Notification Manager&lt;/li&gt;
+&lt;li&gt;&lt;i&gt;&lt;a href="https://github.com/Airblader/unclutter-xfixes"&gt;Unclutter&lt;/a&gt;&lt;/i&gt;: Mouse dissapear when not using.&lt;/li&gt;
+&lt;li&gt;&lt;i&gt;&lt;a href="http://jonls.dk/redshift/"&gt;redshift&lt;/a&gt;&lt;/i&gt;: Night light support&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;
+I think I can go on about how perfect my setup looks.
+If you want to checkout my config , it's &lt;a href="https://github.com/pspiagicw/dotfiles"&gt;here&lt;/a&gt;.
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org57309c1" class="outline-3"&gt;
+&lt;h3 id="org57309c1"&gt;GoodBye!&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-org57309c1"&gt;
+&lt;p&gt;
+Keep being curious , Over and Out!
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;</description><category>linux</category><guid>https://pspiagicw.github.io/posts/my-cool-new-setup/</guid><pubDate>Sat, 15 May 2021 00:58:53 GMT</pubDate></item></channel></rss>
