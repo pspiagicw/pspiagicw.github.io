@@ -1,0 +1,100 @@
+#+BEGIN_COMMENT
+.. title: Write a blog they said!
+.. slug: write-a-blog-they-said
+.. date: 2021-05-15 05:16:01 UTC+05:30
+.. tags: machinelearning coding
+.. category: programming
+.. link: 
+.. description: 
+.. type: text
+
+#+END_COMMENT
+
+
+* Write a blog they said
+
+** Read a book!
+  I love reading technical books which are non-serious , and cater towards casual learners.It provides the most honest perspective for anyone reading.
+  Well the most recent one was _Grokking Deep Learning_ , which provides excellent intro to the world of Deep Learning
+
+  The end of that book suggests to improve our knowledge,understanding of Deep Learning , by starting a blog about Deep Learning.
+
+  *Well* I can't deny the idea , I am very scared to execute it , a blog about Deep Learning , a topic almost anyone can understand from a few [[https://google.com][Google]] Sessions.
+  
+  Now that I have started a blog , this post might be the perfect session to start Deep Learning blogs.I can throw a little Machine Learning in there,
+  it would have a lot of coding.I have no idea how this will turn out.
+  
+  If it's bad , then you might be the rare people who read it , or if it's good you might be not so alone afterall.
+
+  Anyway let's start the [[https://en.wikipedia.org/wiki/SpaceX_Raptor][Raptors]].
+  
+** Machine Learning
+
+*** Getting Started
+
+   Well I could start with the theoretical aspects of Machine Learning , or I can start giving code , along with explanations.
+
+   I think I will go with the latter.
+   
+   For getting started , we need some Packages , Python Packages.Most of Machine Learning is done in Python , it is easy , readable and has good ecosystem.
+   Well if you are starting with Python, you can learn it and come to this later.
+
+   Well we need to install Python Packages using _[[https://pypi.org/project/pip/][pip]]_. Well don't worry it comes with almost all Python installations.The packages we need are
+   
+   1. Numpy: Numerical-Python, provides base for writing mathematical/scientific based code.
+   2. Matplotlib: Graphing tool , provides way to create complex graph and heatmaps.
+   3. Sklearn: Sckit-leaern , the base on which Machine Learning exists.
+   4. Pandas: Tool to interact with tabular data(CSV,XLSX,etc).
+      
+   I am coding on a generic GNU/Linux distribution , any commands/code I write will work on all platforms  provided you have Python on your PATH variable.
+   For installing above packages use the _pip_ command.
+   
+   [[img-url:/images/installing-packages.png ]]
+   
+   Now that we have packages installed,let's create a new python file and begin.People wanting to use Jupyter Notebook etc, don't judge me!
+   
+*** Data Collection
+
+   We need to have data to start Machine Learning.Lucky for us _sklearn_ already includes some datasets.
+   A dataset is a collection of tabular data along with information on source of the data.
+   
+   We are going to use moons dataset , it is a simple dataset , it tries to give data about two intersecting circles(Moons!).
+   To use it we have to invoke ~make_moons()~ method from ~sklearn.datasets~.
+   
+   [[img-url:/images/make-moons.png]]
+
+   It returns a tuple with first field being the input data(Data we know) and second field being output data(Data we want to know about).
+   Here we want to predict whether the circles intersect or not, given their position.
+   
+   Let's divide it into input and output variables.
+   
+   [[img-url:/images/divide-input.png]]
+   
+*** Training
+
+   We will use K-Nearest Neighbors algorithm, it's internal working will be explained later.The important thing , being it is used to Classify.First let's import it.
+   It is provided in ~sklearn.neighbors.KNeighborsClassifier~ .
+
+   [[img-url:/images/import-neighbors.png]]
+   
+*** Testing
+
+   Using this model is easy , for training call the _fit_ method and testing use the _score_ method.Don't worry about why and what we are doing here!
+   Using the score method gives us accuracy , which will tell how good our model is. /Higher the Better!/
+   
+   Tough we are not using ~score()~ method today , cause we don't have any testing data!!
+
+   [[img-url:/images/train-score-knn.png]]
+   
+   But we can make predictions for ourselves, as the model is trained on the data , it can make accurate predictions , without any problem.
+   To make predictions we use the ~predict~ method.We can pass data is same way input has in an array of two numbers , which can be used which can be used to predict if they are parameters of an intersecting circle.
+   
+   [[img-url:/images/predict.png]]
+   
+   
+   
+** Farewell!
+
+Let us meet again in the next post where we will learn more about Machine Learning in general.We will have a lot of fun, so don't miss it!
+
+_Bye for now_
