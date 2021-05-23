@@ -1,0 +1,14 @@
+#+BEGIN_COMMENT
+.. title: We need a war.
+.. slug: we-need-a-war
+.. date: 2021-05-15 22:46:03 UTC+05:30
+.. tags: 
+.. category: 
+.. link: 
+.. description: 
+.. type: text
+
+#+END_COMMENT
+
+
+Write your post here.

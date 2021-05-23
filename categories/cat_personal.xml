@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Forked (Posts about personal)</title><link>https://pspiagicw.github.io/</link><description></description><atom:link href="https://pspiagicw.github.io/categories/cat_personal.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2021 &lt;a href="mailto:pspiagicw@gmail.com"&gt;pspiagicw&lt;/a&gt; </copyright><lastBuildDate>Sat, 15 May 2021 03:07:42 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>My cool new setup!</title><link>https://pspiagicw.github.io/posts/my-cool-new-setup/</link><dc:creator>pspiagicw</dc:creator><description>&lt;div id="outline-container-orgfb19aac" class="outline-2"&gt;
-&lt;h2 id="orgfb19aac"&gt;Linux is Sexy!&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-orgfb19aac"&gt;
+<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Forked (Posts about personal)</title><link>https://pspiagicw.github.io/</link><description></description><atom:link href="https://pspiagicw.github.io/categories/cat_personal.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2021 &lt;a href="mailto:pspiagicw@gmail.com"&gt;pspiagicw&lt;/a&gt; </copyright><lastBuildDate>Mon, 17 May 2021 01:51:06 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>My cool new setup!</title><link>https://pspiagicw.github.io/posts/my-cool-new-setup/</link><dc:creator>pspiagicw</dc:creator><description>&lt;div id="outline-container-org0f551bc" class="outline-2"&gt;
+&lt;h2 id="org0f551bc"&gt;Linux is Sexy!&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org0f551bc"&gt;
 &lt;p&gt;
 My love for linux grows , day by day . It has the freedon that nobody can provide.
 Well I don't think anybody thinks of making a car from scratch . 
@@ -28,7 +28,7 @@ This time I decided to integrate both.
 
 &lt;p&gt;
 Now I had a choice , whether to keep a minimal setup with some GUI apps , or to keep only the required GUI apps.
-I decided to go with the obvious no GUI apps.
+I decided to go with the obvious , no GUI apps.
 &lt;/p&gt;
 
 &lt;p&gt;
@@ -36,9 +36,9 @@ The only GUI app I am using is for my classes.
 &lt;/p&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-orgdbfbe8f" class="outline-3"&gt;
-&lt;h3 id="orgdbfbe8f"&gt;Keyboard is priority&lt;/h3&gt;
-&lt;div class="outline-text-3" id="text-orgdbfbe8f"&gt;
+&lt;div id="outline-container-org2f68432" class="outline-3"&gt;
+&lt;h3 id="org2f68432"&gt;Keyboard is priority&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-org2f68432"&gt;
 &lt;p&gt;
 When making any setup , I make sure to remember all the keybindings,so that I can make things fast.
 Well with linux , you don't have to remember keybindings, you make keybindings.
@@ -49,7 +49,7 @@ I don't think anyone in the Windows/MacOS world thinkgs in this way!Create Keybi
 &lt;/p&gt;
 
 &lt;p&gt;
-For my display manager I went with nothing, a simple &lt;code&gt;/etc/issue&lt;/code&gt; file suffice for bling.
+For my display manager I went with nothing, a simple &lt;code&gt;/etc/issue&lt;/code&gt; file sufficed for bling.
 My &lt;code&gt;bash_profile&lt;/code&gt; automatically starts the window manager on login.
 &lt;/p&gt;
 
@@ -65,11 +65,11 @@ If you cannot understand that reference then you must join the dark side.I will 
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org624edf4" class="outline-3"&gt;
-&lt;h3 id="org624edf4"&gt;My Apps&lt;/h3&gt;
-&lt;div class="outline-text-3" id="text-org624edf4"&gt;
+&lt;div id="outline-container-orgdb1bc8c" class="outline-3"&gt;
+&lt;h3 id="orgdb1bc8c"&gt;My Apps&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-orgdb1bc8c"&gt;
 &lt;p&gt;
-My other apps include:
+My  apps include:
 &lt;/p&gt;
 
 &lt;ul class="org-ul"&gt;
@@ -96,9 +96,9 @@ Pressing L on any page , opens urlscan  no matter what,independent of apps
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-orge4554a3" class="outline-3"&gt;
-&lt;h3 id="orge4554a3"&gt;Aesthetics&lt;/h3&gt;
-&lt;div class="outline-text-3" id="text-orge4554a3"&gt;
+&lt;div id="outline-container-org31431f0" class="outline-3"&gt;
+&lt;h3 id="org31431f0"&gt;Aesthetics&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-org31431f0"&gt;
 &lt;p&gt;
 For aesthetics I don't have much to offer.I used dracula themes from &lt;a href="https://draculatheme.com"&gt;draculatheme.com&lt;/a&gt; as I love it.
 Other aesthetics include
@@ -118,12 +118,14 @@ If you want to checkout my config , it's &lt;a href="https://github.com/pspiagic
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org57309c1" class="outline-3"&gt;
-&lt;h3 id="org57309c1"&gt;GoodBye!&lt;/h3&gt;
-&lt;div class="outline-text-3" id="text-org57309c1"&gt;
+&lt;div id="outline-container-org1098e76" class="outline-3"&gt;
+&lt;h3 id="org1098e76"&gt;GoodBye!&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-org1098e76"&gt;
 &lt;p&gt;
 Keep being curious , Over and Out!
 &lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;/div&gt;</description><category>linux</category><guid>https://pspiagicw.github.io/posts/my-cool-new-setup/</guid><pubDate>Sat, 15 May 2021 00:58:53 GMT</pubDate></item></channel></rss>
+&lt;/div&gt;&lt;/body&gt;
+&lt;/html&gt;
+</description><category>linux</category><guid>https://pspiagicw.github.io/posts/my-cool-new-setup/</guid><pubDate>Sat, 15 May 2021 00:58:53 GMT</pubDate></item></channel></rss>

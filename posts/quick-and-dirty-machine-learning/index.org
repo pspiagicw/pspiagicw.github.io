@@ -1,0 +1,163 @@
+#+BEGIN_COMMENT
+.. title: Quick and Dirty Machine Learning
+.. slug: quick-and-dirty-machine-learning
+.. date: 2021-05-17 19:38:59 UTC+05:30
+.. tags: 
+.. category: 
+.. link: 
+.. description: 
+.. type: text
+
+#+END_COMMENT
+#+property: header-args:python :exports both
+
+
+* Quick and Dirty Machine Learning.
+
+Today we will look at 2 machine learning models,one with classification and one with regression.
+
+Regression trains a model to predict continuous value.That means the value does not have any range,it does not have to be contained within a specific class.
+
+** Nonmenclature
+
+In Machine Learning , some words/terms mean very specific things.
+Some of them used in this tutorial are:
+- X: Input Data
+- Y: Output Data
+  
+These terms are used very extensively while writing machine learning code.Make sure they don't confuse you when you see them, here or elsewhere.
+
+** Train Test Split
+
+Earlier we did testing with our training data.
+But we should never test on training data.
+
+Instead  we should divide data into training and testing data.
+
+Sklearn provides ~train_test_split()~ method for exactly this task.It takes X , y , and =split_size= (Default 20%).
+
+** First Model
+
+Here we are using Iris dataset.It provides four inputs(Petal Length , Petal Width , Sepal Length , Sepal Width) and our task is to predict the type of plant it is.
+The flower must be one of 'Iris-Sentosa' , 'Iris-Virginica' , 'Iris-Versicolor'.We transform classes numerically into 0 , 1 , 2.
+
+Sckit-Learn provides a simple ~load_iris()~ method which provides the data  in a an dict form.
+
+#+begin_src python :session :results output
+from sklearn.datasets import load_iris
+rawdata = load_iris() 
+x = rawdata['data']
+y = rawdata['target']
+print(len(x))
+print(len(y))
+#+end_src
+
+#+RESULTS:
+: 150
+: 150
+
+Splitting the data into training and testing is as simple as calling the ~train_test_split()~ method with the respective X and y values.
+
+#+begin_src python :session :results output
+from sklearn.model_selection import train_test_split
+train_x , test_x , train_y , test_y = train_test_split(x,y)
+print(len(train_x))
+print(len(train_y))
+#+end_src
+
+#+RESULTS:
+: 112
+: 112
+
+/Here we are!/
+
+Model selection is one of the most important aspect of Machine Learning.
+Here we are using a RandomForestClassifier.We will discuss this model's inner working later!.
+
+Training is as easy as using ~fit()~ method on the model.
+
+#+begin_src python :session :results output
+from sklearn.ensemble import RandomForestClassifier
+
+model = RandomForestClassifier()
+model.fit(train_x,train_y)
+#+end_src
+
+#+RESULTS:
+
+Testing is done through the usual ~score()~ method.This method selects the appropriate metric (Accuracy in this case) and shows how the model performed.
+
+#+begin_src python :session :results output
+print(model.score(test_x,test_y))
+#+end_src
+
+#+RESULTS:
+: 0.9736842105263158
+
+97%! Not bad!
+
+** Second Model
+
+Regression is the task of predicting a continous value , which means it has no restrictions while prediciting values.
+
+We are using california housing prices as our dataset.This dataset contains housing information for the state of california(USA).
+We can use multiple parameters(House Age , No of Rooms , Location/Latitude/Longitude , etc) for predicting house prices.
+
+House Prices have only one social restriction , it should be positive(Hopefully our model never does it!).
+Apart from that our model can predict any real number , ranging from a few hundreds to values in the million.
+
+You can get *California Housing Prices* by using ~fetch_california_housing()~ method , provided by sklearn.
+
+#+begin_src python :session :results output
+from sklearn.datasets import fetch_california_housing
+
+rawdata = fetch_california_housing()
+#+end_src
+
+#+RESULTS:
+
+Again , data is returned as a ~dict()~.
+
+#+begin_src python :session :results output
+x = rawdata['data']
+y = rawdata['target']
+#+end_src
+
+#+RESULTS:
+: [5.1 3.5 1.4 0.2]
+
+Splitting training and testing data.
+
+#+begin_src python :session :results output
+from sklearn.model_selection import train_test_split
+train_x , test_x , train_y , test_y = train_test_split(x,y,random_state=0)
+#+end_src
+
+#+RESULTS:
+
+Creating a model.
+In this case we are using ~RandomForestRegressor~ which provides very good results.
+
+
+#+begin_src python :session :results output
+from sklearn.ensemble import RandomForestRegressor
+model = RandomForestRegressor()
+model.fit(train_x,train_y)
+print(model.score(test_x,test_y))
+#+end_src
+
+#+RESULTS:
+: 0.9602251219512195
+
+/96%/!! , this was my personal best while trying multiple models.More accuracy can be achieved by more experienced folks.
+Ways to improve include
+- Choosing strong model
+- Using More Data
+- Extensive Feature Engineeering
+  
+
+** Sayonara!
+
+Well you can try more models or learn more about the models, we used.Anyway keep learning!!
+
+

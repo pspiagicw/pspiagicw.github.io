@@ -9,7 +9,7 @@
 .. type: text
 
 #+END_COMMENT
-
+#+PROPERTY: header-args:python :exports both
 
 * Write a blog they said
 
@@ -49,7 +49,9 @@
    I am coding on a generic GNU/Linux distribution , any commands/code I write will work on all platforms  provided you have Python on your PATH variable.
    For installing above packages use the _pip_ command.
    
-   [[img-url:/images/installing-packages.png ]]
+   #+begin_src sh
+   pip install sklearn pandas numpy matplotlib
+   #+end_src
    
    Now that we have packages installed,let's create a new python file and begin.People wanting to use Jupyter Notebook etc, don't judge me!
    
@@ -61,21 +63,40 @@
    We are going to use moons dataset , it is a simple dataset , it tries to give data about two intersecting circles(Moons!).
    To use it we have to invoke ~make_moons()~ method from ~sklearn.datasets~.
    
-   [[img-url:/images/make-moons.png]]
+   #+begin_src python :session :results output :exports code
+from sklearn.datasets import make_moons 
+data = make_moons()
+   #+end_src
+
+   #+RESULTS:
+   : Python 3.8.9 (default, May  7 2021, 17:37:44) 
+   : [GCC 10.2.0] on linux
+   : Type "help", "copyright", "credits" or "license" for more information.
+   : >>> python.el: native completion setup loaded
 
    It returns a tuple with first field being the input data(Data we know) and second field being output data(Data we want to know about).
    Here we want to predict whether the circles intersect or not, given their position.
    
    Let's divide it into input and output variables.
    
-   [[img-url:/images/divide-input.png]]
+   #+begin_src python :session :results output
+   input = data[0]
+   output = data[1]
+   #+end_src
+
+   #+RESULTS:
    
 *** Training
 
    We will use K-Nearest Neighbors algorithm, it's internal working will be explained later.The important thing , being it is used to Classify.First let's import it.
    It is provided in ~sklearn.neighbors.KNeighborsClassifier~ .
 
-   [[img-url:/images/import-neighbors.png]]
+   #+begin_src python :session :results output
+   from sklearn.neighbors import KNeighborsClassifier
+   model = KNeighborsClassifier()
+   #+end_src
+
+   #+RESULTS:
    
 *** Testing
 
@@ -84,17 +105,28 @@
    
    Tough we are not using ~score()~ method today , cause we don't have any testing data!!
 
-   [[img-url:/images/train-score-knn.png]]
+   #+begin_src python :session :results output
+   model.fit(input,output)
+   #+end_src
+
+   #+RESULTS:
+   : KNeighborsClassifier()
    
    But we can make predictions for ourselves, as the model is trained on the data , it can make accurate predictions , without any problem.
    To make predictions we use the ~predict~ method.We can pass data is same way input has in an array of two numbers , which can be used which can be used to predict if they are parameters of an intersecting circle.
    
-   [[img-url:/images/predict.png]]
+   #+begin_src python :session :results output
+   test_input = [[2.455 , 2.345 ]]
+   print(model.predict(test_input))
+   #+end_src
+
+   #+RESULTS:
+   : [1]
    
    
    
 ** Farewell!
 
-Let us meet again in the next post where we will learn more about Machine Learning in general.We will have a lot of fun, so don't miss it!
+    Let us meet again in the next post where we will learn more about Machine Learning in general.We will have a lot of fun, so don't miss it!
 
-_Bye for now_
+    _Bye for now_

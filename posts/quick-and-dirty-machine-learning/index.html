@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html prefix="" lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+<title>Quick and Dirty Machine Learning | Forked</title>
+<link href="../../assets/css/rst.css" rel="stylesheet" type="text/css">
+<link href="../../assets/css/code.css" rel="stylesheet" type="text/css">
+<link href="../../assets/css/dark.css" rel="stylesheet" type="text/css">
+<link href="../../assets/css/theme.css" rel="stylesheet" type="text/css">
+<link href="https://fonts.googleapis.com/css?family=Share+Tech+Mono" rel="stylesheet">
+<link href="../../assets/css/custom.css" rel="stylesheet" type="text/css">
+<meta name="theme-color" content="#5670d4">
+<meta name="generator" content="Nikola (getnikola.com)">
+<link rel="alternate" type="application/rss+xml" title="RSS" href="../../rss.xml">
+<link rel="canonical" href="https://pspiagicw.github.io/posts/quick-and-dirty-machine-learning/">
+<!--[if lt IE 9]><script src="../../assets/js/html5.js"></script><![endif]--><meta name="author" content="pspiagicw">
+<link rel="prev" href="../rough-guide-on-matplotlib/" title="Rough Guide on Matplotlib" type="text/html">
+<meta property="og:site_name" content="Forked">
+<meta property="og:title" content="Quick and Dirty Machine Learning">
+<meta property="og:url" content="https://pspiagicw.github.io/posts/quick-and-dirty-machine-learning/">
+<meta property="og:description" content="Quick and Dirty Machine Learning.
+
+
+Today we will look at 2 machine learning models,one with classification and one with regression.
+
+
+
+Regression trains a model to predict continuous value.That means">
+<meta property="og:type" content="article">
+<meta property="article:published_time" content="2021-05-17T19:38:59+05:30">
+</head>
+<body class="hack dark">
+
+<a href="#content" class="sr-only sr-only-focusable">Skip to main content</a>
+    <div id="container">
+         
+    <header id="header"><h1 id="brand"><a href="../../" title="Forked" rel="home">
+
+        <span id="blog-title">Forked</span>
+    </a></h1>
+
+        
+
+        
+    <nav id="menu"><ul>
+<li><a href="../../archive.html">Archive</a></li>
+                <li><a href="../../categories/">Tags</a></li>
+                <li><a href="../../rss.xml">RSS feed</a></li>
+
+    
+
+    
+    
+    </ul></nav></header><main id="content"><article class="post-text h-entry hentry postpage" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title" itemprop="headline name"><a href="." class="u-url">Quick and Dirty Machine Learning</a></h1>
+
+        <div class="metadata">
+            <p class="byline author vcard p-author h-card"><span class="byline-name fn p-name" itemprop="author">
+                    pspiagicw
+            </span></p>
+            <p class="dateline">
+            <a href="." rel="bookmark">
+            <time class="published dt-published" datetime="2021-05-17T19:38:59+05:30" itemprop="datePublished" title="2021-05-17 19:38">2021-05-17 19:38</time></a>
+            </p>
+            
+        <p class="sourceline"><a href="index.org" class="sourcelink">Source</a></p>
+
+        </div>
+        
+
+    </header><div class="e-content entry-content" itemprop="articleBody text">
+    <div id="outline-container-orgbd1f0e0" class="outline-2">
+<h2 id="orgbd1f0e0">Quick and Dirty Machine Learning.</h2>
+<div class="outline-text-2" id="text-orgbd1f0e0">
+<p>
+Today we will look at 2 machine learning models,one with classification and one with regression.
+</p>
+
+<p>
+Regression trains a model to predict continuous value.That means the value does not have any range,it does not have to be contained within a specific class.
+</p>
+</div>
+
+<div id="outline-container-org03eb513" class="outline-3">
+<h3 id="org03eb513">Nonmenclature</h3>
+<div class="outline-text-3" id="text-org03eb513">
+<p>
+In Machine Learning , some words/terms mean very specific things.
+Some of them used in this tutorial are:
+</p>
+<ul class="org-ul">
+<li>X: Input Data</li>
+<li>Y: Output Data</li>
+</ul>
+<p>
+These terms are used very extensively while writing machine learning code.Make sure they don't confuse you when you see them, here or elsewhere.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org08b0ab4" class="outline-3">
+<h3 id="org08b0ab4">Train Test Split</h3>
+<div class="outline-text-3" id="text-org08b0ab4">
+<p>
+Earlier we did testing with our training data.
+But we should never test on training data.
+</p>
+
+<p>
+Instead  we should divide data into training and testing data.
+</p>
+
+<p>
+Sklearn provides <code>train_test_split()</code> method for exactly this task.It takes X , y , and <code>split_size</code> (Default 20%).
+</p>
+</div>
+</div>
+
+<div id="outline-container-org83ca9b7" class="outline-3">
+<h3 id="org83ca9b7">First Model</h3>
+<div class="outline-text-3" id="text-org83ca9b7">
+<p>
+Here we are using Iris dataset.It provides four inputs(Petal Length , Petal Width , Sepal Length , Sepal Width) and our task is to predict the type of plant it is.
+The flower must be one of 'Iris-Sentosa' , 'Iris-Virginica' , 'Iris-Versicolor'.We transform classes numerically into 0 , 1 , 2.
+</p>
+
+<p>
+Sckit-Learn provides a simple <code>load_iris()</code> method which provides the data  in a an dict form.
+</p>
+
+<div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.datasets</span> <span class="kn">import</span> <span class="n">load_iris</span>
+<span class="n">rawdata</span> <span class="o">=</span> <span class="n">load_iris</span><span class="p">()</span> 
+<span class="n">x</span> <span class="o">=</span> <span class="n">rawdata</span><span class="p">[</span><span class="s1">'data'</span><span class="p">]</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">rawdata</span><span class="p">[</span><span class="s1">'target'</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">y</span><span class="p">))</span>
+</pre></div>
+
+<pre class="example">
+150
+150
+</pre>
+
+
+<p>
+Splitting the data into training and testing is as simple as calling the <code>train_test_split()</code> method with the respective X and y values.
+</p>
+
+<div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
+<span class="n">train_x</span> <span class="p">,</span> <span class="n">test_x</span> <span class="p">,</span> <span class="n">train_y</span> <span class="p">,</span> <span class="n">test_y</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">train_x</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">train_y</span><span class="p">))</span>
+</pre></div>
+
+<pre class="example">
+112
+112
+</pre>
+
+
+<p>
+<i>Here we are!</i>
+</p>
+
+<p>
+Model selection is one of the most important aspect of Machine Learning.
+Here we are using a RandomForestClassifier.We will discuss this model's inner working later!.
+</p>
+
+<p>
+Training is as easy as using <code>fit()</code> method on the model.
+</p>
+
+<div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.ensemble</span> <span class="kn">import</span> <span class="n">RandomForestClassifier</span>
+
+<span class="n">model</span> <span class="o">=</span> <span class="n">RandomForestClassifier</span><span class="p">()</span>
+<span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">train_x</span><span class="p">,</span><span class="n">train_y</span><span class="p">)</span>
+</pre></div>
+
+<p>
+Testing is done through the usual <code>score()</code> method.This method selects the appropriate metric (Accuracy in this case) and shows how the model performed.
+</p>
+
+<div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">test_x</span><span class="p">,</span><span class="n">test_y</span><span class="p">))</span>
+</pre></div>
+
+<pre class="example">
+0.9736842105263158
+</pre>
+
+
+<p>
+97%! Not bad!
+</p>
+</div>
+</div>
+
+<div id="outline-container-org17f61d2" class="outline-3">
+<h3 id="org17f61d2">Second Model</h3>
+<div class="outline-text-3" id="text-org17f61d2">
+<p>
+Regression is the task of predicting a continous value , which means it has no restrictions while prediciting values.
+</p>
+
+<p>
+We are using california housing prices as our dataset.This dataset contains housing information for the state of california(USA).
+We can use multiple parameters(House Age , No of Rooms , Location/Latitude/Longitude , etc) for predicting house prices.
+</p>
+
+<p>
+House Prices have only one social restriction , it should be positive(Hopefully our model never does it!).
+Apart from that our model can predict any real number , ranging from a few hundreds to values in the million.
+</p>
+
+<p>
+You can get <b>California Housing Prices</b> by using <code>fetch_california_housing()</code> method , provided by sklearn.
+</p>
+
+<div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.datasets</span> <span class="kn">import</span> <span class="n">fetch_california_housing</span>
+
+<span class="n">rawdata</span> <span class="o">=</span> <span class="n">fetch_california_housing</span><span class="p">()</span>
+</pre></div>
+
+<p>
+Again , data is returned as a <code>dict()</code>.
+</p>
+
+<div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">rawdata</span><span class="p">[</span><span class="s1">'data'</span><span class="p">]</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">rawdata</span><span class="p">[</span><span class="s1">'target'</span><span class="p">]</span>
+</pre></div>
+
+<pre class="example">
+[5.1 3.5 1.4 0.2]
+</pre>
+
+
+<p>
+Splitting training and testing data.
+</p>
+
+<div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
+<span class="n">train_x</span> <span class="p">,</span> <span class="n">test_x</span> <span class="p">,</span> <span class="n">train_y</span> <span class="p">,</span> <span class="n">test_y</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</pre></div>
+
+<p>
+Creating a model.
+In this case we are using <code>RandomForestRegressor</code> which provides very good results.
+</p>
+
+
+<div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.ensemble</span> <span class="kn">import</span> <span class="n">RandomForestRegressor</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">RandomForestRegressor</span><span class="p">()</span>
+<span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">train_x</span><span class="p">,</span><span class="n">train_y</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">test_x</span><span class="p">,</span><span class="n">test_y</span><span class="p">))</span>
+</pre></div>
+
+<pre class="example">
+0.9602251219512195
+</pre>
+
+
+<p>
+<i>96%</i>!! , this was my personal best while trying multiple models.More accuracy can be achieved by more experienced folks.
+Ways to improve include
+</p>
+<ul class="org-ul">
+<li>Choosing strong model</li>
+<li>Using More Data</li>
+<li>Extensive Feature Engineeering</li>
+</ul>
+</div>
+</div>
+
+
+<div id="outline-container-org9ffdd40" class="outline-3">
+<h3 id="org9ffdd40">Sayonara!</h3>
+<div class="outline-text-3" id="text-org9ffdd40">
+<p>
+Well you can try more models or learn more about the models, we used.Anyway keep learning!!
+</p>
+</div>
+</div>
+</div>
+    </div>
+    <aside class="postpromonav"><nav><ul class="pager hidden-print">
+<li class="previous">
+                <a href="../rough-guide-on-matplotlib/" rel="prev" title="Rough Guide on Matplotlib">Previous post</a>
+            </li>
+        </ul></nav></aside></article></main><footer id="footer"><p>Contents © 2021         <a href="mailto:pspiagicw@gmail.com">pspiagicw</a> - Powered by         <a href="https://getnikola.com" rel="nofollow">Nikola</a>         </p>
+            
+        </footer>
+</div>
+    
+    
+
+    
+    
+    
+</body>
+</html>

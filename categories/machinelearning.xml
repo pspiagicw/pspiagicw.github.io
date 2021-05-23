@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Forked (Posts about machinelearning)</title><link>https://pspiagicw.github.io/</link><description></description><atom:link href="https://pspiagicw.github.io/categories/machinelearning.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2021 &lt;a href="mailto:pspiagicw@gmail.com"&gt;pspiagicw&lt;/a&gt; </copyright><lastBuildDate>Sat, 15 May 2021 02:56:31 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Write a blog they said!</title><link>https://pspiagicw.github.io/posts/write-a-blog-they-said/</link><dc:creator>pspiagicw</dc:creator><description>&lt;div id="outline-container-orga553a29" class="outline-2"&gt;
-&lt;h2 id="orga553a29"&gt;Write a blog they said&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-orga553a29"&gt;
+<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Forked (Posts about machinelearning)</title><link>https://pspiagicw.github.io/</link><description></description><atom:link href="https://pspiagicw.github.io/categories/machinelearning.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2021 &lt;a href="mailto:pspiagicw@gmail.com"&gt;pspiagicw&lt;/a&gt; </copyright><lastBuildDate>Mon, 17 May 2021 11:37:49 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Write a blog they said!</title><link>https://pspiagicw.github.io/posts/write-a-blog-they-said/</link><dc:creator>pspiagicw</dc:creator><description>&lt;div id="outline-container-orgb8a317a" class="outline-2"&gt;
+&lt;h2 id="orgb8a317a"&gt;Write a blog they said&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-orgb8a317a"&gt;
 &lt;/div&gt;
-&lt;div id="outline-container-org567ce0f" class="outline-3"&gt;
-&lt;h3 id="org567ce0f"&gt;Read a book!&lt;/h3&gt;
-&lt;div class="outline-text-3" id="text-org567ce0f"&gt;
+&lt;div id="outline-container-org8812aed" class="outline-3"&gt;
+&lt;h3 id="org8812aed"&gt;Read a book!&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-org8812aed"&gt;
 &lt;p&gt;
 I love reading technical books which are non-serious , and cater towards casual learners.It provides the most honest perspective for anyone reading.
 Well the most recent one was &lt;span class="underline"&gt;Grokking Deep Learning&lt;/span&gt; , which provides excellent intro to the world of Deep Learning
@@ -34,13 +34,13 @@ Anyway let's start the &lt;a href="https://en.wikipedia.org/wiki/SpaceX_Raptor"&
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-orgcfa8351" class="outline-3"&gt;
-&lt;h3 id="orgcfa8351"&gt;Machine Learning&lt;/h3&gt;
-&lt;div class="outline-text-3" id="text-orgcfa8351"&gt;
+&lt;div id="outline-container-org78a4917" class="outline-3"&gt;
+&lt;h3 id="org78a4917"&gt;Machine Learning&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-org78a4917"&gt;
 &lt;/div&gt;
-&lt;div id="outline-container-org827236d" class="outline-4"&gt;
-&lt;h4 id="org827236d"&gt;Getting Started&lt;/h4&gt;
-&lt;div class="outline-text-4" id="text-org827236d"&gt;
+&lt;div id="outline-container-orgdfecbbb" class="outline-4"&gt;
+&lt;h4 id="orgdfecbbb"&gt;Getting Started&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-orgdfecbbb"&gt;
 &lt;p&gt;
 Well I could start with the theoretical aspects of Machine Learning , or I can start giving code , along with explanations.
 &lt;/p&gt;
@@ -70,9 +70,8 @@ I am coding on a generic GNU/Linux distribution , any commands/code I write will
 For installing above packages use the &lt;span class="underline"&gt;pip&lt;/span&gt; command.
 &lt;/p&gt;
 
-&lt;p&gt;
-&lt;img src="https://pspiagicw.github.io/images/installing-packages.png" alt="nil"&gt;
-&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;   pip install sklearn pandas numpy matplotlib
+&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;
 Now that we have packages installed,let's create a new python file and begin.People wanting to use Jupyter Notebook etc, don't judge me!
@@ -80,9 +79,9 @@ Now that we have packages installed,let's create a new python file and begin.Peo
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org22dd5fa" class="outline-4"&gt;
-&lt;h4 id="org22dd5fa"&gt;Data Collection&lt;/h4&gt;
-&lt;div class="outline-text-4" id="text-org22dd5fa"&gt;
+&lt;div id="outline-container-org8c0cbcd" class="outline-4"&gt;
+&lt;h4 id="org8c0cbcd"&gt;Data Collection&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-org8c0cbcd"&gt;
 &lt;p&gt;
 We need to have data to start Machine Learning.Lucky for us &lt;span class="underline"&gt;sklearn&lt;/span&gt; already includes some datasets.
 A dataset is a collection of tabular data along with information on source of the data.
@@ -93,9 +92,9 @@ We are going to use moons dataset , it is a simple dataset , it tries to give da
 To use it we have to invoke &lt;code&gt;make_moons()&lt;/code&gt; method from &lt;code&gt;sklearn.datasets&lt;/code&gt;.
 &lt;/p&gt;
 
-&lt;p&gt;
-&lt;img src="https://pspiagicw.github.io/images/make-moons.png" alt="nil"&gt;
-&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;   &lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;sklearn.datasets&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;make_moons&lt;/span&gt; 
+   &lt;span class="n"&gt;data&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;make_moons&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;
 It returns a tuple with first field being the input data(Data we know) and second field being output data(Data we want to know about).
@@ -106,29 +105,29 @@ Here we want to predict whether the circles intersect or not, given their positi
 Let's divide it into input and output variables.
 &lt;/p&gt;
 
-&lt;p&gt;
-&lt;img src="https://pspiagicw.github.io/images/divide-input.png" alt="nil"&gt;
-&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;   &lt;span class="nb"&gt;input&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;data&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+   &lt;span class="n"&gt;output&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;data&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-orgba5f587" class="outline-4"&gt;
-&lt;h4 id="orgba5f587"&gt;Training&lt;/h4&gt;
-&lt;div class="outline-text-4" id="text-orgba5f587"&gt;
+&lt;div id="outline-container-orgc85bb18" class="outline-4"&gt;
+&lt;h4 id="orgc85bb18"&gt;Training&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-orgc85bb18"&gt;
 &lt;p&gt;
 We will use K-Nearest Neighbors algorithm, it's internal working will be explained later.The important thing , being it is used to Classify.First let's import it.
 It is provided in &lt;code&gt;sklearn.neighbors.KNeighborsClassifier&lt;/code&gt; .
 &lt;/p&gt;
 
-&lt;p&gt;
-&lt;img src="https://pspiagicw.github.io/images/import-neighbors.png" alt="nil"&gt;
-&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;   &lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;sklearn.neighbors&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;KNeighborsClassifier&lt;/span&gt;
+   &lt;span class="n"&gt;model&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;KNeighborsClassifier&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-orgad900d8" class="outline-4"&gt;
-&lt;h4 id="orgad900d8"&gt;Testing&lt;/h4&gt;
-&lt;div class="outline-text-4" id="text-orgad900d8"&gt;
+&lt;div id="outline-container-org231e569" class="outline-4"&gt;
+&lt;h4 id="org231e569"&gt;Testing&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-org231e569"&gt;
 &lt;p&gt;
 Using this model is easy , for training call the &lt;span class="underline"&gt;fit&lt;/span&gt; method and testing use the &lt;span class="underline"&gt;score&lt;/span&gt; method.Don't worry about why and what we are doing here!
 Using the score method gives us accuracy , which will tell how good our model is. &lt;i&gt;Higher the Better!&lt;/i&gt;
@@ -138,27 +137,35 @@ Using the score method gives us accuracy , which will tell how good our model is
 Tough we are not using &lt;code&gt;score()&lt;/code&gt; method today , cause we don't have any testing data!!
 &lt;/p&gt;
 
-&lt;p&gt;
-&lt;img src="https://pspiagicw.github.io/images/train-score-knn.png" alt="nil"&gt;
-&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;   &lt;span class="n"&gt;model&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;fit&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;input&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;output&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;pre class="example"&gt;
+KNeighborsClassifier()
+&lt;/pre&gt;
+
 
 &lt;p&gt;
 But we can make predictions for ourselves, as the model is trained on the data , it can make accurate predictions , without any problem.
 To make predictions we use the &lt;code&gt;predict&lt;/code&gt; method.We can pass data is same way input has in an array of two numbers , which can be used which can be used to predict if they are parameters of an intersecting circle.
 &lt;/p&gt;
 
-&lt;p&gt;
-&lt;img src="https://pspiagicw.github.io/images/predict.png" alt="nil"&gt;
-&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;   &lt;span class="n"&gt;test_input&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[[&lt;/span&gt;&lt;span class="mf"&gt;2.455&lt;/span&gt; &lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mf"&gt;2.345&lt;/span&gt; &lt;span class="p"&gt;]]&lt;/span&gt;
+   &lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;model&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;predict&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;test_input&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;pre class="example"&gt;
+[1]
+&lt;/pre&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 
 
 
-&lt;div id="outline-container-orgb733ef8" class="outline-3"&gt;
-&lt;h3 id="orgb733ef8"&gt;Farewell!&lt;/h3&gt;
-&lt;div class="outline-text-3" id="text-orgb733ef8"&gt;
+&lt;div id="outline-container-org86ecaf4" class="outline-3"&gt;
+&lt;h3 id="org86ecaf4"&gt;Farewell!&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-org86ecaf4"&gt;
 &lt;p&gt;
 Let us meet again in the next post where we will learn more about Machine Learning in general.We will have a lot of fun, so don't miss it!
 &lt;/p&gt;
@@ -168,4 +175,6 @@ Let us meet again in the next post where we will learn more about Machine Learni
 &lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;/div&gt;</description><category>machinelearning</category><guid>https://pspiagicw.github.io/posts/write-a-blog-they-said/</guid><pubDate>Fri, 14 May 2021 23:46:01 GMT</pubDate></item></channel></rss>
+&lt;/div&gt;&lt;/body&gt;
+&lt;/html&gt;
+</description><category>machinelearning</category><guid>https://pspiagicw.github.io/posts/write-a-blog-they-said/</guid><pubDate>Fri, 14 May 2021 23:46:01 GMT</pubDate></item></channel></rss>

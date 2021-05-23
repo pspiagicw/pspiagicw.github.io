@@ -1,0 +1,165 @@
+#+BEGIN_COMMENT
+.. title: The rise of the Machines
+.. slug: the-rise-of-the-machines
+.. date: 2021-05-15 22:39:18 UTC+05:30
+.. tags: 
+.. category: 
+.. link: 
+.. description: 
+.. type: text
+
+#+END_COMMENT
+#+PROPERTY: header-args:python :exports both
+
+* The rise of the Machines
+Last time we saw a simple model train and predict on some user data.
+We decided we will keep the explanation for later.
+
+I think the time has come.
+
+** Data
+The most important aspect of Machine Learning is /data/ , without it we cannot perform any training or testing.
+Before the information age , data was hard to come by.
+Storage was very expensive , it was better used to store useful information , rather than log previous data.
+
+Invention of cheap hard disks changed this.Data could be stored.
+
+Now that every bit of information about our lives is being tracked (for good or bad?), data can be used to build models.
+
+These models are nothing but complex mathematical formulas , these try to create a formula of the given data.
+In other words they try to generalize pattern in the data.
+
+You can also say , Machine Learning is learning our habits/behaviour/instincts into a mathematical formula .
+The formula could predict our every move , making a deterministic universe, allowing to predict the future.
+Becoming a level 5 civilization.
+
+/Well That was too much!/
+
+Basically making a formula that maps input to output is machine learning.
+
+In our last example we are using ~make_moons~ dataset , it provides coordinates of two intersecting circles.
+
+#+begin_src python :results output :session
+from sklearn.datasets import make_moons
+# Dataset
+data = make_moons()
+#+end_src
+
+#+RESULTS:
+
+This provides us with a tuple (coordinates , output).
+- Coordinates - This is list of x and y coordinates of points.
+- Output - This is list whether they intersect or not.
+  
+If you are wondering , what are we doing with our data.
+We are trying to classify .
+
+/Classification/ - Task where we try to take input data and predict which class the said input lies in.Class refers to the multiple type an input can fall into.
+It is just fancy words for saying , we give stuff , you learn to sort them.
+** Model
+For classification there are lot of techniques , Logistic Regression , K Nearest Neighbors , DecisionTree etc.
+We can go overpowered and use multiplayer perceptron model , or even an RNN.
+
+The important part of Machine Learning is selecting the right model , not /too weak/ , not /too strong/.
+
+If /too weak/ ,model might not be able to learn the relation at all.
+
+If /too strong/ ,model might use lot of computational power, or even worse overfit (get personal with the data).
+
+/Both are not Good!/
+
+For this exercise, K Nearest Neighbor is good enough. Simple and Strong.
+
+** K Nearest Neighbors
+KNN(K Nearest Neighbors) tries to predict it's class/type by seeing who is nearest while on a cartesian graph.
+
+Take this graph for example
+
+[[img-url:/images/knn-example.png]]
+
+This graph has two groups , one in blue and one in pink.
+
+For predicting group for any new point , it plots it on the graph , sees which points are near , using distance formula for corresponding cartesian plane.
+
+For 1-d cartesian plane , distance formula is dist = coordinate1 - coordinate2.
+
+For 2-d cartesian plane , distance formula is dist = sqrt( ( x2 - x1)**2 + ( y2 - y1)**2 )
+where x1 is x coordinate of first point.
+
+If you need a little refresher see this.
+
+Using this distance information , it can see which points are nearest , it chooses the k nearest points , here k is arbitary(our choice).
+After choosing the points it sees what class/group do majority of them lie in.
+As we need majority always , K is always choosed as an odd number , so that no matter how ambiguous(Confusing) the point might look like , there is always a majority.
+
+Here we are creating a model, by default sklearn uses K = 5.
+
+#+begin_src python  :session
+from sklearn.neighbors import KNeighborsClassifier
+model = KNeighborsClassifier()
+#+end_src
+
+#+RESULTS:
+
+** Train and predict.
+For training , we need data points(input) and labels(output).
+
+For Moons Dataset, input is first element of the tuple.
+Output is second element of the tuple.
+
+Here is a pic of the dataset.
+
+[[img-url:/images/moons-dataset-graph.png]]
+
+#+begin_src python :results output :session
+input = data[0]
+output = data[1]
+#+end_src
+
+#+RESULTS:
+
+- For training , sklearn provides ~fit()~ method for any estimator(model of any kind).
+- For testing , sklearn provides ~score()~ method for estimators , but it needs both test input and output so that it can know how well it did.
+- For predicting , sklearn provides ~predict()~ method for estimators, we can give any input
+
+#+begin_src python :results output :session
+model.fit(input,output)
+#+end_src
+
+#+RESULTS:
+: KNeighborsClassifier()
+
+For fun we can use training data for testing.
+You should not do that in real life, testing on previously trained data is like giving you question of the exam beforehand.
+Model already knows the data , so you do not know whether it really learnt the data or not.
+
+/But here it is for fun(Don't do it in production)/
+
+#+begin_src python :results output :session
+print(model.score(input,output))
+#+end_src
+
+#+RESULTS:
+: 1.0
+
+It will return a accuracy(for classification).Most probably it would be 1.0(or 100%)
+
+** Conclusion
+Now that you know what the code does , try to change model's behaviour.
+
+As it is K Nearest Neighbor , we can take any K(odd).
+
+To change value of K in sklearn's KNN,use ~n_neighbors~ argument.
+
+#+begin_src python :results output :session
+model = KNeighborsClassifier(n_neighbors=3)
+#+end_src
+
+Try to use multiple values of K and observe the model's accuracy.Try to use even K and see what happens.
+Mostly it will not change!(Try to answer why, hint:We are using training data).
+
+** Departing time!
+I hope you understood above explanation , if in any doubt , or have any correction regarding content.Don't hesitate to poke me in the eye!
+
+*Adios!*
+

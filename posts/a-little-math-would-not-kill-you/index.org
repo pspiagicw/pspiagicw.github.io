@@ -1,0 +1,14 @@
+#+BEGIN_COMMENT
+.. title: A little math would not kill you!
+.. slug: a-little-math-would-not-kill-you
+.. date: 2021-05-20 21:44:36 UTC+05:30
+.. tags: 
+.. category: 
+.. link: 
+.. description: 
+.. type: text
+
+#+END_COMMENT
+
+
+Write your post here.

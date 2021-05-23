@@ -15,7 +15,7 @@
 <meta name="generator" content="Nikola (getnikola.com)">
 <link rel="alternate" type="application/rss+xml" title="RSS" href="rss.xml">
 <link rel="canonical" href="https://pspiagicw.github.io/">
-<!--[if lt IE 9]><script src="assets/js/html5.js"></script><![endif]--><link rel="prefetch" href="posts/my-cool-new-setup/" type="text/html">
+<!--[if lt IE 9]><script src="assets/js/html5.js"></script><![endif]--><link rel="prefetch" href="posts/quick-and-dirty-machine-learning/" type="text/html">
 </head>
 <body class="hack dark">
 
@@ -40,7 +40,796 @@
     
     
     </ul></nav></header><main id="content"><div class="postindex">
-    <article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title"><a href="posts/my-cool-new-setup/" class="u-url">My cool new setup!</a></h1>
+    <article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title"><a href="posts/quick-and-dirty-machine-learning/" class="u-url">Quick and Dirty Machine Learning</a></h1>
+        <div class="metadata">
+            <p class="byline author vcard"><span class="byline-name fn" itemprop="author">
+                pspiagicw
+            </span></p>
+            <p class="dateline">
+            <a href="posts/quick-and-dirty-machine-learning/" rel="bookmark">
+            <time class="published dt-published" datetime="2021-05-17T19:38:59+05:30" itemprop="datePublished" title="2021-05-17 19:38">2021-05-17 19:38</time></a>
+            </p>
+        </div>
+    </header><div class="e-content entry-content">
+    <div id="outline-container-orgbd1f0e0" class="outline-2">
+<h2 id="orgbd1f0e0">Quick and Dirty Machine Learning.</h2>
+<div class="outline-text-2" id="text-orgbd1f0e0">
+<p>
+Today we will look at 2 machine learning models,one with classification and one with regression.
+</p>
+
+<p>
+Regression trains a model to predict continuous value.That means the value does not have any range,it does not have to be contained within a specific class.
+</p>
+</div>
+
+<div id="outline-container-org03eb513" class="outline-3">
+<h3 id="org03eb513">Nonmenclature</h3>
+<div class="outline-text-3" id="text-org03eb513">
+<p>
+In Machine Learning , some words/terms mean very specific things.
+Some of them used in this tutorial are:
+</p>
+<ul class="org-ul">
+<li>X: Input Data</li>
+<li>Y: Output Data</li>
+</ul>
+<p>
+These terms are used very extensively while writing machine learning code.Make sure they don't confuse you when you see them, here or elsewhere.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org08b0ab4" class="outline-3">
+<h3 id="org08b0ab4">Train Test Split</h3>
+<div class="outline-text-3" id="text-org08b0ab4">
+<p>
+Earlier we did testing with our training data.
+But we should never test on training data.
+</p>
+
+<p>
+Instead  we should divide data into training and testing data.
+</p>
+
+<p>
+Sklearn provides <code>train_test_split()</code> method for exactly this task.It takes X , y , and <code>split_size</code> (Default 20%).
+</p>
+</div>
+</div>
+
+<div id="outline-container-org83ca9b7" class="outline-3">
+<h3 id="org83ca9b7">First Model</h3>
+<div class="outline-text-3" id="text-org83ca9b7">
+<p>
+Here we are using Iris dataset.It provides four inputs(Petal Length , Petal Width , Sepal Length , Sepal Width) and our task is to predict the type of plant it is.
+The flower must be one of 'Iris-Sentosa' , 'Iris-Virginica' , 'Iris-Versicolor'.We transform classes numerically into 0 , 1 , 2.
+</p>
+
+<p>
+Sckit-Learn provides a simple <code>load_iris()</code> method which provides the data  in a an dict form.
+</p>
+
+<div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.datasets</span> <span class="kn">import</span> <span class="n">load_iris</span>
+<span class="n">rawdata</span> <span class="o">=</span> <span class="n">load_iris</span><span class="p">()</span> 
+<span class="n">x</span> <span class="o">=</span> <span class="n">rawdata</span><span class="p">[</span><span class="s1">'data'</span><span class="p">]</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">rawdata</span><span class="p">[</span><span class="s1">'target'</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">y</span><span class="p">))</span>
+</pre></div>
+
+<pre class="example">
+150
+150
+</pre>
+
+
+<p>
+Splitting the data into training and testing is as simple as calling the <code>train_test_split()</code> method with the respective X and y values.
+</p>
+
+<div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
+<span class="n">train_x</span> <span class="p">,</span> <span class="n">test_x</span> <span class="p">,</span> <span class="n">train_y</span> <span class="p">,</span> <span class="n">test_y</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">train_x</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">train_y</span><span class="p">))</span>
+</pre></div>
+
+<pre class="example">
+112
+112
+</pre>
+
+
+<p>
+<i>Here we are!</i>
+</p>
+
+<p>
+Model selection is one of the most important aspect of Machine Learning.
+Here we are using a RandomForestClassifier.We will discuss this model's inner working later!.
+</p>
+
+<p>
+Training is as easy as using <code>fit()</code> method on the model.
+</p>
+
+<div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.ensemble</span> <span class="kn">import</span> <span class="n">RandomForestClassifier</span>
+
+<span class="n">model</span> <span class="o">=</span> <span class="n">RandomForestClassifier</span><span class="p">()</span>
+<span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">train_x</span><span class="p">,</span><span class="n">train_y</span><span class="p">)</span>
+</pre></div>
+
+<p>
+Testing is done through the usual <code>score()</code> method.This method selects the appropriate metric (Accuracy in this case) and shows how the model performed.
+</p>
+
+<div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">test_x</span><span class="p">,</span><span class="n">test_y</span><span class="p">))</span>
+</pre></div>
+
+<pre class="example">
+0.9736842105263158
+</pre>
+
+
+<p>
+97%! Not bad!
+</p>
+</div>
+</div>
+
+<div id="outline-container-org17f61d2" class="outline-3">
+<h3 id="org17f61d2">Second Model</h3>
+<div class="outline-text-3" id="text-org17f61d2">
+<p>
+Regression is the task of predicting a continous value , which means it has no restrictions while prediciting values.
+</p>
+
+<p>
+We are using california housing prices as our dataset.This dataset contains housing information for the state of california(USA).
+We can use multiple parameters(House Age , No of Rooms , Location/Latitude/Longitude , etc) for predicting house prices.
+</p>
+
+<p>
+House Prices have only one social restriction , it should be positive(Hopefully our model never does it!).
+Apart from that our model can predict any real number , ranging from a few hundreds to values in the million.
+</p>
+
+<p>
+You can get <b>California Housing Prices</b> by using <code>fetch_california_housing()</code> method , provided by sklearn.
+</p>
+
+<div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.datasets</span> <span class="kn">import</span> <span class="n">fetch_california_housing</span>
+
+<span class="n">rawdata</span> <span class="o">=</span> <span class="n">fetch_california_housing</span><span class="p">()</span>
+</pre></div>
+
+<p>
+Again , data is returned as a <code>dict()</code>.
+</p>
+
+<div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">rawdata</span><span class="p">[</span><span class="s1">'data'</span><span class="p">]</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">rawdata</span><span class="p">[</span><span class="s1">'target'</span><span class="p">]</span>
+</pre></div>
+
+<pre class="example">
+[5.1 3.5 1.4 0.2]
+</pre>
+
+
+<p>
+Splitting training and testing data.
+</p>
+
+<div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
+<span class="n">train_x</span> <span class="p">,</span> <span class="n">test_x</span> <span class="p">,</span> <span class="n">train_y</span> <span class="p">,</span> <span class="n">test_y</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</pre></div>
+
+<p>
+Creating a model.
+In this case we are using <code>RandomForestRegressor</code> which provides very good results.
+</p>
+
+
+<div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.ensemble</span> <span class="kn">import</span> <span class="n">RandomForestRegressor</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">RandomForestRegressor</span><span class="p">()</span>
+<span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">train_x</span><span class="p">,</span><span class="n">train_y</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">test_x</span><span class="p">,</span><span class="n">test_y</span><span class="p">))</span>
+</pre></div>
+
+<pre class="example">
+0.9602251219512195
+</pre>
+
+
+<p>
+<i>96%</i>!! , this was my personal best while trying multiple models.More accuracy can be achieved by more experienced folks.
+Ways to improve include
+</p>
+<ul class="org-ul">
+<li>Choosing strong model</li>
+<li>Using More Data</li>
+<li>Extensive Feature Engineeering</li>
+</ul>
+</div>
+</div>
+
+
+<div id="outline-container-org9ffdd40" class="outline-3">
+<h3 id="org9ffdd40">Sayonara!</h3>
+<div class="outline-text-3" id="text-org9ffdd40">
+<p>
+Well you can try more models or learn more about the models, we used.Anyway keep learning!!
+</p>
+</div>
+</div>
+</div>
+    </div>
+    </article><article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title"><a href="posts/rough-guide-on-matplotlib/" class="u-url">Rough Guide on Matplotlib</a></h1>
+        <div class="metadata">
+            <p class="byline author vcard"><span class="byline-name fn" itemprop="author">
+                pspiagicw
+            </span></p>
+            <p class="dateline">
+            <a href="posts/rough-guide-on-matplotlib/" rel="bookmark">
+            <time class="published dt-published" datetime="2021-05-17T19:29:30+05:30" itemprop="datePublished" title="2021-05-17 19:29">2021-05-17 19:29</time></a>
+            </p>
+        </div>
+    </header><div class="e-content entry-content">
+    <div id="outline-container-org423c218" class="outline-2">
+<h2 id="org423c218">Rough Guide to Matplotlib</h2>
+<div class="outline-text-2" id="text-org423c218">
+<p>
+Do you have the need to create graphs? Visualize highly numerical data , or just look at beautifully generated graphs and get turned on!
+</p>
+
+<p>
+<b>Well like any other situation Python has you covered!</b>
+</p>
+
+<p>
+Matplotlib provides easy and efficient way of creating graphs.It is a python module , so you need <code>pip</code> to install it. <code>Pip</code> is python's modular structure allowing , us to share our code with others.
+More information here.
+<code>pip</code> can install any module from PyPI , python's official module location , or as cool people call it repository.
+To install use <code>pip install</code> command.
+</p>
+
+<div class="highlight"><pre><span></span><span class="c1"># Installing matploblib</span>
+pip install --user matplotlib
+</pre></div>
+
+<p>
+Now that matplotlib is installed. We have to import it in Python , <b>importing</b> in python is easy!
+</p>
+
+<div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib</span>
+</pre></div>
+
+<p>
+But we don't need to import matplotlib itself, <code>matplotlib.pyplot</code> provides most of the features we need. The rest of matplotlib can be used to create extremely complex graphs.
+Pyplot is inspired from <i>MATLAB</i> . If you have used <i>MATLAB</i> before , it has the same API.
+This guide only focuses on PyPlot API , for a more object-based approach , see matplotlib's documentation, or refer to this guide.
+</p>
+</div>
+<div id="outline-container-orgc9b25fa" class="outline-3">
+<h3 id="orgc9b25fa">Important Funcs</h3>
+<div class="outline-text-3" id="text-orgc9b25fa">
+<p>
+PyPlot provides some useful functions mainly <code>pyplot.show()</code> and <code>pyplot.savefig()</code>.
+These provide functionality to show and save the graphs we create!.
+Without these method, you can plot your graphs , but can never see them.
+</p>
+
+<p>
+Plotting is when you call the particular method (More on that later!).These method configures the matplotlib backend with your graph ,
+<code>pyplot.show()</code> simply shows the configured , graph.
+When you try to configure more than one plot , both are shown in same graph.
+</p>
+
+<p>
+To see already plotted graph , use <code>pyplot.show()</code> , but using it also clears the graph after showing it.
+While using it in a REPL , keep in mind to plot the graph again , before calling <code>pyplot.show()</code>.
+</p>
+<div class="highlight"><pre><span></span><span class="n">pyplot</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+
+<p>
+To save a already plotted graph , use <code>pyplot.savefig()</code> , it takes name and format of image as arguments , which allows you to save the graph.
+For example
+</p>
+
+<div class="highlight"><pre><span></span><span class="c1"># Graph already plotted!</span>
+<span class="n">pyplot</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s1">'example-graph.png'</span><span class="p">,</span><span class="nb">format</span><span class="o">=</span><span class="s1">'png'</span><span class="p">)</span>
+</pre></div>
+
+<p>
+One thing before moving to next section!
+Most people alias <code>pyplot</code> to <code>plt</code> in Python. So if you see <code>plt</code> anywhere, don't worry it is the same thing.
+To alias pyplot to plt
+</p>
+<div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+</pre></div>
+</div>
+</div>
+
+<div id="outline-container-org02a32d4" class="outline-3">
+<h3 id="org02a32d4">Basic Plotting</h3>
+<div class="outline-text-3" id="text-org02a32d4">
+<p>
+For plotting basic lines , <code>plt.plot()</code> function is enough, it takes list of x and y coordinates as arguments.
+</p>
+
+<p>
+Plotting points (3,2),(5,4) and (4,1).Keep in mind plot method connects all the dots with a line.
+</p>
+
+<div class="highlight"><pre><span></span><span class="n">x_coordinates</span> <span class="o">=</span> <span class="p">[</span> <span class="mi">3</span> <span class="p">,</span> <span class="mi">5</span> <span class="p">,</span> <span class="mi">4</span><span class="p">]</span>
+<span class="n">y_coordinates</span> <span class="o">=</span> <span class="p">[</span> <span class="mi">2</span> <span class="p">,</span> <span class="mi">4</span> <span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
+<span class="c1"># Points (3,2),(5,4),(4,1)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_coordinates</span><span class="p">,</span><span class="n">y_coordinates</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+
+<p>
+The graph created is
+</p>
+
+<p>
+<img src="images/simple-plot-matplotlib.png" alt="nil"></p>
+</div>
+</div>
+
+<div id="outline-container-org702576a" class="outline-3">
+<h3 id="org702576a">Simple Scattering</h3>
+<div class="outline-text-3" id="text-org702576a">
+<p>
+Scatter plot simply shows all the coordinates/points without connecting them with a line.
+</p>
+
+<p>
+Scatter plot are very useful in showing actual points , without a line seperating them.
+It also takes list of x and y coordinates as arguments.
+</p>
+
+<p>
+Showing (2,6),(4,5),(1,8) and (3,6) on a graph is easy.
+</p>
+
+<div class="highlight"><pre><span></span><span class="n">x_coordinates</span> <span class="o">=</span> <span class="p">[</span> <span class="mi">2</span> <span class="p">,</span> <span class="mi">4</span> <span class="p">,</span> <span class="mi">1</span> <span class="p">,</span> <span class="mi">3</span> <span class="p">]</span>
+<span class="n">y_coordinates</span> <span class="o">=</span> <span class="p">[</span> <span class="mi">6</span> <span class="p">,</span> <span class="mi">5</span> <span class="p">,</span> <span class="mi">8</span> <span class="p">,</span> <span class="mi">6</span> <span class="p">]</span>
+<span class="c1"># Points (2,6) , (4,5) , (1,8) and (3,6)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x_coordinates</span> <span class="p">,</span> <span class="n">y_coordinates</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+
+<p>
+The end result
+</p>
+
+<p>
+<img src="images/scatter-plot-matplotlib.png" alt="nil"></p>
+</div>
+</div>
+
+<div id="outline-container-org5e42f03" class="outline-3">
+<h3 id="org5e42f03">Histograms</h3>
+<div class="outline-text-3" id="text-org5e42f03">
+<p>
+Histograms in matplotlib is as easy as just giving the list of values you want a histogram of.
+</p>
+<div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">([</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">100</span><span class="p">)</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">300</span><span class="p">)</span> <span class="p">])</span>
+</pre></div>
+
+<p>
+<img src="images/simple-hist-matplotlib.png" alt="nil"></p>
+
+<p>
+It provides a good view of how the data is distributed , over the range.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgabbb963" class="outline-3">
+<h3 id="orgabbb963">Showing Images.</h3>
+<div class="outline-text-3" id="text-orgabbb963">
+<p>
+One more useful function , I use most of the time , is <code>plt.imshow()</code> . When working with a lot of images  this can show your image , with extra info/special filters etc.
+</p>
+
+<p>
+It takes a 2-D matrix or 3-D matrix as input , depending on channels of image , that is how many colors are recorded , in data.A single color is represented as intensity value.
+It can vary from 1 to 255.
+ No of channels/colors can vary between 1-3 colors, if only 1 channel , image is black and white.
+If having all 3 colors , image is a normal color image.The colors are simply RGB(Red ,Green and Blue).
+</p>
+
+<p>
+For example this is an handwritten 5 , from MNIST dataset(Coming in future posts!) , which is stored in a 2-D array.
+</p>
+
+<div class="highlight"><pre><span></span><span class="c1"># Usage of matplotlib.pyplot.imshow()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">image</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+
+<p>
+<img src="images/mnist-plot-matplotlib.png" alt="nil"></p>
+</div>
+</div>
+
+
+<div id="outline-container-org1260814" class="outline-3">
+<h3 id="org1260814">Aesthetics.</h3>
+<div class="outline-text-3" id="text-org1260814">
+<p>
+Graphs being almost 100% visual feedback , you might need to add some bling to it.
+Matplotlib supports everything a graph might have.Make sure to read it's documentation afterwards.
+</p>
+
+<p>
+To add label to any plot/scatter , just add label argument.Label make it easy to spot , when multiple plots are present.
+You can also add label to x-axis and y-axis using methods like <code>plt.xlabel()</code> and <code>plt.ylabel()</code>.
+</p>
+<div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">'Speed'</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">'Distance'</span><span class="p">)</span>
+</pre></div>
+
+<p>
+You can also add <code>text</code> to the graph , using the <code>plt.text()</code> method.For using this , you have to provide a coordinate and the text to plot.
+This text can be customized (Color , Border etc).
+</p>
+
+<p>
+You can add title to your graphs using <code>plt.title()</code> method.
+</p>
+
+<div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x_coordinates</span><span class="p">,</span><span class="n">y_coordinates</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">'Group 1'</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">x</span><span class="p">,</span><span class="n">y</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">x_coordinates</span><span class="p">,</span><span class="n">y_coordinates</span><span class="p">):</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="s1">'Point (</span><span class="si">{x}</span><span class="s1">,</span><span class="si">{y}</span><span class="s1">)'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="o">=</span><span class="n">y</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+
+<p>
+<img src="images/labels-matplotlib.png" alt="nil"></p>
+
+<p>
+To plot one graph over another , use the plot/scatter function without using <code>plt.show()</code> or <code>plt.savefig()</code> first.
+</p>
+<div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span> <span class="mi">3</span> <span class="p">,</span> <span class="mi">5</span> <span class="p">,</span> <span class="mi">7</span><span class="p">]</span> <span class="p">,</span> <span class="p">[</span> <span class="mi">3</span> <span class="p">,</span> <span class="mi">5</span> <span class="p">,</span> <span class="mi">7</span><span class="p">],</span><span class="n">label</span><span class="o">=</span><span class="s1">'Line y=x'</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">([</span> <span class="mi">5</span> <span class="p">,</span> <span class="mi">6</span> <span class="p">]</span> <span class="p">,</span> <span class="p">[</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">5</span> <span class="p">]</span> <span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">'Group of people'</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+
+<p>
+<img src="images/multiple-plot-matplotlib.png" alt="nil"></p>
+
+
+<p>
+To show a legend in the graph use the <code>plt.legend()</code> function .
+</p>
+<div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span> <span class="mi">3</span> <span class="p">,</span> <span class="mi">5</span> <span class="p">,</span> <span class="mi">7</span><span class="p">]</span> <span class="p">,</span> <span class="p">[</span> <span class="mi">3</span> <span class="p">,</span> <span class="mi">5</span> <span class="p">,</span> <span class="mi">7</span><span class="p">],</span><span class="n">label</span><span class="o">=</span><span class="s1">'Line y=x'</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">([</span> <span class="mi">5</span> <span class="p">,</span> <span class="mi">6</span> <span class="p">]</span> <span class="p">,</span> <span class="p">[</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">5</span> <span class="p">]</span> <span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">'Group of people'</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+
+<p>
+You can customize plotting style by , specifying parameters such as
+</p>
+
+<ul class="org-ul">
+<li>LineStyle: Using <code>linestyle</code> parameter to customize the line-drawn.</li>
+<li>LineWidth: Using <code>linewidth</code> parameter to increase thickness of the line.</li>
+<li>Marker: Using <code>marker</code> parameter , this changes how actual points are shown in the graph.See here for all the marker codes.</li>
+<li>Color: Using color parameter, this changes color of the line drawn, see here for all the color codes.</li>
+</ul>
+<p>
+This graph uses linestyle of <code>--</code> and linewidth of 3.5 ,marker type of <code>+</code> and color green.
+</p>
+<div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_coodinates</span><span class="p">,</span><span class="n">y_coordinates</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">'Line'</span><span class="p">,</span><span class="n">linestyle</span><span class="o">=</span><span class="s1">'--'</span><span class="p">,</span><span class="n">linewidth</span><span class="o">=</span><span class="mf">3.5</span><span class="p">,</span><span class="n">marke</span><span class="o">=</span><span class="s1">'+'</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="s1">'g'</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+
+<p>
+<img src="images/ultimate-custom-matplotlib.png" alt="nil"></p>
+
+
+<p>
+You can also customize matplotlib itself, using <code>styles</code>.
+By default matplotlib's style is boring,I am using dracula style for my graphs.You can change everything from fonts to background.
+More info on matplotlib's documentation.If you want to learn to use matplotlib , you have to read it.
+</p>
+
+<p>
+Anyway , here's how to use a default dark-style(included in matplotlib) , for installing more themes look at matplotlib's website.
+</p>
+<div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s1">'dark_background'</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+
+<div id="outline-container-org79fa5e9" class="outline-3">
+<h3 id="org79fa5e9">Bon Voyage!</h3>
+<div class="outline-text-3" id="text-org79fa5e9">
+<p>
+That's basic matplotlib for you.You should definately look at their documentation.
+You can also look at the Object API for matplotlib. It is a little advanced , but is highly configurable.
+</p>
+
+<p>
+With the required info, you can make basic graphs , with text. I personally use matplotlib to create graphs for my Physic's classes and ofcourse Data Visualization in ML.
+</p>
+</div>
+</div>
+</div>
+    </div>
+    </article><article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title"><a href="posts/the-rise-of-the-machines/" class="u-url">The rise of the Machines</a></h1>
+        <div class="metadata">
+            <p class="byline author vcard"><span class="byline-name fn" itemprop="author">
+                pspiagicw
+            </span></p>
+            <p class="dateline">
+            <a href="posts/the-rise-of-the-machines/" rel="bookmark">
+            <time class="published dt-published" datetime="2021-05-15T22:39:18+05:30" itemprop="datePublished" title="2021-05-15 22:39">2021-05-15 22:39</time></a>
+            </p>
+        </div>
+    </header><div class="e-content entry-content">
+    <div id="outline-container-org18ef3c9" class="outline-2">
+<h2 id="org18ef3c9">The rise of the Machines</h2>
+<div class="outline-text-2" id="text-org18ef3c9">
+<p>
+Last time we saw a simple model train and predict on some user data.
+We decided we will keep the explanation for later.
+</p>
+
+<p>
+I think the time has come.
+</p>
+</div>
+
+<div id="outline-container-org2c35601" class="outline-3">
+<h3 id="org2c35601">Data</h3>
+<div class="outline-text-3" id="text-org2c35601">
+<p>
+The most important aspect of Machine Learning is <i>data</i> , without it we cannot perform any training or testing.
+Before the information age , data was hard to come by.
+Storage was very expensive , it was better used to store useful information , rather than log previous data.
+</p>
+
+<p>
+Invention of cheap hard disks changed this.Data could be stored.
+</p>
+
+<p>
+Now that every bit of information about our lives is being tracked (for good or bad?), data can be used to build models.
+</p>
+
+<p>
+These models are nothing but complex mathematical formulas , these try to create a formula of the given data.
+In other words they try to generalize pattern in the data.
+</p>
+
+<p>
+You can also say , Machine Learning is learning our habits/behaviour/instincts into a mathematical formula .
+The formula could predict our every move , making a deterministic universe, allowing to predict the future.
+Becoming a level 5 civilization.
+</p>
+
+<p>
+<i>Well That was too much!</i>
+</p>
+
+<p>
+Basically making a formula that maps input to output is machine learning.
+</p>
+
+<p>
+In our last example we are using <code>make_moons</code> dataset , it provides coordinates of two intersecting circles.
+</p>
+
+<div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.datasets</span> <span class="kn">import</span> <span class="n">make_moons</span>
+<span class="c1"># Dataset</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">make_moons</span><span class="p">()</span>
+</pre></div>
+
+<p>
+This provides us with a tuple (coordinates , output).
+</p>
+<ul class="org-ul">
+<li>Coordinates - This is list of x and y coordinates of points.</li>
+<li>Output - This is list whether they intersect or not.</li>
+</ul>
+<p>
+If you are wondering , what are we doing with our data.
+We are trying to classify .
+</p>
+
+<p>
+<i>Classification</i> - Task where we try to take input data and predict which class the said input lies in.Class refers to the multiple type an input can fall into.
+It is just fancy words for saying , we give stuff , you learn to sort them.
+</p>
+</div>
+</div>
+<div id="outline-container-org922a3dd" class="outline-3">
+<h3 id="org922a3dd">Model</h3>
+<div class="outline-text-3" id="text-org922a3dd">
+<p>
+For classification there are lot of techniques , Logistic Regression , K Nearest Neighbors , DecisionTree etc.
+We can go overpowered and use multiplayer perceptron model , or even an RNN.
+</p>
+
+<p>
+The important part of Machine Learning is selecting the right model , not <i>too weak</i> , not <i>too strong</i>.
+</p>
+
+<p>
+If <i>too weak</i> ,model might not be able to learn the relation at all.
+</p>
+
+<p>
+If <i>too strong</i> ,model might use lot of computational power, or even worse overfit (get personal with the data).
+</p>
+
+<p>
+<i>Both are not Good!</i>
+</p>
+
+<p>
+For this exercise, K Nearest Neighbor is good enough. Simple and Strong.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgc2d9a9a" class="outline-3">
+<h3 id="orgc2d9a9a">K Nearest Neighbors</h3>
+<div class="outline-text-3" id="text-orgc2d9a9a">
+<p>
+KNN(K Nearest Neighbors) tries to predict it's class/type by seeing who is nearest while on a cartesian graph.
+</p>
+
+<p>
+Take this graph for example
+</p>
+
+<p>
+<img src="images/knn-example.png" alt="nil"></p>
+
+<p>
+This graph has two groups , one in blue and one in pink.
+</p>
+
+<p>
+For predicting group for any new point , it plots it on the graph , sees which points are near , using distance formula for corresponding cartesian plane.
+</p>
+
+<p>
+For 1-d cartesian plane , distance formula is dist = coordinate1 - coordinate2.
+</p>
+
+<p>
+For 2-d cartesian plane , distance formula is dist = sqrt( ( x2 - x1)**2 + ( y2 - y1)**2 )
+where x1 is x coordinate of first point.
+</p>
+
+<p>
+If you need a little refresher see this.
+</p>
+
+<p>
+Using this distance information , it can see which points are nearest , it chooses the k nearest points , here k is arbitary(our choice).
+After choosing the points it sees what class/group do majority of them lie in.
+As we need majority always , K is always choosed as an odd number , so that no matter how ambiguous(Confusing) the point might look like , there is always a majority.
+</p>
+
+<p>
+Here we are creating a model, by default sklearn uses K = 5.
+</p>
+
+<div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.neighbors</span> <span class="kn">import</span> <span class="n">KNeighborsClassifier</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">KNeighborsClassifier</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+
+<div id="outline-container-org6129e30" class="outline-3">
+<h3 id="org6129e30">Train and predict.</h3>
+<div class="outline-text-3" id="text-org6129e30">
+<p>
+For training , we need data points(input) and labels(output).
+</p>
+
+<p>
+For Moons Dataset, input is first element of the tuple.
+Output is second element of the tuple.
+</p>
+
+<p>
+Here is a pic of the dataset.
+</p>
+
+<p>
+<img src="images/moons-dataset-graph.png" alt="nil"></p>
+
+<div class="highlight"><pre><span></span><span class="nb">input</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">output</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+</pre></div>
+
+<ul class="org-ul">
+<li>For training , sklearn provides <code>fit()</code> method for any estimator(model of any kind).</li>
+<li>For testing , sklearn provides <code>score()</code> method for estimators , but it needs both test input and output so that it can know how well it did.</li>
+<li>For predicting , sklearn provides <code>predict()</code> method for estimators, we can give any input</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="nb">input</span><span class="p">,</span><span class="n">output</span><span class="p">)</span>
+</pre></div>
+
+<pre class="example">
+KNeighborsClassifier()
+</pre>
+
+
+<p>
+For fun we can use training data for testing.
+You should not do that in real life, testing on previously trained data is like giving you question of the exam beforehand.
+Model already knows the data , so you do not know whether it really learnt the data or not.
+</p>
+
+<p>
+<i>But here it is for fun(Don't do it in production)</i>
+</p>
+
+<div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="nb">input</span><span class="p">,</span><span class="n">output</span><span class="p">))</span>
+</pre></div>
+
+<pre class="example">
+1.0
+</pre>
+
+
+<p>
+It will return a accuracy(for classification).Most probably it would be 1.0(or 100%)
+</p>
+</div>
+</div>
+
+<div id="outline-container-org43f06b9" class="outline-3">
+<h3 id="org43f06b9">Conclusion</h3>
+<div class="outline-text-3" id="text-org43f06b9">
+<p>
+Now that you know what the code does , try to change model's behaviour.
+</p>
+
+<p>
+As it is K Nearest Neighbor , we can take any K(odd).
+</p>
+
+<p>
+To change value of K in sklearn's KNN,use <code>n_neighbors</code> argument.
+</p>
+
+<div class="highlight"><pre><span></span><span class="n">model</span> <span class="o">=</span> <span class="n">KNeighborsClassifier</span><span class="p">(</span><span class="n">n_neighbors</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+</pre></div>
+
+<p>
+Try to use multiple values of K and observe the model's accuracy.Try to use even K and see what happens.
+Mostly it will not change!(Try to answer why, hint:We are using training data).
+</p>
+</div>
+</div>
+
+<div id="outline-container-org4a0ed98" class="outline-3">
+<h3 id="org4a0ed98">Departing time!</h3>
+<div class="outline-text-3" id="text-org4a0ed98">
+<p>
+I hope you understood above explanation , if in any doubt , or have any correction regarding content.Don't hesitate to poke me in the eye!
+</p>
+
+<p>
+<b>Adios!</b>
+</p>
+</div>
+</div>
+</div>
+    </div>
+    </article><article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title"><a href="posts/my-cool-new-setup/" class="u-url">My cool new setup!</a></h1>
         <div class="metadata">
             <p class="byline author vcard"><span class="byline-name fn" itemprop="author">
                 pspiagicw
@@ -51,9 +840,9 @@
             </p>
         </div>
     </header><div class="e-content entry-content">
-    <div id="outline-container-orgfb19aac" class="outline-2">
-<h2 id="orgfb19aac">Linux is Sexy!</h2>
-<div class="outline-text-2" id="text-orgfb19aac">
+    <div id="outline-container-org0f551bc" class="outline-2">
+<h2 id="org0f551bc">Linux is Sexy!</h2>
+<div class="outline-text-2" id="text-org0f551bc">
 <p>
 My love for linux grows , day by day . It has the freedon that nobody can provide.
 Well I don't think anybody thinks of making a car from scratch . 
@@ -80,7 +869,7 @@ This time I decided to integrate both.
 
 <p>
 Now I had a choice , whether to keep a minimal setup with some GUI apps , or to keep only the required GUI apps.
-I decided to go with the obvious no GUI apps.
+I decided to go with the obvious , no GUI apps.
 </p>
 
 <p>
@@ -88,9 +877,9 @@ The only GUI app I am using is for my classes.
 </p>
 </div>
 
-<div id="outline-container-orgdbfbe8f" class="outline-3">
-<h3 id="orgdbfbe8f">Keyboard is priority</h3>
-<div class="outline-text-3" id="text-orgdbfbe8f">
+<div id="outline-container-org2f68432" class="outline-3">
+<h3 id="org2f68432">Keyboard is priority</h3>
+<div class="outline-text-3" id="text-org2f68432">
 <p>
 When making any setup , I make sure to remember all the keybindings,so that I can make things fast.
 Well with linux , you don't have to remember keybindings, you make keybindings.
@@ -101,7 +890,7 @@ I don't think anyone in the Windows/MacOS world thinkgs in this way!Create Keybi
 </p>
 
 <p>
-For my display manager I went with nothing, a simple <code>/etc/issue</code> file suffice for bling.
+For my display manager I went with nothing, a simple <code>/etc/issue</code> file sufficed for bling.
 My <code>bash_profile</code> automatically starts the window manager on login.
 </p>
 
@@ -117,11 +906,11 @@ If you cannot understand that reference then you must join the dark side.I will 
 </div>
 </div>
 
-<div id="outline-container-org624edf4" class="outline-3">
-<h3 id="org624edf4">My Apps</h3>
-<div class="outline-text-3" id="text-org624edf4">
+<div id="outline-container-orgdb1bc8c" class="outline-3">
+<h3 id="orgdb1bc8c">My Apps</h3>
+<div class="outline-text-3" id="text-orgdb1bc8c">
 <p>
-My other apps include:
+My  apps include:
 </p>
 
 <ul class="org-ul">
@@ -155,9 +944,9 @@ Pressing L on any page , opens urlscan  no matter what,independent of apps
 </div>
 </div>
 
-<div id="outline-container-orge4554a3" class="outline-3">
-<h3 id="orge4554a3">Aesthetics</h3>
-<div class="outline-text-3" id="text-orge4554a3">
+<div id="outline-container-org31431f0" class="outline-3">
+<h3 id="org31431f0">Aesthetics</h3>
+<div class="outline-text-3" id="text-org31431f0">
 <p>
 For aesthetics I don't have much to offer.I used dracula themes from <a href="https://draculatheme.com">draculatheme.com</a> as I love it.
 Other aesthetics include
@@ -180,9 +969,9 @@ If you want to checkout my config , it's <a href="https://github.com/pspiagicw/d
 </div>
 </div>
 
-<div id="outline-container-org57309c1" class="outline-3">
-<h3 id="org57309c1">GoodBye!</h3>
-<div class="outline-text-3" id="text-org57309c1">
+<div id="outline-container-org1098e76" class="outline-3">
+<h3 id="org1098e76">GoodBye!</h3>
+<div class="outline-text-3" id="text-org1098e76">
 <p>
 Keep being curious , Over and Out!
 </p>
@@ -201,13 +990,13 @@ Keep being curious , Over and Out!
             </p>
         </div>
     </header><div class="e-content entry-content">
-    <div id="outline-container-orga553a29" class="outline-2">
-<h2 id="orga553a29">Write a blog they said</h2>
-<div class="outline-text-2" id="text-orga553a29">
+    <div id="outline-container-orgb8a317a" class="outline-2">
+<h2 id="orgb8a317a">Write a blog they said</h2>
+<div class="outline-text-2" id="text-orgb8a317a">
 </div>
-<div id="outline-container-org567ce0f" class="outline-3">
-<h3 id="org567ce0f">Read a book!</h3>
-<div class="outline-text-3" id="text-org567ce0f">
+<div id="outline-container-org8812aed" class="outline-3">
+<h3 id="org8812aed">Read a book!</h3>
+<div class="outline-text-3" id="text-org8812aed">
 <p>
 I love reading technical books which are non-serious , and cater towards casual learners.It provides the most honest perspective for anyone reading.
 Well the most recent one was <span class="underline">Grokking Deep Learning</span> , which provides excellent intro to the world of Deep Learning
@@ -236,13 +1025,13 @@ Anyway let's start the <a href="https://en.wikipedia.org/wiki/SpaceX_Raptor">Rap
 </div>
 </div>
 
-<div id="outline-container-orgcfa8351" class="outline-3">
-<h3 id="orgcfa8351">Machine Learning</h3>
-<div class="outline-text-3" id="text-orgcfa8351">
+<div id="outline-container-org78a4917" class="outline-3">
+<h3 id="org78a4917">Machine Learning</h3>
+<div class="outline-text-3" id="text-org78a4917">
 </div>
-<div id="outline-container-org827236d" class="outline-4">
-<h4 id="org827236d">Getting Started</h4>
-<div class="outline-text-4" id="text-org827236d">
+<div id="outline-container-orgdfecbbb" class="outline-4">
+<h4 id="orgdfecbbb">Getting Started</h4>
+<div class="outline-text-4" id="text-orgdfecbbb">
 <p>
 Well I could start with the theoretical aspects of Machine Learning , or I can start giving code , along with explanations.
 </p>
@@ -271,8 +1060,8 @@ I am coding on a generic GNU/Linux distribution , any commands/code I write will
 For installing above packages use the <span class="underline">pip</span> command.
 </p>
 
-<p>
-<img src="images/installing-packages.png" alt="nil"></p>
+<div class="highlight"><pre><span></span>   pip install sklearn pandas numpy matplotlib
+</pre></div>
 
 <p>
 Now that we have packages installed,let's create a new python file and begin.People wanting to use Jupyter Notebook etc, don't judge me!
@@ -280,9 +1069,9 @@ Now that we have packages installed,let's create a new python file and begin.Peo
 </div>
 </div>
 
-<div id="outline-container-org22dd5fa" class="outline-4">
-<h4 id="org22dd5fa">Data Collection</h4>
-<div class="outline-text-4" id="text-org22dd5fa">
+<div id="outline-container-org8c0cbcd" class="outline-4">
+<h4 id="org8c0cbcd">Data Collection</h4>
+<div class="outline-text-4" id="text-org8c0cbcd">
 <p>
 We need to have data to start Machine Learning.Lucky for us <span class="underline">sklearn</span> already includes some datasets.
 A dataset is a collection of tabular data along with information on source of the data.
@@ -293,8 +1082,9 @@ We are going to use moons dataset , it is a simple dataset , it tries to give da
 To use it we have to invoke <code>make_moons()</code> method from <code>sklearn.datasets</code>.
 </p>
 
-<p>
-<img src="images/make-moons.png" alt="nil"></p>
+<div class="highlight"><pre><span></span>   <span class="kn">from</span> <span class="nn">sklearn.datasets</span> <span class="kn">import</span> <span class="n">make_moons</span> 
+   <span class="n">data</span> <span class="o">=</span> <span class="n">make_moons</span><span class="p">()</span>
+</pre></div>
 
 <p>
 It returns a tuple with first field being the input data(Data we know) and second field being output data(Data we want to know about).
@@ -305,27 +1095,29 @@ Here we want to predict whether the circles intersect or not, given their positi
 Let's divide it into input and output variables.
 </p>
 
-<p>
-<img src="images/divide-input.png" alt="nil"></p>
+<div class="highlight"><pre><span></span>   <span class="nb">input</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+   <span class="n">output</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+</pre></div>
 </div>
 </div>
 
-<div id="outline-container-orgba5f587" class="outline-4">
-<h4 id="orgba5f587">Training</h4>
-<div class="outline-text-4" id="text-orgba5f587">
+<div id="outline-container-orgc85bb18" class="outline-4">
+<h4 id="orgc85bb18">Training</h4>
+<div class="outline-text-4" id="text-orgc85bb18">
 <p>
 We will use K-Nearest Neighbors algorithm, it's internal working will be explained later.The important thing , being it is used to Classify.First let's import it.
 It is provided in <code>sklearn.neighbors.KNeighborsClassifier</code> .
 </p>
 
-<p>
-<img src="images/import-neighbors.png" alt="nil"></p>
+<div class="highlight"><pre><span></span>   <span class="kn">from</span> <span class="nn">sklearn.neighbors</span> <span class="kn">import</span> <span class="n">KNeighborsClassifier</span>
+   <span class="n">model</span> <span class="o">=</span> <span class="n">KNeighborsClassifier</span><span class="p">()</span>
+</pre></div>
 </div>
 </div>
 
-<div id="outline-container-orgad900d8" class="outline-4">
-<h4 id="orgad900d8">Testing</h4>
-<div class="outline-text-4" id="text-orgad900d8">
+<div id="outline-container-org231e569" class="outline-4">
+<h4 id="org231e569">Testing</h4>
+<div class="outline-text-4" id="text-org231e569">
 <p>
 Using this model is easy , for training call the <span class="underline">fit</span> method and testing use the <span class="underline">score</span> method.Don't worry about why and what we are doing here!
 Using the score method gives us accuracy , which will tell how good our model is. <i>Higher the Better!</i>
@@ -335,25 +1127,35 @@ Using the score method gives us accuracy , which will tell how good our model is
 Tough we are not using <code>score()</code> method today , cause we don't have any testing data!!
 </p>
 
-<p>
-<img src="images/train-score-knn.png" alt="nil"></p>
+<div class="highlight"><pre><span></span>   <span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="nb">input</span><span class="p">,</span><span class="n">output</span><span class="p">)</span>
+</pre></div>
+
+<pre class="example">
+KNeighborsClassifier()
+</pre>
+
 
 <p>
 But we can make predictions for ourselves, as the model is trained on the data , it can make accurate predictions , without any problem.
 To make predictions we use the <code>predict</code> method.We can pass data is same way input has in an array of two numbers , which can be used which can be used to predict if they are parameters of an intersecting circle.
 </p>
 
-<p>
-<img src="images/predict.png" alt="nil"></p>
+<div class="highlight"><pre><span></span>   <span class="n">test_input</span> <span class="o">=</span> <span class="p">[[</span><span class="mf">2.455</span> <span class="p">,</span> <span class="mf">2.345</span> <span class="p">]]</span>
+   <span class="nb">print</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">test_input</span><span class="p">))</span>
+</pre></div>
+
+<pre class="example">
+[1]
+</pre>
 </div>
 </div>
 </div>
 
 
 
-<div id="outline-container-orgb733ef8" class="outline-3">
-<h3 id="orgb733ef8">Farewell!</h3>
-<div class="outline-text-3" id="text-orgb733ef8">
+<div id="outline-container-org86ecaf4" class="outline-3">
+<h3 id="org86ecaf4">Farewell!</h3>
+<div class="outline-text-3" id="text-org86ecaf4">
 <p>
 Let us meet again in the next post where we will learn more about Machine Learning in general.We will have a lot of fun, so don't miss it!
 </p>

@@ -1,7 +1,770 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Forked</title><link>https://pspiagicw.github.io/</link><description>Fork all worries away</description><atom:link href="https://pspiagicw.github.io/rss.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2021 &lt;a href="mailto:pspiagicw@gmail.com"&gt;pspiagicw&lt;/a&gt; </copyright><lastBuildDate>Sat, 15 May 2021 03:07:42 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>My cool new setup!</title><link>https://pspiagicw.github.io/posts/my-cool-new-setup/</link><dc:creator>pspiagicw</dc:creator><description>&lt;div id="outline-container-orgfb19aac" class="outline-2"&gt;
-&lt;h2 id="orgfb19aac"&gt;Linux is Sexy!&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-orgfb19aac"&gt;
+<?xml-stylesheet type="text/xsl" href="assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Forked</title><link>https://pspiagicw.github.io/</link><description>Fork all worries away</description><atom:link href="https://pspiagicw.github.io/rss.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2021 &lt;a href="mailto:pspiagicw@gmail.com"&gt;pspiagicw&lt;/a&gt; </copyright><lastBuildDate>Sun, 23 May 2021 04:08:30 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Quick and Dirty Machine Learning</title><link>https://pspiagicw.github.io/posts/quick-and-dirty-machine-learning/</link><dc:creator>pspiagicw</dc:creator><description>&lt;div id="outline-container-orgbd1f0e0" class="outline-2"&gt;
+&lt;h2 id="orgbd1f0e0"&gt;Quick and Dirty Machine Learning.&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-orgbd1f0e0"&gt;
+&lt;p&gt;
+Today we will look at 2 machine learning models,one with classification and one with regression.
+&lt;/p&gt;
+
+&lt;p&gt;
+Regression trains a model to predict continuous value.That means the value does not have any range,it does not have to be contained within a specific class.
+&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org03eb513" class="outline-3"&gt;
+&lt;h3 id="org03eb513"&gt;Nonmenclature&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-org03eb513"&gt;
+&lt;p&gt;
+In Machine Learning , some words/terms mean very specific things.
+Some of them used in this tutorial are:
+&lt;/p&gt;
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;X: Input Data&lt;/li&gt;
+&lt;li&gt;Y: Output Data&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;
+These terms are used very extensively while writing machine learning code.Make sure they don't confuse you when you see them, here or elsewhere.
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org08b0ab4" class="outline-3"&gt;
+&lt;h3 id="org08b0ab4"&gt;Train Test Split&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-org08b0ab4"&gt;
+&lt;p&gt;
+Earlier we did testing with our training data.
+But we should never test on training data.
+&lt;/p&gt;
+
+&lt;p&gt;
+Instead  we should divide data into training and testing data.
+&lt;/p&gt;
+
+&lt;p&gt;
+Sklearn provides &lt;code&gt;train_test_split()&lt;/code&gt; method for exactly this task.It takes X , y , and &lt;code&gt;split_size&lt;/code&gt; (Default 20%).
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org83ca9b7" class="outline-3"&gt;
+&lt;h3 id="org83ca9b7"&gt;First Model&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-org83ca9b7"&gt;
+&lt;p&gt;
+Here we are using Iris dataset.It provides four inputs(Petal Length , Petal Width , Sepal Length , Sepal Width) and our task is to predict the type of plant it is.
+The flower must be one of 'Iris-Sentosa' , 'Iris-Virginica' , 'Iris-Versicolor'.We transform classes numerically into 0 , 1 , 2.
+&lt;/p&gt;
+
+&lt;p&gt;
+Sckit-Learn provides a simple &lt;code&gt;load_iris()&lt;/code&gt; method which provides the data  in a an dict form.
+&lt;/p&gt;
+
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;sklearn.datasets&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;load_iris&lt;/span&gt;
+&lt;span class="n"&gt;rawdata&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;load_iris&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; 
+&lt;span class="n"&gt;x&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;rawdata&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;'data'&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;span class="n"&gt;y&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;rawdata&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;'target'&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;len&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+&lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;len&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;y&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;pre class="example"&gt;
+150
+150
+&lt;/pre&gt;
+
+
+&lt;p&gt;
+Splitting the data into training and testing is as simple as calling the &lt;code&gt;train_test_split()&lt;/code&gt; method with the respective X and y values.
+&lt;/p&gt;
+
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;sklearn.model_selection&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;train_test_split&lt;/span&gt;
+&lt;span class="n"&gt;train_x&lt;/span&gt; &lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;test_x&lt;/span&gt; &lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;train_y&lt;/span&gt; &lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;test_y&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;train_test_split&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;y&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;len&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;train_x&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+&lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;len&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;train_y&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;pre class="example"&gt;
+112
+112
+&lt;/pre&gt;
+
+
+&lt;p&gt;
+&lt;i&gt;Here we are!&lt;/i&gt;
+&lt;/p&gt;
+
+&lt;p&gt;
+Model selection is one of the most important aspect of Machine Learning.
+Here we are using a RandomForestClassifier.We will discuss this model's inner working later!.
+&lt;/p&gt;
+
+&lt;p&gt;
+Training is as easy as using &lt;code&gt;fit()&lt;/code&gt; method on the model.
+&lt;/p&gt;
+
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;sklearn.ensemble&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;RandomForestClassifier&lt;/span&gt;
+
+&lt;span class="n"&gt;model&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;RandomForestClassifier&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;span class="n"&gt;model&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;fit&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;train_x&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;train_y&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;
+Testing is done through the usual &lt;code&gt;score()&lt;/code&gt; method.This method selects the appropriate metric (Accuracy in this case) and shows how the model performed.
+&lt;/p&gt;
+
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;model&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;score&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;test_x&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;test_y&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;pre class="example"&gt;
+0.9736842105263158
+&lt;/pre&gt;
+
+
+&lt;p&gt;
+97%! Not bad!
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org17f61d2" class="outline-3"&gt;
+&lt;h3 id="org17f61d2"&gt;Second Model&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-org17f61d2"&gt;
+&lt;p&gt;
+Regression is the task of predicting a continous value , which means it has no restrictions while prediciting values.
+&lt;/p&gt;
+
+&lt;p&gt;
+We are using california housing prices as our dataset.This dataset contains housing information for the state of california(USA).
+We can use multiple parameters(House Age , No of Rooms , Location/Latitude/Longitude , etc) for predicting house prices.
+&lt;/p&gt;
+
+&lt;p&gt;
+House Prices have only one social restriction , it should be positive(Hopefully our model never does it!).
+Apart from that our model can predict any real number , ranging from a few hundreds to values in the million.
+&lt;/p&gt;
+
+&lt;p&gt;
+You can get &lt;b&gt;California Housing Prices&lt;/b&gt; by using &lt;code&gt;fetch_california_housing()&lt;/code&gt; method , provided by sklearn.
+&lt;/p&gt;
+
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;sklearn.datasets&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;fetch_california_housing&lt;/span&gt;
+
+&lt;span class="n"&gt;rawdata&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;fetch_california_housing&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;
+Again , data is returned as a &lt;code&gt;dict()&lt;/code&gt;.
+&lt;/p&gt;
+
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;rawdata&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;'data'&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;span class="n"&gt;y&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;rawdata&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;'target'&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;pre class="example"&gt;
+[5.1 3.5 1.4 0.2]
+&lt;/pre&gt;
+
+
+&lt;p&gt;
+Splitting training and testing data.
+&lt;/p&gt;
+
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;sklearn.model_selection&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;train_test_split&lt;/span&gt;
+&lt;span class="n"&gt;train_x&lt;/span&gt; &lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;test_x&lt;/span&gt; &lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;train_y&lt;/span&gt; &lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;test_y&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;train_test_split&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;y&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;random_state&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;
+Creating a model.
+In this case we are using &lt;code&gt;RandomForestRegressor&lt;/code&gt; which provides very good results.
+&lt;/p&gt;
+
+
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;sklearn.ensemble&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;RandomForestRegressor&lt;/span&gt;
+&lt;span class="n"&gt;model&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;RandomForestRegressor&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;span class="n"&gt;model&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;fit&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;train_x&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;train_y&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;model&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;score&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;test_x&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;test_y&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;pre class="example"&gt;
+0.9602251219512195
+&lt;/pre&gt;
+
+
+&lt;p&gt;
+&lt;i&gt;96%&lt;/i&gt;!! , this was my personal best while trying multiple models.More accuracy can be achieved by more experienced folks.
+Ways to improve include
+&lt;/p&gt;
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;Choosing strong model&lt;/li&gt;
+&lt;li&gt;Using More Data&lt;/li&gt;
+&lt;li&gt;Extensive Feature Engineeering&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+
+&lt;div id="outline-container-org9ffdd40" class="outline-3"&gt;
+&lt;h3 id="org9ffdd40"&gt;Sayonara!&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-org9ffdd40"&gt;
+&lt;p&gt;
+Well you can try more models or learn more about the models, we used.Anyway keep learning!!
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;</description><guid>https://pspiagicw.github.io/posts/quick-and-dirty-machine-learning/</guid><pubDate>Mon, 17 May 2021 14:08:59 GMT</pubDate></item><item><title>Rough Guide on Matplotlib</title><link>https://pspiagicw.github.io/posts/rough-guide-on-matplotlib/</link><dc:creator>pspiagicw</dc:creator><description>&lt;div id="outline-container-org423c218" class="outline-2"&gt;
+&lt;h2 id="org423c218"&gt;Rough Guide to Matplotlib&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org423c218"&gt;
+&lt;p&gt;
+Do you have the need to create graphs? Visualize highly numerical data , or just look at beautifully generated graphs and get turned on!
+&lt;/p&gt;
+
+&lt;p&gt;
+&lt;b&gt;Well like any other situation Python has you covered!&lt;/b&gt;
+&lt;/p&gt;
+
+&lt;p&gt;
+Matplotlib provides easy and efficient way of creating graphs.It is a python module , so you need &lt;code&gt;pip&lt;/code&gt; to install it. &lt;code&gt;Pip&lt;/code&gt; is python's modular structure allowing , us to share our code with others.
+More information here.
+&lt;code&gt;pip&lt;/code&gt; can install any module from PyPI , python's official module location , or as cool people call it repository.
+To install use &lt;code&gt;pip install&lt;/code&gt; command.
+&lt;/p&gt;
+
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;# Installing matploblib&lt;/span&gt;
+pip install --user matplotlib
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;
+Now that matplotlib is installed. We have to import it in Python , &lt;b&gt;importing&lt;/b&gt; in python is easy!
+&lt;/p&gt;
+
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;matplotlib&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;
+But we don't need to import matplotlib itself, &lt;code&gt;matplotlib.pyplot&lt;/code&gt; provides most of the features we need. The rest of matplotlib can be used to create extremely complex graphs.
+Pyplot is inspired from &lt;i&gt;MATLAB&lt;/i&gt; . If you have used &lt;i&gt;MATLAB&lt;/i&gt; before , it has the same API.
+This guide only focuses on PyPlot API , for a more object-based approach , see matplotlib's documentation, or refer to this guide.
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id="outline-container-orgc9b25fa" class="outline-3"&gt;
+&lt;h3 id="orgc9b25fa"&gt;Important Funcs&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-orgc9b25fa"&gt;
+&lt;p&gt;
+PyPlot provides some useful functions mainly &lt;code&gt;pyplot.show()&lt;/code&gt; and &lt;code&gt;pyplot.savefig()&lt;/code&gt;.
+These provide functionality to show and save the graphs we create!.
+Without these method, you can plot your graphs , but can never see them.
+&lt;/p&gt;
+
+&lt;p&gt;
+Plotting is when you call the particular method (More on that later!).These method configures the matplotlib backend with your graph ,
+&lt;code&gt;pyplot.show()&lt;/code&gt; simply shows the configured , graph.
+When you try to configure more than one plot , both are shown in same graph.
+&lt;/p&gt;
+
+&lt;p&gt;
+To see already plotted graph , use &lt;code&gt;pyplot.show()&lt;/code&gt; , but using it also clears the graph after showing it.
+While using it in a REPL , keep in mind to plot the graph again , before calling &lt;code&gt;pyplot.show()&lt;/code&gt;.
+&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;pyplot&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;show&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;
+To save a already plotted graph , use &lt;code&gt;pyplot.savefig()&lt;/code&gt; , it takes name and format of image as arguments , which allows you to save the graph.
+For example
+&lt;/p&gt;
+
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;# Graph already plotted!&lt;/span&gt;
+&lt;span class="n"&gt;pyplot&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;savefig&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'example-graph.png'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="nb"&gt;format&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;'png'&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;
+One thing before moving to next section!
+Most people alias &lt;code&gt;pyplot&lt;/code&gt; to &lt;code&gt;plt&lt;/code&gt; in Python. So if you see &lt;code&gt;plt&lt;/code&gt; anywhere, don't worry it is the same thing.
+To alias pyplot to plt
+&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;matplotlib.pyplot&lt;/span&gt; &lt;span class="k"&gt;as&lt;/span&gt; &lt;span class="nn"&gt;plt&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org02a32d4" class="outline-3"&gt;
+&lt;h3 id="org02a32d4"&gt;Basic Plotting&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-org02a32d4"&gt;
+&lt;p&gt;
+For plotting basic lines , &lt;code&gt;plt.plot()&lt;/code&gt; function is enough, it takes list of x and y coordinates as arguments.
+&lt;/p&gt;
+
+&lt;p&gt;
+Plotting points (3,2),(5,4) and (4,1).Keep in mind plot method connects all the dots with a line.
+&lt;/p&gt;
+
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;x_coordinates&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt; &lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;5&lt;/span&gt; &lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;span class="n"&gt;y_coordinates&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt; &lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;4&lt;/span&gt; &lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;span class="c1"&gt;# Points (3,2),(5,4),(4,1)&lt;/span&gt;
+&lt;span class="n"&gt;plt&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;plot&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;x_coordinates&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;y_coordinates&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;plt&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;show&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;
+The graph created is
+&lt;/p&gt;
+
+&lt;p&gt;
+&lt;img src="https://pspiagicw.github.io/images/simple-plot-matplotlib.png" alt="nil"&gt;
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org702576a" class="outline-3"&gt;
+&lt;h3 id="org702576a"&gt;Simple Scattering&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-org702576a"&gt;
+&lt;p&gt;
+Scatter plot simply shows all the coordinates/points without connecting them with a line.
+&lt;/p&gt;
+
+&lt;p&gt;
+Scatter plot are very useful in showing actual points , without a line seperating them.
+It also takes list of x and y coordinates as arguments.
+&lt;/p&gt;
+
+&lt;p&gt;
+Showing (2,6),(4,5),(1,8) and (3,6) on a graph is easy.
+&lt;/p&gt;
+
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;x_coordinates&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt; &lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;4&lt;/span&gt; &lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt; &lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt; &lt;span class="p"&gt;]&lt;/span&gt;
+&lt;span class="n"&gt;y_coordinates&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt; &lt;span class="mi"&gt;6&lt;/span&gt; &lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;5&lt;/span&gt; &lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;8&lt;/span&gt; &lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;6&lt;/span&gt; &lt;span class="p"&gt;]&lt;/span&gt;
+&lt;span class="c1"&gt;# Points (2,6) , (4,5) , (1,8) and (3,6)&lt;/span&gt;
+&lt;span class="n"&gt;plt&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;scatter&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;x_coordinates&lt;/span&gt; &lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;y_coordinates&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;plt&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;show&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;
+The end result
+&lt;/p&gt;
+
+&lt;p&gt;
+&lt;img src="https://pspiagicw.github.io/images/scatter-plot-matplotlib.png" alt="nil"&gt;
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org5e42f03" class="outline-3"&gt;
+&lt;h3 id="org5e42f03"&gt;Histograms&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-org5e42f03"&gt;
+&lt;p&gt;
+Histograms in matplotlib is as easy as just giving the list of values you want a histogram of.
+&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;plt&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;hist&lt;/span&gt;&lt;span class="p"&gt;([&lt;/span&gt; &lt;span class="n"&gt;random&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;randint&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;100&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;_&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="nb"&gt;range&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;300&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;])&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;
+&lt;img src="https://pspiagicw.github.io/images/simple-hist-matplotlib.png" alt="nil"&gt;
+&lt;/p&gt;
+
+&lt;p&gt;
+It provides a good view of how the data is distributed , over the range.
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-orgabbb963" class="outline-3"&gt;
+&lt;h3 id="orgabbb963"&gt;Showing Images.&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-orgabbb963"&gt;
+&lt;p&gt;
+One more useful function , I use most of the time , is &lt;code&gt;plt.imshow()&lt;/code&gt; . When working with a lot of images  this can show your image , with extra info/special filters etc.
+&lt;/p&gt;
+
+&lt;p&gt;
+It takes a 2-D matrix or 3-D matrix as input , depending on channels of image , that is how many colors are recorded , in data.A single color is represented as intensity value.
+It can vary from 1 to 255.
+ No of channels/colors can vary between 1-3 colors, if only 1 channel , image is black and white.
+If having all 3 colors , image is a normal color image.The colors are simply RGB(Red ,Green and Blue).
+&lt;/p&gt;
+
+&lt;p&gt;
+For example this is an handwritten 5 , from MNIST dataset(Coming in future posts!) , which is stored in a 2-D array.
+&lt;/p&gt;
+
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;# Usage of matplotlib.pyplot.imshow()&lt;/span&gt;
+&lt;span class="n"&gt;plt&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;imshow&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;image&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;plt&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;show&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;
+&lt;img src="https://pspiagicw.github.io/images/mnist-plot-matplotlib.png" alt="nil"&gt;
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+
+&lt;div id="outline-container-org1260814" class="outline-3"&gt;
+&lt;h3 id="org1260814"&gt;Aesthetics.&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-org1260814"&gt;
+&lt;p&gt;
+Graphs being almost 100% visual feedback , you might need to add some bling to it.
+Matplotlib supports everything a graph might have.Make sure to read it's documentation afterwards.
+&lt;/p&gt;
+
+&lt;p&gt;
+To add label to any plot/scatter , just add label argument.Label make it easy to spot , when multiple plots are present.
+You can also add label to x-axis and y-axis using methods like &lt;code&gt;plt.xlabel()&lt;/code&gt; and &lt;code&gt;plt.ylabel()&lt;/code&gt;.
+&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;plt&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;xlabel&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'Speed'&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;plt&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;ylabel&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'Distance'&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;
+You can also add &lt;code&gt;text&lt;/code&gt; to the graph , using the &lt;code&gt;plt.text()&lt;/code&gt; method.For using this , you have to provide a coordinate and the text to plot.
+This text can be customized (Color , Border etc).
+&lt;/p&gt;
+
+&lt;p&gt;
+You can add title to your graphs using &lt;code&gt;plt.title()&lt;/code&gt; method.
+&lt;/p&gt;
+
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;plt&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;scatter&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;x_coordinates&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;y_coordinates&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;label&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;'Group 1'&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;y&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="nb"&gt;zip&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;x_coordinates&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;y_coordinates&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="n"&gt;plt&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;text&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;y&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="s1"&gt;'Point (&lt;/span&gt;&lt;span class="si"&gt;{x}&lt;/span&gt;&lt;span class="s1"&gt;,&lt;/span&gt;&lt;span class="si"&gt;{y}&lt;/span&gt;&lt;span class="s1"&gt;)'&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;format&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;y&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;y&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+&lt;span class="n"&gt;plt&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;show&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;
+&lt;img src="https://pspiagicw.github.io/images/labels-matplotlib.png" alt="nil"&gt;
+&lt;/p&gt;
+
+&lt;p&gt;
+To plot one graph over another , use the plot/scatter function without using &lt;code&gt;plt.show()&lt;/code&gt; or &lt;code&gt;plt.savefig()&lt;/code&gt; first.
+&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;plt&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;plot&lt;/span&gt;&lt;span class="p"&gt;([&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt; &lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;5&lt;/span&gt; &lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;7&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt; &lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;5&lt;/span&gt; &lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;7&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt;&lt;span class="n"&gt;label&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;'Line y=x'&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;plt&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;scatter&lt;/span&gt;&lt;span class="p"&gt;([&lt;/span&gt; &lt;span class="mi"&gt;5&lt;/span&gt; &lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;6&lt;/span&gt; &lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;5&lt;/span&gt; &lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;label&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;'Group of people'&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;plt&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;show&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;
+&lt;img src="https://pspiagicw.github.io/images/multiple-plot-matplotlib.png" alt="nil"&gt;
+&lt;/p&gt;
+
+
+&lt;p&gt;
+To show a legend in the graph use the &lt;code&gt;plt.legend()&lt;/code&gt; function .
+&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;plt&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;plot&lt;/span&gt;&lt;span class="p"&gt;([&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt; &lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;5&lt;/span&gt; &lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;7&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt; &lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;5&lt;/span&gt; &lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;7&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt;&lt;span class="n"&gt;label&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;'Line y=x'&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;plt&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;scatter&lt;/span&gt;&lt;span class="p"&gt;([&lt;/span&gt; &lt;span class="mi"&gt;5&lt;/span&gt; &lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;6&lt;/span&gt; &lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;5&lt;/span&gt; &lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;label&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;'Group of people'&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;plt&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;legend&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;span class="n"&gt;plt&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;show&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;
+You can customize plotting style by , specifying parameters such as
+&lt;/p&gt;
+
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;LineStyle: Using &lt;code&gt;linestyle&lt;/code&gt; parameter to customize the line-drawn.&lt;/li&gt;
+&lt;li&gt;LineWidth: Using &lt;code&gt;linewidth&lt;/code&gt; parameter to increase thickness of the line.&lt;/li&gt;
+&lt;li&gt;Marker: Using &lt;code&gt;marker&lt;/code&gt; parameter , this changes how actual points are shown in the graph.See here for all the marker codes.&lt;/li&gt;
+&lt;li&gt;Color: Using color parameter, this changes color of the line drawn, see here for all the color codes.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;
+This graph uses linestyle of &lt;code&gt;--&lt;/code&gt; and linewidth of 3.5 ,marker type of &lt;code&gt;+&lt;/code&gt; and color green.
+&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;plt&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;plot&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;x_coodinates&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;y_coordinates&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;label&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;'Line'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;linestyle&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;'--'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;linewidth&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mf"&gt;3.5&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;marke&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;'+'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;color&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;'g'&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;plt&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;show&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;
+&lt;img src="https://pspiagicw.github.io/images/ultimate-custom-matplotlib.png" alt="nil"&gt;
+&lt;/p&gt;
+
+
+&lt;p&gt;
+You can also customize matplotlib itself, using &lt;code&gt;styles&lt;/code&gt;.
+By default matplotlib's style is boring,I am using dracula style for my graphs.You can change everything from fonts to background.
+More info on matplotlib's documentation.If you want to learn to use matplotlib , you have to read it.
+&lt;/p&gt;
+
+&lt;p&gt;
+Anyway , here's how to use a default dark-style(included in matplotlib) , for installing more themes look at matplotlib's website.
+&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;plt&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;style&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;use&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'dark_background'&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org79fa5e9" class="outline-3"&gt;
+&lt;h3 id="org79fa5e9"&gt;Bon Voyage!&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-org79fa5e9"&gt;
+&lt;p&gt;
+That's basic matplotlib for you.You should definately look at their documentation.
+You can also look at the Object API for matplotlib. It is a little advanced , but is highly configurable.
+&lt;/p&gt;
+
+&lt;p&gt;
+With the required info, you can make basic graphs , with text. I personally use matplotlib to create graphs for my Physic's classes and ofcourse Data Visualization in ML.
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;</description><guid>https://pspiagicw.github.io/posts/rough-guide-on-matplotlib/</guid><pubDate>Mon, 17 May 2021 13:59:30 GMT</pubDate></item><item><title>The rise of the Machines</title><link>https://pspiagicw.github.io/posts/the-rise-of-the-machines/</link><dc:creator>pspiagicw</dc:creator><description>&lt;div id="outline-container-org18ef3c9" class="outline-2"&gt;
+&lt;h2 id="org18ef3c9"&gt;The rise of the Machines&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org18ef3c9"&gt;
+&lt;p&gt;
+Last time we saw a simple model train and predict on some user data.
+We decided we will keep the explanation for later.
+&lt;/p&gt;
+
+&lt;p&gt;
+I think the time has come.
+&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org2c35601" class="outline-3"&gt;
+&lt;h3 id="org2c35601"&gt;Data&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-org2c35601"&gt;
+&lt;p&gt;
+The most important aspect of Machine Learning is &lt;i&gt;data&lt;/i&gt; , without it we cannot perform any training or testing.
+Before the information age , data was hard to come by.
+Storage was very expensive , it was better used to store useful information , rather than log previous data.
+&lt;/p&gt;
+
+&lt;p&gt;
+Invention of cheap hard disks changed this.Data could be stored.
+&lt;/p&gt;
+
+&lt;p&gt;
+Now that every bit of information about our lives is being tracked (for good or bad?), data can be used to build models.
+&lt;/p&gt;
+
+&lt;p&gt;
+These models are nothing but complex mathematical formulas , these try to create a formula of the given data.
+In other words they try to generalize pattern in the data.
+&lt;/p&gt;
+
+&lt;p&gt;
+You can also say , Machine Learning is learning our habits/behaviour/instincts into a mathematical formula .
+The formula could predict our every move , making a deterministic universe, allowing to predict the future.
+Becoming a level 5 civilization.
+&lt;/p&gt;
+
+&lt;p&gt;
+&lt;i&gt;Well That was too much!&lt;/i&gt;
+&lt;/p&gt;
+
+&lt;p&gt;
+Basically making a formula that maps input to output is machine learning.
+&lt;/p&gt;
+
+&lt;p&gt;
+In our last example we are using &lt;code&gt;make_moons&lt;/code&gt; dataset , it provides coordinates of two intersecting circles.
+&lt;/p&gt;
+
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;sklearn.datasets&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;make_moons&lt;/span&gt;
+&lt;span class="c1"&gt;# Dataset&lt;/span&gt;
+&lt;span class="n"&gt;data&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;make_moons&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;
+This provides us with a tuple (coordinates , output).
+&lt;/p&gt;
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;Coordinates - This is list of x and y coordinates of points.&lt;/li&gt;
+&lt;li&gt;Output - This is list whether they intersect or not.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;
+If you are wondering , what are we doing with our data.
+We are trying to classify .
+&lt;/p&gt;
+
+&lt;p&gt;
+&lt;i&gt;Classification&lt;/i&gt; - Task where we try to take input data and predict which class the said input lies in.Class refers to the multiple type an input can fall into.
+It is just fancy words for saying , we give stuff , you learn to sort them.
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id="outline-container-org922a3dd" class="outline-3"&gt;
+&lt;h3 id="org922a3dd"&gt;Model&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-org922a3dd"&gt;
+&lt;p&gt;
+For classification there are lot of techniques , Logistic Regression , K Nearest Neighbors , DecisionTree etc.
+We can go overpowered and use multiplayer perceptron model , or even an RNN.
+&lt;/p&gt;
+
+&lt;p&gt;
+The important part of Machine Learning is selecting the right model , not &lt;i&gt;too weak&lt;/i&gt; , not &lt;i&gt;too strong&lt;/i&gt;.
+&lt;/p&gt;
+
+&lt;p&gt;
+If &lt;i&gt;too weak&lt;/i&gt; ,model might not be able to learn the relation at all.
+&lt;/p&gt;
+
+&lt;p&gt;
+If &lt;i&gt;too strong&lt;/i&gt; ,model might use lot of computational power, or even worse overfit (get personal with the data).
+&lt;/p&gt;
+
+&lt;p&gt;
+&lt;i&gt;Both are not Good!&lt;/i&gt;
+&lt;/p&gt;
+
+&lt;p&gt;
+For this exercise, K Nearest Neighbor is good enough. Simple and Strong.
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-orgc2d9a9a" class="outline-3"&gt;
+&lt;h3 id="orgc2d9a9a"&gt;K Nearest Neighbors&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-orgc2d9a9a"&gt;
+&lt;p&gt;
+KNN(K Nearest Neighbors) tries to predict it's class/type by seeing who is nearest while on a cartesian graph.
+&lt;/p&gt;
+
+&lt;p&gt;
+Take this graph for example
+&lt;/p&gt;
+
+&lt;p&gt;
+&lt;img src="https://pspiagicw.github.io/images/knn-example.png" alt="nil"&gt;
+&lt;/p&gt;
+
+&lt;p&gt;
+This graph has two groups , one in blue and one in pink.
+&lt;/p&gt;
+
+&lt;p&gt;
+For predicting group for any new point , it plots it on the graph , sees which points are near , using distance formula for corresponding cartesian plane.
+&lt;/p&gt;
+
+&lt;p&gt;
+For 1-d cartesian plane , distance formula is dist = coordinate1 - coordinate2.
+&lt;/p&gt;
+
+&lt;p&gt;
+For 2-d cartesian plane , distance formula is dist = sqrt( ( x2 - x1)**2 + ( y2 - y1)**2 )
+where x1 is x coordinate of first point.
+&lt;/p&gt;
+
+&lt;p&gt;
+If you need a little refresher see this.
+&lt;/p&gt;
+
+&lt;p&gt;
+Using this distance information , it can see which points are nearest , it chooses the k nearest points , here k is arbitary(our choice).
+After choosing the points it sees what class/group do majority of them lie in.
+As we need majority always , K is always choosed as an odd number , so that no matter how ambiguous(Confusing) the point might look like , there is always a majority.
+&lt;/p&gt;
+
+&lt;p&gt;
+Here we are creating a model, by default sklearn uses K = 5.
+&lt;/p&gt;
+
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;sklearn.neighbors&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;KNeighborsClassifier&lt;/span&gt;
+&lt;span class="n"&gt;model&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;KNeighborsClassifier&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org6129e30" class="outline-3"&gt;
+&lt;h3 id="org6129e30"&gt;Train and predict.&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-org6129e30"&gt;
+&lt;p&gt;
+For training , we need data points(input) and labels(output).
+&lt;/p&gt;
+
+&lt;p&gt;
+For Moons Dataset, input is first element of the tuple.
+Output is second element of the tuple.
+&lt;/p&gt;
+
+&lt;p&gt;
+Here is a pic of the dataset.
+&lt;/p&gt;
+
+&lt;p&gt;
+&lt;img src="https://pspiagicw.github.io/images/moons-dataset-graph.png" alt="nil"&gt;
+&lt;/p&gt;
+
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nb"&gt;input&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;data&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;span class="n"&gt;output&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;data&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;For training , sklearn provides &lt;code&gt;fit()&lt;/code&gt; method for any estimator(model of any kind).&lt;/li&gt;
+&lt;li&gt;For testing , sklearn provides &lt;code&gt;score()&lt;/code&gt; method for estimators , but it needs both test input and output so that it can know how well it did.&lt;/li&gt;
+&lt;li&gt;For predicting , sklearn provides &lt;code&gt;predict()&lt;/code&gt; method for estimators, we can give any input&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;model&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;fit&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;input&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;output&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;pre class="example"&gt;
+KNeighborsClassifier()
+&lt;/pre&gt;
+
+
+&lt;p&gt;
+For fun we can use training data for testing.
+You should not do that in real life, testing on previously trained data is like giving you question of the exam beforehand.
+Model already knows the data , so you do not know whether it really learnt the data or not.
+&lt;/p&gt;
+
+&lt;p&gt;
+&lt;i&gt;But here it is for fun(Don't do it in production)&lt;/i&gt;
+&lt;/p&gt;
+
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;model&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;score&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;input&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;output&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;pre class="example"&gt;
+1.0
+&lt;/pre&gt;
+
+
+&lt;p&gt;
+It will return a accuracy(for classification).Most probably it would be 1.0(or 100%)
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org43f06b9" class="outline-3"&gt;
+&lt;h3 id="org43f06b9"&gt;Conclusion&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-org43f06b9"&gt;
+&lt;p&gt;
+Now that you know what the code does , try to change model's behaviour.
+&lt;/p&gt;
+
+&lt;p&gt;
+As it is K Nearest Neighbor , we can take any K(odd).
+&lt;/p&gt;
+
+&lt;p&gt;
+To change value of K in sklearn's KNN,use &lt;code&gt;n_neighbors&lt;/code&gt; argument.
+&lt;/p&gt;
+
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;model&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;KNeighborsClassifier&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;n_neighbors&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;
+Try to use multiple values of K and observe the model's accuracy.Try to use even K and see what happens.
+Mostly it will not change!(Try to answer why, hint:We are using training data).
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org4a0ed98" class="outline-3"&gt;
+&lt;h3 id="org4a0ed98"&gt;Departing time!&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-org4a0ed98"&gt;
+&lt;p&gt;
+I hope you understood above explanation , if in any doubt , or have any correction regarding content.Don't hesitate to poke me in the eye!
+&lt;/p&gt;
+
+&lt;p&gt;
+&lt;b&gt;Adios!&lt;/b&gt;
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;</description><guid>https://pspiagicw.github.io/posts/the-rise-of-the-machines/</guid><pubDate>Sat, 15 May 2021 17:09:18 GMT</pubDate></item><item><title>My cool new setup!</title><link>https://pspiagicw.github.io/posts/my-cool-new-setup/</link><dc:creator>pspiagicw</dc:creator><description>&lt;div id="outline-container-org0f551bc" class="outline-2"&gt;
+&lt;h2 id="org0f551bc"&gt;Linux is Sexy!&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org0f551bc"&gt;
 &lt;p&gt;
 My love for linux grows , day by day . It has the freedon that nobody can provide.
 Well I don't think anybody thinks of making a car from scratch . 
@@ -28,7 +791,7 @@ This time I decided to integrate both.
 
 &lt;p&gt;
 Now I had a choice , whether to keep a minimal setup with some GUI apps , or to keep only the required GUI apps.
-I decided to go with the obvious no GUI apps.
+I decided to go with the obvious , no GUI apps.
 &lt;/p&gt;
 
 &lt;p&gt;
@@ -36,9 +799,9 @@ The only GUI app I am using is for my classes.
 &lt;/p&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-orgdbfbe8f" class="outline-3"&gt;
-&lt;h3 id="orgdbfbe8f"&gt;Keyboard is priority&lt;/h3&gt;
-&lt;div class="outline-text-3" id="text-orgdbfbe8f"&gt;
+&lt;div id="outline-container-org2f68432" class="outline-3"&gt;
+&lt;h3 id="org2f68432"&gt;Keyboard is priority&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-org2f68432"&gt;
 &lt;p&gt;
 When making any setup , I make sure to remember all the keybindings,so that I can make things fast.
 Well with linux , you don't have to remember keybindings, you make keybindings.
@@ -49,7 +812,7 @@ I don't think anyone in the Windows/MacOS world thinkgs in this way!Create Keybi
 &lt;/p&gt;
 
 &lt;p&gt;
-For my display manager I went with nothing, a simple &lt;code&gt;/etc/issue&lt;/code&gt; file suffice for bling.
+For my display manager I went with nothing, a simple &lt;code&gt;/etc/issue&lt;/code&gt; file sufficed for bling.
 My &lt;code&gt;bash_profile&lt;/code&gt; automatically starts the window manager on login.
 &lt;/p&gt;
 
@@ -65,11 +828,11 @@ If you cannot understand that reference then you must join the dark side.I will 
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org624edf4" class="outline-3"&gt;
-&lt;h3 id="org624edf4"&gt;My Apps&lt;/h3&gt;
-&lt;div class="outline-text-3" id="text-org624edf4"&gt;
+&lt;div id="outline-container-orgdb1bc8c" class="outline-3"&gt;
+&lt;h3 id="orgdb1bc8c"&gt;My Apps&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-orgdb1bc8c"&gt;
 &lt;p&gt;
-My other apps include:
+My  apps include:
 &lt;/p&gt;
 
 &lt;ul class="org-ul"&gt;
@@ -96,9 +859,9 @@ Pressing L on any page , opens urlscan  no matter what,independent of apps
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-orge4554a3" class="outline-3"&gt;
-&lt;h3 id="orge4554a3"&gt;Aesthetics&lt;/h3&gt;
-&lt;div class="outline-text-3" id="text-orge4554a3"&gt;
+&lt;div id="outline-container-org31431f0" class="outline-3"&gt;
+&lt;h3 id="org31431f0"&gt;Aesthetics&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-org31431f0"&gt;
 &lt;p&gt;
 For aesthetics I don't have much to offer.I used dracula themes from &lt;a href="https://draculatheme.com"&gt;draculatheme.com&lt;/a&gt; as I love it.
 Other aesthetics include
@@ -118,21 +881,21 @@ If you want to checkout my config , it's &lt;a href="https://github.com/pspiagic
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org57309c1" class="outline-3"&gt;
-&lt;h3 id="org57309c1"&gt;GoodBye!&lt;/h3&gt;
-&lt;div class="outline-text-3" id="text-org57309c1"&gt;
+&lt;div id="outline-container-org1098e76" class="outline-3"&gt;
+&lt;h3 id="org1098e76"&gt;GoodBye!&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-org1098e76"&gt;
 &lt;p&gt;
 Keep being curious , Over and Out!
 &lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;/div&gt;</description><category>linux</category><guid>https://pspiagicw.github.io/posts/my-cool-new-setup/</guid><pubDate>Sat, 15 May 2021 00:58:53 GMT</pubDate></item><item><title>Write a blog they said!</title><link>https://pspiagicw.github.io/posts/write-a-blog-they-said/</link><dc:creator>pspiagicw</dc:creator><description>&lt;div id="outline-container-orga553a29" class="outline-2"&gt;
-&lt;h2 id="orga553a29"&gt;Write a blog they said&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-orga553a29"&gt;
+&lt;/div&gt;</description><category>linux</category><guid>https://pspiagicw.github.io/posts/my-cool-new-setup/</guid><pubDate>Sat, 15 May 2021 00:58:53 GMT</pubDate></item><item><title>Write a blog they said!</title><link>https://pspiagicw.github.io/posts/write-a-blog-they-said/</link><dc:creator>pspiagicw</dc:creator><description>&lt;div id="outline-container-orgb8a317a" class="outline-2"&gt;
+&lt;h2 id="orgb8a317a"&gt;Write a blog they said&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-orgb8a317a"&gt;
 &lt;/div&gt;
-&lt;div id="outline-container-org567ce0f" class="outline-3"&gt;
-&lt;h3 id="org567ce0f"&gt;Read a book!&lt;/h3&gt;
-&lt;div class="outline-text-3" id="text-org567ce0f"&gt;
+&lt;div id="outline-container-org8812aed" class="outline-3"&gt;
+&lt;h3 id="org8812aed"&gt;Read a book!&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-org8812aed"&gt;
 &lt;p&gt;
 I love reading technical books which are non-serious , and cater towards casual learners.It provides the most honest perspective for anyone reading.
 Well the most recent one was &lt;span class="underline"&gt;Grokking Deep Learning&lt;/span&gt; , which provides excellent intro to the world of Deep Learning
@@ -161,13 +924,13 @@ Anyway let's start the &lt;a href="https://en.wikipedia.org/wiki/SpaceX_Raptor"&
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-orgcfa8351" class="outline-3"&gt;
-&lt;h3 id="orgcfa8351"&gt;Machine Learning&lt;/h3&gt;
-&lt;div class="outline-text-3" id="text-orgcfa8351"&gt;
+&lt;div id="outline-container-org78a4917" class="outline-3"&gt;
+&lt;h3 id="org78a4917"&gt;Machine Learning&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-org78a4917"&gt;
 &lt;/div&gt;
-&lt;div id="outline-container-org827236d" class="outline-4"&gt;
-&lt;h4 id="org827236d"&gt;Getting Started&lt;/h4&gt;
-&lt;div class="outline-text-4" id="text-org827236d"&gt;
+&lt;div id="outline-container-orgdfecbbb" class="outline-4"&gt;
+&lt;h4 id="orgdfecbbb"&gt;Getting Started&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-orgdfecbbb"&gt;
 &lt;p&gt;
 Well I could start with the theoretical aspects of Machine Learning , or I can start giving code , along with explanations.
 &lt;/p&gt;
@@ -197,9 +960,8 @@ I am coding on a generic GNU/Linux distribution , any commands/code I write will
 For installing above packages use the &lt;span class="underline"&gt;pip&lt;/span&gt; command.
 &lt;/p&gt;
 
-&lt;p&gt;
-&lt;img src="https://pspiagicw.github.io/images/installing-packages.png" alt="nil"&gt;
-&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;   pip install sklearn pandas numpy matplotlib
+&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;
 Now that we have packages installed,let's create a new python file and begin.People wanting to use Jupyter Notebook etc, don't judge me!
@@ -207,9 +969,9 @@ Now that we have packages installed,let's create a new python file and begin.Peo
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org22dd5fa" class="outline-4"&gt;
-&lt;h4 id="org22dd5fa"&gt;Data Collection&lt;/h4&gt;
-&lt;div class="outline-text-4" id="text-org22dd5fa"&gt;
+&lt;div id="outline-container-org8c0cbcd" class="outline-4"&gt;
+&lt;h4 id="org8c0cbcd"&gt;Data Collection&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-org8c0cbcd"&gt;
 &lt;p&gt;
 We need to have data to start Machine Learning.Lucky for us &lt;span class="underline"&gt;sklearn&lt;/span&gt; already includes some datasets.
 A dataset is a collection of tabular data along with information on source of the data.
@@ -220,9 +982,9 @@ We are going to use moons dataset , it is a simple dataset , it tries to give da
 To use it we have to invoke &lt;code&gt;make_moons()&lt;/code&gt; method from &lt;code&gt;sklearn.datasets&lt;/code&gt;.
 &lt;/p&gt;
 
-&lt;p&gt;
-&lt;img src="https://pspiagicw.github.io/images/make-moons.png" alt="nil"&gt;
-&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;   &lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;sklearn.datasets&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;make_moons&lt;/span&gt; 
+   &lt;span class="n"&gt;data&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;make_moons&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;
 It returns a tuple with first field being the input data(Data we know) and second field being output data(Data we want to know about).
@@ -233,29 +995,29 @@ Here we want to predict whether the circles intersect or not, given their positi
 Let's divide it into input and output variables.
 &lt;/p&gt;
 
-&lt;p&gt;
-&lt;img src="https://pspiagicw.github.io/images/divide-input.png" alt="nil"&gt;
-&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;   &lt;span class="nb"&gt;input&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;data&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+   &lt;span class="n"&gt;output&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;data&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-orgba5f587" class="outline-4"&gt;
-&lt;h4 id="orgba5f587"&gt;Training&lt;/h4&gt;
-&lt;div class="outline-text-4" id="text-orgba5f587"&gt;
+&lt;div id="outline-container-orgc85bb18" class="outline-4"&gt;
+&lt;h4 id="orgc85bb18"&gt;Training&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-orgc85bb18"&gt;
 &lt;p&gt;
 We will use K-Nearest Neighbors algorithm, it's internal working will be explained later.The important thing , being it is used to Classify.First let's import it.
 It is provided in &lt;code&gt;sklearn.neighbors.KNeighborsClassifier&lt;/code&gt; .
 &lt;/p&gt;
 
-&lt;p&gt;
-&lt;img src="https://pspiagicw.github.io/images/import-neighbors.png" alt="nil"&gt;
-&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;   &lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;sklearn.neighbors&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;KNeighborsClassifier&lt;/span&gt;
+   &lt;span class="n"&gt;model&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;KNeighborsClassifier&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-orgad900d8" class="outline-4"&gt;
-&lt;h4 id="orgad900d8"&gt;Testing&lt;/h4&gt;
-&lt;div class="outline-text-4" id="text-orgad900d8"&gt;
+&lt;div id="outline-container-org231e569" class="outline-4"&gt;
+&lt;h4 id="org231e569"&gt;Testing&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-org231e569"&gt;
 &lt;p&gt;
 Using this model is easy , for training call the &lt;span class="underline"&gt;fit&lt;/span&gt; method and testing use the &lt;span class="underline"&gt;score&lt;/span&gt; method.Don't worry about why and what we are doing here!
 Using the score method gives us accuracy , which will tell how good our model is. &lt;i&gt;Higher the Better!&lt;/i&gt;
@@ -265,27 +1027,35 @@ Using the score method gives us accuracy , which will tell how good our model is
 Tough we are not using &lt;code&gt;score()&lt;/code&gt; method today , cause we don't have any testing data!!
 &lt;/p&gt;
 
-&lt;p&gt;
-&lt;img src="https://pspiagicw.github.io/images/train-score-knn.png" alt="nil"&gt;
-&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;   &lt;span class="n"&gt;model&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;fit&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;input&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;output&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;pre class="example"&gt;
+KNeighborsClassifier()
+&lt;/pre&gt;
+
 
 &lt;p&gt;
 But we can make predictions for ourselves, as the model is trained on the data , it can make accurate predictions , without any problem.
 To make predictions we use the &lt;code&gt;predict&lt;/code&gt; method.We can pass data is same way input has in an array of two numbers , which can be used which can be used to predict if they are parameters of an intersecting circle.
 &lt;/p&gt;
 
-&lt;p&gt;
-&lt;img src="https://pspiagicw.github.io/images/predict.png" alt="nil"&gt;
-&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;   &lt;span class="n"&gt;test_input&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[[&lt;/span&gt;&lt;span class="mf"&gt;2.455&lt;/span&gt; &lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mf"&gt;2.345&lt;/span&gt; &lt;span class="p"&gt;]]&lt;/span&gt;
+   &lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;model&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;predict&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;test_input&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;pre class="example"&gt;
+[1]
+&lt;/pre&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 
 
 
-&lt;div id="outline-container-orgb733ef8" class="outline-3"&gt;
-&lt;h3 id="orgb733ef8"&gt;Farewell!&lt;/h3&gt;
-&lt;div class="outline-text-3" id="text-orgb733ef8"&gt;
+&lt;div id="outline-container-org86ecaf4" class="outline-3"&gt;
+&lt;h3 id="org86ecaf4"&gt;Farewell!&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-org86ecaf4"&gt;
 &lt;p&gt;
 Let us meet again in the next post where we will learn more about Machine Learning in general.We will have a lot of fun, so don't miss it!
 &lt;/p&gt;

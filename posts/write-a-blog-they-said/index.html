@@ -72,13 +72,13 @@ Well the m">
         
 
     </header><div class="e-content entry-content" itemprop="articleBody text">
-    <div id="outline-container-orga553a29" class="outline-2">
-<h2 id="orga553a29">Write a blog they said</h2>
-<div class="outline-text-2" id="text-orga553a29">
+    <div id="outline-container-orgb8a317a" class="outline-2">
+<h2 id="orgb8a317a">Write a blog they said</h2>
+<div class="outline-text-2" id="text-orgb8a317a">
 </div>
-<div id="outline-container-org567ce0f" class="outline-3">
-<h3 id="org567ce0f">Read a book!</h3>
-<div class="outline-text-3" id="text-org567ce0f">
+<div id="outline-container-org8812aed" class="outline-3">
+<h3 id="org8812aed">Read a book!</h3>
+<div class="outline-text-3" id="text-org8812aed">
 <p>
 I love reading technical books which are non-serious , and cater towards casual learners.It provides the most honest perspective for anyone reading.
 Well the most recent one was <span class="underline">Grokking Deep Learning</span> , which provides excellent intro to the world of Deep Learning
@@ -107,13 +107,13 @@ Anyway let's start the <a href="https://en.wikipedia.org/wiki/SpaceX_Raptor">Rap
 </div>
 </div>
 
-<div id="outline-container-orgcfa8351" class="outline-3">
-<h3 id="orgcfa8351">Machine Learning</h3>
-<div class="outline-text-3" id="text-orgcfa8351">
+<div id="outline-container-org78a4917" class="outline-3">
+<h3 id="org78a4917">Machine Learning</h3>
+<div class="outline-text-3" id="text-org78a4917">
 </div>
-<div id="outline-container-org827236d" class="outline-4">
-<h4 id="org827236d">Getting Started</h4>
-<div class="outline-text-4" id="text-org827236d">
+<div id="outline-container-orgdfecbbb" class="outline-4">
+<h4 id="orgdfecbbb">Getting Started</h4>
+<div class="outline-text-4" id="text-orgdfecbbb">
 <p>
 Well I could start with the theoretical aspects of Machine Learning , or I can start giving code , along with explanations.
 </p>
@@ -142,8 +142,8 @@ I am coding on a generic GNU/Linux distribution , any commands/code I write will
 For installing above packages use the <span class="underline">pip</span> command.
 </p>
 
-<p>
-<img src="../../images/installing-packages.png" alt="nil"></p>
+<div class="highlight"><pre><span></span>   pip install sklearn pandas numpy matplotlib
+</pre></div>
 
 <p>
 Now that we have packages installed,let's create a new python file and begin.People wanting to use Jupyter Notebook etc, don't judge me!
@@ -151,9 +151,9 @@ Now that we have packages installed,let's create a new python file and begin.Peo
 </div>
 </div>
 
-<div id="outline-container-org22dd5fa" class="outline-4">
-<h4 id="org22dd5fa">Data Collection</h4>
-<div class="outline-text-4" id="text-org22dd5fa">
+<div id="outline-container-org8c0cbcd" class="outline-4">
+<h4 id="org8c0cbcd">Data Collection</h4>
+<div class="outline-text-4" id="text-org8c0cbcd">
 <p>
 We need to have data to start Machine Learning.Lucky for us <span class="underline">sklearn</span> already includes some datasets.
 A dataset is a collection of tabular data along with information on source of the data.
@@ -164,8 +164,9 @@ We are going to use moons dataset , it is a simple dataset , it tries to give da
 To use it we have to invoke <code>make_moons()</code> method from <code>sklearn.datasets</code>.
 </p>
 
-<p>
-<img src="../../images/make-moons.png" alt="nil"></p>
+<div class="highlight"><pre><span></span>   <span class="kn">from</span> <span class="nn">sklearn.datasets</span> <span class="kn">import</span> <span class="n">make_moons</span> 
+   <span class="n">data</span> <span class="o">=</span> <span class="n">make_moons</span><span class="p">()</span>
+</pre></div>
 
 <p>
 It returns a tuple with first field being the input data(Data we know) and second field being output data(Data we want to know about).
@@ -176,27 +177,29 @@ Here we want to predict whether the circles intersect or not, given their positi
 Let's divide it into input and output variables.
 </p>
 
-<p>
-<img src="../../images/divide-input.png" alt="nil"></p>
+<div class="highlight"><pre><span></span>   <span class="nb">input</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+   <span class="n">output</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+</pre></div>
 </div>
 </div>
 
-<div id="outline-container-orgba5f587" class="outline-4">
-<h4 id="orgba5f587">Training</h4>
-<div class="outline-text-4" id="text-orgba5f587">
+<div id="outline-container-orgc85bb18" class="outline-4">
+<h4 id="orgc85bb18">Training</h4>
+<div class="outline-text-4" id="text-orgc85bb18">
 <p>
 We will use K-Nearest Neighbors algorithm, it's internal working will be explained later.The important thing , being it is used to Classify.First let's import it.
 It is provided in <code>sklearn.neighbors.KNeighborsClassifier</code> .
 </p>
 
-<p>
-<img src="../../images/import-neighbors.png" alt="nil"></p>
+<div class="highlight"><pre><span></span>   <span class="kn">from</span> <span class="nn">sklearn.neighbors</span> <span class="kn">import</span> <span class="n">KNeighborsClassifier</span>
+   <span class="n">model</span> <span class="o">=</span> <span class="n">KNeighborsClassifier</span><span class="p">()</span>
+</pre></div>
 </div>
 </div>
 
-<div id="outline-container-orgad900d8" class="outline-4">
-<h4 id="orgad900d8">Testing</h4>
-<div class="outline-text-4" id="text-orgad900d8">
+<div id="outline-container-org231e569" class="outline-4">
+<h4 id="org231e569">Testing</h4>
+<div class="outline-text-4" id="text-org231e569">
 <p>
 Using this model is easy , for training call the <span class="underline">fit</span> method and testing use the <span class="underline">score</span> method.Don't worry about why and what we are doing here!
 Using the score method gives us accuracy , which will tell how good our model is. <i>Higher the Better!</i>
@@ -206,25 +209,35 @@ Using the score method gives us accuracy , which will tell how good our model is
 Tough we are not using <code>score()</code> method today , cause we don't have any testing data!!
 </p>
 
-<p>
-<img src="../../images/train-score-knn.png" alt="nil"></p>
+<div class="highlight"><pre><span></span>   <span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="nb">input</span><span class="p">,</span><span class="n">output</span><span class="p">)</span>
+</pre></div>
+
+<pre class="example">
+KNeighborsClassifier()
+</pre>
+
 
 <p>
 But we can make predictions for ourselves, as the model is trained on the data , it can make accurate predictions , without any problem.
 To make predictions we use the <code>predict</code> method.We can pass data is same way input has in an array of two numbers , which can be used which can be used to predict if they are parameters of an intersecting circle.
 </p>
 
-<p>
-<img src="../../images/predict.png" alt="nil"></p>
+<div class="highlight"><pre><span></span>   <span class="n">test_input</span> <span class="o">=</span> <span class="p">[[</span><span class="mf">2.455</span> <span class="p">,</span> <span class="mf">2.345</span> <span class="p">]]</span>
+   <span class="nb">print</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">test_input</span><span class="p">))</span>
+</pre></div>
+
+<pre class="example">
+[1]
+</pre>
 </div>
 </div>
 </div>
 
 
 
-<div id="outline-container-orgb733ef8" class="outline-3">
-<h3 id="orgb733ef8">Farewell!</h3>
-<div class="outline-text-3" id="text-orgb733ef8">
+<div id="outline-container-org86ecaf4" class="outline-3">
+<h3 id="org86ecaf4">Farewell!</h3>
+<div class="outline-text-3" id="text-org86ecaf4">
 <p>
 Let us meet again in the next post where we will learn more about Machine Learning in general.We will have a lot of fun, so don't miss it!
 </p>
@@ -235,6 +248,7 @@ Let us meet again in the next post where we will learn more about Machine Learni
 </div>
 </div>
 </div>
+
     </div>
     <aside class="postpromonav"><nav><ul itemprop="keywords" class="tags">
 <li><a class="tag p-category" href="../../categories/machinelearning/" rel="tag">machinelearning</a></li>
@@ -258,3 +272,4 @@ Let us meet again in the next post where we will learn more about Machine Learni
     
 </body>
 </html>
+
