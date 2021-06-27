@@ -11,4 +11,222 @@
 #+END_COMMENT
 
 
-Write your post here.
+* A little maths would not kill you
+Today we are going to make some of the models in Pure Python , without any external library used.
+
+The two models are /K Nearest Neighbors/ and /Stochastic Gradient Descent(SGD)/.SGD is a simple model that is used for regression.
+
+** Neighbor Classifier from scratch
+
+KNN works by calculating euclidean distance between the current data point and existing data points.
+It chooses the closes ones and decides the majority vote as predicted class.
+
+We are using OOP in Python , so if you don't know much about OOP in Python you can look here.
+
+First let's make a class
+#+begin_src python :results output
+# Class Custom Neighbos
+class CustonNeighborsClassifier:
+    pass
+#+end_src
+We have to make a ~__init__()~ method which can contain hyperparameters(Parameters that change working of model).In case of KNN =K= (No of neighbors) is the hyperparameter.
+
+As sklearn has default k of 5 , we too will keep it 5 by default.Sklearn calls =k= as ~n_neighbors~.
+#+begin_src python :results output
+class CustomNeighborsClassifier:
+    def __init__(self,n_neighbors=5):
+        # No of close points to consider
+        self.n_neighbors = n_neighbors
+#+end_src
+
+
+Next we need to implement fit method, which would take input and their classes.This would further just store them as class internal variables.
+KNN does not do any calculation until you tell it to predict class of new data points.
+#+begin_src python :results output
+class CustomNeighborsClassifier:
+    def __init__(self,n_neighbors):
+        self.n_neighbors = n_neighbors
+    def fit(self,x,y):
+        self.x = x
+        self.y = y
+#+end_src
+
+Next we need to implement the predict method.This would return a predicted class , using the existing data.
+
+For this method , we need to calculate the euclidean distance between the given point and all known points.
+Then we need to look at the closes ones(Pick *k* closes ones).Then look at the majority between them and return predicted class.
+We need to import ~math~ module for some mathematical calculations.We also need to implement a ~dist()~ method to calculate euclidean distance.
+We also need ~Counter~ from ~collections~ module , for counting majority.
+
+#+begin_src python :results output
+import math
+from collections import Counter
+class CustomNeighborsClassifier:
+    def __init__(self,n_neighbors=5):
+        self.neighbors = n_neighbors
+    def fit(self,x,y):
+        self.data = x
+        self.labels = y
+    def dist(self,given,actual):
+        distance = 0
+        for given_element , actual_element in zip(given,actual):
+            distance += (given_element - actual_element) ** 2
+        return math.sqrt(distance)
+    def predict(self,x):
+        distance_lists = [ (self.dist(x,self.x[i]),self.y[i]) for i in range(len(self.x)) ]
+        distance_lists.sort(key=lambda x: x[0] )
+        nearest = [ x[1] for x in distance_lists[:self.neighbors]]
+        counts = Counter(nearest)
+        majority = None
+        majority_number = float('-inf')
+        for i,j in counts.items():
+            if j > majority_number:
+                majority = i
+                majority_number = j
+        return majority
+#+end_src
+
+Implementing score method is very easy , as we simply have to compare our own predict method and actual answers and calculate accuracy
+
+
+#+begin_src python :results output
+import math
+from collections import Counter
+class CustomNeighborsClassifier:
+    def __init__(self,n_neighbors=5):
+        self.neighbors = n_neighbors
+    def fit(self,x,y):
+        self.data = x
+        self.labels = y
+    def dist(self,given,actual):
+        distance = 0
+        for given_element , actual_element in zip(given,actual):
+            distance += (given_element - actual_element) ** 2
+        return math.sqrt(distance)
+    def predict(self,x):
+        distance_lists = [ (self.dist(x,self.x[i]),self.y[i]) for i in range(len(self.x)) ]
+        distance_lists.sort(key=lambda x: x[0] )
+        nearest = [ x[1] for x in distance_lists[:self.neighbors]]
+        counts = Counter(nearest)
+        majority = None
+        majority_number = float('-inf')
+        for i,j in counts.items():
+            if j > majority_number:
+                majority = i
+                majority_number = j
+        return majority
+    def score(self,x,y):
+        total = len(y)
+        # predictions = [ self.predict(data) for data in x ]
+        predictions = [ self.predict(data) == label for data,label in zip(x,y) ]
+        correct = sum(1 for x in predictions if x )
+        return float(correct/total)
+#+end_src
+
+
+Here we are using the ~iris~ dataset to find our model's accuracy.Using our model is the same as using sklearn's models
+~fit()~ for trianing and ~score()~ for testing.
+
+#+begin_src python :results output :session
+import math
+from collections import Counter
+from sklearn.datasets import load_iris
+from sklearn.model_selection import train_test_split
+class CustomNeighborsClassifier:
+    def __init__(self,n_neighbors=5):
+        self.neighbors = n_neighbors
+    def fit(self,x,y):
+        assert len(x) == len(y) , "Input and Output dims don't match"
+        self.data = x
+        self.labels = y
+    def dist(self,given,actual):
+        distance = 0
+        assert len(given) == len(actual) , "Dims of input and output differ"
+        for given_element , actual_element in zip(given,actual):
+            distance += (given_element - actual_element) ** 2
+        return math.sqrt(distance)
+    def predict(self,x):
+        distance_lists = [ (self.dist(x,self.data[i]),self.labels[i]) for i in range(len(self.data)) ]
+        distance_lists.sort(key=lambda x: x[0] )
+        nearest = [ x[1] for x in distance_lists[:self.neighbors]]
+        counts = Counter(nearest)
+        majority = None
+        majority_number = float('-inf')
+        for i,j in counts.items():
+            if j > majority_number:
+                majority = i
+                majority_number = j
+        return majority
+    def score(self,x,y):
+        total = len(y)
+        # predictions = [ self.predict(data) for data in x ]
+        predictions = [ self.predict(data) == label for data,label in zip(x,y) ]
+        correct = sum(1 for x in predictions if x )
+        return float(correct/total)
+
+def main():
+    rawdata = load_iris()
+    x = rawdata['data']
+    y = rawdata['target']
+    train_x , test_x , train_y , test_y = train_test_split(x,y)
+    model = CustomNeighborsClassifier(n_neighbors=7)
+    model.fit(train_x,train_y)
+    print(model.score(test_x, test_y))
+main()
+
+#+end_src
+
+#+RESULTS:
+: 0.9736842105263158
+
+
+97%!! , our model performs very good at predicting.
+
+Now that you have information about how KNN works on the inside , try to code this without looking at this blog , share your accuracy acheived.
+
+** Regression from Scratch(SGD)
+This SGD Regressor implementation , try to understand this code by researching on SGD .This is more for my personal reference than explanation.
+
+The most important step is in the ~fit()~ method.
+
+Refer to this article for more information on SGD.
+
+#+begin_src python :results output :session
+import numpy as np
+from sklearn.datasets import fetch_california_housing
+import random
+from sklearn.model_selection import train_test_split
+class CustomSGD:
+    def __init__(self,lr=0.0000001):
+        self.lr = lr
+    def fit(self,x,y):
+        self.dims = len(x[0])
+        self.coef_ = [ random.random() for _ in range(self.dims) ]
+        for data_point,label in zip(x,y):
+            prediction = np.dot(data_point,self.coef_)
+            error = label - prediction
+            self.coef_ += np.dot(data_point,error) * self.lr
+
+    def predict(self,x):
+        assert len(x) == self.dims , "Input dims don't match training dim"
+        prediction = np.dot(self.coef_,x)
+        return prediction
+    def score(self,given,actual):
+        total_error = 0
+        for given_element,actual_element in zip(given,actual):
+            error = ( self.predict(given_element) - actual_element) ** 2
+            total_error += error
+        mse = math.sqrt(total_error)/len(given)
+        avg = sum(actual) / len(given)
+        return (mse/avg) * 100
+def main():
+    rawdata = fetch_california_housing()
+    x = rawdata['data']
+    y = rawdata['target']
+    train_x , test_x , train_y , test_y = train_test_split(x,y,random_state=0)
+    model = CustomSGD()
+    model.fit(train_x,train_y)
+    print(model.score(test_x, test_y))
+main()
+#+end_src
+

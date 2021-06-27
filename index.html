@@ -82,6 +82,270 @@
 </div>
 </div>
     </div>
+    </article><article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title"><a href="posts/a-little-math-would-not-kill-you/" class="u-url">A little math would not kill you!</a></h1>
+        <div class="metadata">
+            <p class="byline author vcard"><span class="byline-name fn" itemprop="author">
+                pspiagicw
+            </span></p>
+            <p class="dateline">
+            <a href="posts/a-little-math-would-not-kill-you/" rel="bookmark">
+            <time class="published dt-published" datetime="2021-05-20T21:44:36+05:30" itemprop="datePublished" title="2021-05-20 21:44">2021-05-20 21:44</time></a>
+            </p>
+        </div>
+    </header><div class="e-content entry-content">
+    <div id="outline-container-org9e5b516" class="outline-2">
+<h2 id="org9e5b516">A little maths would not kill you</h2>
+<div class="outline-text-2" id="text-org9e5b516">
+<p>
+Today we are going to make some of the models in Pure Python , without any external library used.
+</p>
+
+<p>
+The two models are <i>K Nearest Neighbors</i> and <i>Stochastic Gradient Descent(SGD)</i>.SGD is a simple model that is used for regression.
+</p>
+</div>
+
+<div id="outline-container-orgda62c88" class="outline-3">
+<h3 id="orgda62c88">Neighbor Classifier from scratch</h3>
+<div class="outline-text-3" id="text-orgda62c88">
+<p>
+KNN works by calculating euclidean distance between the current data point and existing data points.
+It chooses the closes ones and decides the majority vote as predicted class.
+</p>
+
+<p>
+We are using OOP in Python , so if you don't know much about OOP in Python you can look here.
+</p>
+
+<p>
+First let's make a class
+</p>
+<div class="highlight"><pre><span></span><span class="c1"># Class Custom Neighbos</span>
+<span class="k">class</span> <span class="nc">CustonNeighborsClassifier</span><span class="p">:</span>
+    <span class="k">pass</span>
+</pre></div>
+<p>
+We have to make a <code>__init__()</code> method which can contain hyperparameters(Parameters that change working of model).In case of KNN <code>K</code> (No of neighbors) is the hyperparameter.
+</p>
+
+<p>
+As sklearn has default k of 5 , we too will keep it 5 by default.Sklearn calls <code>k</code> as <code>n_neighbors</code>.
+</p>
+<div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">CustomNeighborsClassifier</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">n_neighbors</span><span class="o">=</span><span class="mi">5</span><span class="p">):</span>
+	<span class="c1"># No of close points to consider</span>
+	<span class="bp">self</span><span class="o">.</span><span class="n">n_neighbors</span> <span class="o">=</span> <span class="n">n_neighbors</span>
+</pre></div>
+
+
+<p>
+Next we need to implement fit method, which would take input and their classes.This would further just store them as class internal variables.
+KNN does not do any calculation until you tell it to predict class of new data points.
+</p>
+<div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">CustomNeighborsClassifier</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">n_neighbors</span><span class="p">):</span>
+	<span class="bp">self</span><span class="o">.</span><span class="n">n_neighbors</span> <span class="o">=</span> <span class="n">n_neighbors</span>
+    <span class="k">def</span> <span class="nf">fit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">):</span>
+	<span class="bp">self</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="n">x</span>
+	<span class="bp">self</span><span class="o">.</span><span class="n">y</span> <span class="o">=</span> <span class="n">y</span>
+</pre></div>
+
+<p>
+Next we need to implement the predict method.This would return a predicted class , using the existing data.
+</p>
+
+<p>
+For this method , we need to calculate the euclidean distance between the given point and all known points.
+Then we need to look at the closes ones(Pick <b>k</b> closes ones).Then look at the majority between them and return predicted class.
+We need to import <code>math</code> module for some mathematical calculations.We also need to implement a <code>dist()</code> method to calculate euclidean distance.
+We also need <code>Counter</code> from <code>collections</code> module , for counting majority.
+</p>
+
+<div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">math</span>
+<span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">Counter</span>
+<span class="k">class</span> <span class="nc">CustomNeighborsClassifier</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">n_neighbors</span><span class="o">=</span><span class="mi">5</span><span class="p">):</span>
+	<span class="bp">self</span><span class="o">.</span><span class="n">neighbors</span> <span class="o">=</span> <span class="n">n_neighbors</span>
+    <span class="k">def</span> <span class="nf">fit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">):</span>
+	<span class="bp">self</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="n">x</span>
+	<span class="bp">self</span><span class="o">.</span><span class="n">labels</span> <span class="o">=</span> <span class="n">y</span>
+    <span class="k">def</span> <span class="nf">dist</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">given</span><span class="p">,</span><span class="n">actual</span><span class="p">):</span>
+	<span class="n">distance</span> <span class="o">=</span> <span class="mi">0</span>
+	<span class="k">for</span> <span class="n">given_element</span> <span class="p">,</span> <span class="n">actual_element</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">given</span><span class="p">,</span><span class="n">actual</span><span class="p">):</span>
+	    <span class="n">distance</span> <span class="o">+=</span> <span class="p">(</span><span class="n">given_element</span> <span class="o">-</span> <span class="n">actual_element</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span>
+	<span class="k">return</span> <span class="n">math</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">distance</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">predict</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">x</span><span class="p">):</span>
+	<span class="n">distance_lists</span> <span class="o">=</span> <span class="p">[</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">dist</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="p">]),</span><span class="bp">self</span><span class="o">.</span><span class="n">y</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">x</span><span class="p">))</span> <span class="p">]</span>
+	<span class="n">distance_lists</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="p">)</span>
+	<span class="n">nearest</span> <span class="o">=</span> <span class="p">[</span> <span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">distance_lists</span><span class="p">[:</span><span class="bp">self</span><span class="o">.</span><span class="n">neighbors</span><span class="p">]]</span>
+	<span class="n">counts</span> <span class="o">=</span> <span class="n">Counter</span><span class="p">(</span><span class="n">nearest</span><span class="p">)</span>
+	<span class="n">majority</span> <span class="o">=</span> <span class="kc">None</span>
+	<span class="n">majority_number</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="s1">'-inf'</span><span class="p">)</span>
+	<span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">j</span> <span class="ow">in</span> <span class="n">counts</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+	    <span class="k">if</span> <span class="n">j</span> <span class="o">&gt;</span> <span class="n">majority_number</span><span class="p">:</span>
+		<span class="n">majority</span> <span class="o">=</span> <span class="n">i</span>
+		<span class="n">majority_number</span> <span class="o">=</span> <span class="n">j</span>
+	<span class="k">return</span> <span class="n">majority</span>
+</pre></div>
+
+<p>
+Implementing score method is very easy , as we simply have to compare our own predict method and actual answers and calculate accuracy
+</p>
+
+
+<div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">math</span>
+<span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">Counter</span>
+<span class="k">class</span> <span class="nc">CustomNeighborsClassifier</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">n_neighbors</span><span class="o">=</span><span class="mi">5</span><span class="p">):</span>
+	<span class="bp">self</span><span class="o">.</span><span class="n">neighbors</span> <span class="o">=</span> <span class="n">n_neighbors</span>
+    <span class="k">def</span> <span class="nf">fit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">):</span>
+	<span class="bp">self</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="n">x</span>
+	<span class="bp">self</span><span class="o">.</span><span class="n">labels</span> <span class="o">=</span> <span class="n">y</span>
+    <span class="k">def</span> <span class="nf">dist</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">given</span><span class="p">,</span><span class="n">actual</span><span class="p">):</span>
+	<span class="n">distance</span> <span class="o">=</span> <span class="mi">0</span>
+	<span class="k">for</span> <span class="n">given_element</span> <span class="p">,</span> <span class="n">actual_element</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">given</span><span class="p">,</span><span class="n">actual</span><span class="p">):</span>
+	    <span class="n">distance</span> <span class="o">+=</span> <span class="p">(</span><span class="n">given_element</span> <span class="o">-</span> <span class="n">actual_element</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span>
+	<span class="k">return</span> <span class="n">math</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">distance</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">predict</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">x</span><span class="p">):</span>
+	<span class="n">distance_lists</span> <span class="o">=</span> <span class="p">[</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">dist</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="p">]),</span><span class="bp">self</span><span class="o">.</span><span class="n">y</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">x</span><span class="p">))</span> <span class="p">]</span>
+	<span class="n">distance_lists</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="p">)</span>
+	<span class="n">nearest</span> <span class="o">=</span> <span class="p">[</span> <span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">distance_lists</span><span class="p">[:</span><span class="bp">self</span><span class="o">.</span><span class="n">neighbors</span><span class="p">]]</span>
+	<span class="n">counts</span> <span class="o">=</span> <span class="n">Counter</span><span class="p">(</span><span class="n">nearest</span><span class="p">)</span>
+	<span class="n">majority</span> <span class="o">=</span> <span class="kc">None</span>
+	<span class="n">majority_number</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="s1">'-inf'</span><span class="p">)</span>
+	<span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">j</span> <span class="ow">in</span> <span class="n">counts</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+	    <span class="k">if</span> <span class="n">j</span> <span class="o">&gt;</span> <span class="n">majority_number</span><span class="p">:</span>
+		<span class="n">majority</span> <span class="o">=</span> <span class="n">i</span>
+		<span class="n">majority_number</span> <span class="o">=</span> <span class="n">j</span>
+	<span class="k">return</span> <span class="n">majority</span>
+    <span class="k">def</span> <span class="nf">score</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">):</span>
+	<span class="n">total</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+	<span class="c1"># predictions = [ self.predict(data) for data in x ]</span>
+	<span class="n">predictions</span> <span class="o">=</span> <span class="p">[</span> <span class="bp">self</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">data</span><span class="p">)</span> <span class="o">==</span> <span class="n">label</span> <span class="k">for</span> <span class="n">data</span><span class="p">,</span><span class="n">label</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span> <span class="p">]</span>
+	<span class="n">correct</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="mi">1</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">predictions</span> <span class="k">if</span> <span class="n">x</span> <span class="p">)</span>
+	<span class="k">return</span> <span class="nb">float</span><span class="p">(</span><span class="n">correct</span><span class="o">/</span><span class="n">total</span><span class="p">)</span>
+</pre></div>
+
+
+<p>
+Here we are using the <code>iris</code> dataset to find our model's accuracy.Using our model is the same as using sklearn's models
+<code>fit()</code> for trianing and <code>score()</code> for testing.
+</p>
+
+<div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">math</span>
+<span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">Counter</span>
+<span class="kn">from</span> <span class="nn">sklearn.datasets</span> <span class="kn">import</span> <span class="n">load_iris</span>
+<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
+<span class="k">class</span> <span class="nc">CustomNeighborsClassifier</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">n_neighbors</span><span class="o">=</span><span class="mi">5</span><span class="p">):</span>
+	<span class="bp">self</span><span class="o">.</span><span class="n">neighbors</span> <span class="o">=</span> <span class="n">n_neighbors</span>
+    <span class="k">def</span> <span class="nf">fit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">):</span>
+	<span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="n">y</span><span class="p">)</span> <span class="p">,</span> <span class="s2">"Input and Output dims don't match"</span>
+	<span class="bp">self</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="n">x</span>
+	<span class="bp">self</span><span class="o">.</span><span class="n">labels</span> <span class="o">=</span> <span class="n">y</span>
+    <span class="k">def</span> <span class="nf">dist</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">given</span><span class="p">,</span><span class="n">actual</span><span class="p">):</span>
+	<span class="n">distance</span> <span class="o">=</span> <span class="mi">0</span>
+	<span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">given</span><span class="p">)</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="n">actual</span><span class="p">)</span> <span class="p">,</span> <span class="s2">"Dims of input and output differ"</span>
+	<span class="k">for</span> <span class="n">given_element</span> <span class="p">,</span> <span class="n">actual_element</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">given</span><span class="p">,</span><span class="n">actual</span><span class="p">):</span>
+	    <span class="n">distance</span> <span class="o">+=</span> <span class="p">(</span><span class="n">given_element</span> <span class="o">-</span> <span class="n">actual_element</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span>
+	<span class="k">return</span> <span class="n">math</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">distance</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">predict</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">x</span><span class="p">):</span>
+	<span class="n">distance_lists</span> <span class="o">=</span> <span class="p">[</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">dist</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="p">]),</span><span class="bp">self</span><span class="o">.</span><span class="n">labels</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">))</span> <span class="p">]</span>
+	<span class="n">distance_lists</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="p">)</span>
+	<span class="n">nearest</span> <span class="o">=</span> <span class="p">[</span> <span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">distance_lists</span><span class="p">[:</span><span class="bp">self</span><span class="o">.</span><span class="n">neighbors</span><span class="p">]]</span>
+	<span class="n">counts</span> <span class="o">=</span> <span class="n">Counter</span><span class="p">(</span><span class="n">nearest</span><span class="p">)</span>
+	<span class="n">majority</span> <span class="o">=</span> <span class="kc">None</span>
+	<span class="n">majority_number</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="s1">'-inf'</span><span class="p">)</span>
+	<span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">j</span> <span class="ow">in</span> <span class="n">counts</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+	    <span class="k">if</span> <span class="n">j</span> <span class="o">&gt;</span> <span class="n">majority_number</span><span class="p">:</span>
+		<span class="n">majority</span> <span class="o">=</span> <span class="n">i</span>
+		<span class="n">majority_number</span> <span class="o">=</span> <span class="n">j</span>
+	<span class="k">return</span> <span class="n">majority</span>
+    <span class="k">def</span> <span class="nf">score</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">):</span>
+	<span class="n">total</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+	<span class="c1"># predictions = [ self.predict(data) for data in x ]</span>
+	<span class="n">predictions</span> <span class="o">=</span> <span class="p">[</span> <span class="bp">self</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">data</span><span class="p">)</span> <span class="o">==</span> <span class="n">label</span> <span class="k">for</span> <span class="n">data</span><span class="p">,</span><span class="n">label</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span> <span class="p">]</span>
+	<span class="n">correct</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="mi">1</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">predictions</span> <span class="k">if</span> <span class="n">x</span> <span class="p">)</span>
+	<span class="k">return</span> <span class="nb">float</span><span class="p">(</span><span class="n">correct</span><span class="o">/</span><span class="n">total</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+    <span class="n">rawdata</span> <span class="o">=</span> <span class="n">load_iris</span><span class="p">()</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">rawdata</span><span class="p">[</span><span class="s1">'data'</span><span class="p">]</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="n">rawdata</span><span class="p">[</span><span class="s1">'target'</span><span class="p">]</span>
+    <span class="n">train_x</span> <span class="p">,</span> <span class="n">test_x</span> <span class="p">,</span> <span class="n">train_y</span> <span class="p">,</span> <span class="n">test_y</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span>
+    <span class="n">model</span> <span class="o">=</span> <span class="n">CustomNeighborsClassifier</span><span class="p">(</span><span class="n">n_neighbors</span><span class="o">=</span><span class="mi">7</span><span class="p">)</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">train_x</span><span class="p">,</span><span class="n">train_y</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">test_x</span><span class="p">,</span> <span class="n">test_y</span><span class="p">))</span>
+<span class="n">main</span><span class="p">()</span>
+</pre></div>
+
+
+<p>
+97%!! , our model performs very good at predicting.
+</p>
+
+<p>
+Now that you have information about how KNN works on the inside , try to code this without looking at this blog , share your accuracy acheived.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org23ef4e8" class="outline-3">
+<h3 id="org23ef4e8">Regression from Scratch(SGD)</h3>
+<div class="outline-text-3" id="text-org23ef4e8">
+<p>
+This SGD Regressor implementation , try to understand this code by researching on SGD .This is more for my personal reference than explanation.
+</p>
+
+<p>
+The most important step is in the <code>fit()</code> method.
+</p>
+
+<p>
+Refer to this article for more information on SGD.
+</p>
+
+<div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">sklearn.datasets</span> <span class="kn">import</span> <span class="n">fetch_california_housing</span>
+<span class="kn">import</span> <span class="nn">random</span>
+<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
+<span class="k">class</span> <span class="nc">CustomSGD</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">lr</span><span class="o">=</span><span class="mf">0.0000001</span><span class="p">):</span>
+	<span class="bp">self</span><span class="o">.</span><span class="n">lr</span> <span class="o">=</span> <span class="n">lr</span>
+    <span class="k">def</span> <span class="nf">fit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">):</span>
+	<span class="bp">self</span><span class="o">.</span><span class="n">dims</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+	<span class="bp">self</span><span class="o">.</span><span class="n">coef_</span> <span class="o">=</span> <span class="p">[</span> <span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">()</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">dims</span><span class="p">)</span> <span class="p">]</span>
+	<span class="k">for</span> <span class="n">data_point</span><span class="p">,</span><span class="n">label</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">):</span>
+	    <span class="n">prediction</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">data_point</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">coef_</span><span class="p">)</span>
+	    <span class="n">error</span> <span class="o">=</span> <span class="n">label</span> <span class="o">-</span> <span class="n">prediction</span>
+	    <span class="bp">self</span><span class="o">.</span><span class="n">coef_</span> <span class="o">+=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">data_point</span><span class="p">,</span><span class="n">error</span><span class="p">)</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">lr</span>
+
+    <span class="k">def</span> <span class="nf">predict</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">x</span><span class="p">):</span>
+	<span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">dims</span> <span class="p">,</span> <span class="s2">"Input dims don't match training dim"</span>
+	<span class="n">prediction</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">coef_</span><span class="p">,</span><span class="n">x</span><span class="p">)</span>
+	<span class="k">return</span> <span class="n">prediction</span>
+    <span class="k">def</span> <span class="nf">score</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">given</span><span class="p">,</span><span class="n">actual</span><span class="p">):</span>
+	<span class="n">total_error</span> <span class="o">=</span> <span class="mi">0</span>
+	<span class="k">for</span> <span class="n">given_element</span><span class="p">,</span><span class="n">actual_element</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">given</span><span class="p">,</span><span class="n">actual</span><span class="p">):</span>
+	    <span class="n">error</span> <span class="o">=</span> <span class="p">(</span> <span class="bp">self</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">given_element</span><span class="p">)</span> <span class="o">-</span> <span class="n">actual_element</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span>
+	    <span class="n">total_error</span> <span class="o">+=</span> <span class="n">error</span>
+	<span class="n">mse</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">total_error</span><span class="p">)</span><span class="o">/</span><span class="nb">len</span><span class="p">(</span><span class="n">given</span><span class="p">)</span>
+	<span class="n">avg</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">actual</span><span class="p">)</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">given</span><span class="p">)</span>
+	<span class="k">return</span> <span class="p">(</span><span class="n">mse</span><span class="o">/</span><span class="n">avg</span><span class="p">)</span> <span class="o">*</span> <span class="mi">100</span>
+<span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+    <span class="n">rawdata</span> <span class="o">=</span> <span class="n">fetch_california_housing</span><span class="p">()</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">rawdata</span><span class="p">[</span><span class="s1">'data'</span><span class="p">]</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="n">rawdata</span><span class="p">[</span><span class="s1">'target'</span><span class="p">]</span>
+    <span class="n">train_x</span> <span class="p">,</span> <span class="n">test_x</span> <span class="p">,</span> <span class="n">train_y</span> <span class="p">,</span> <span class="n">test_y</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">model</span> <span class="o">=</span> <span class="n">CustomSGD</span><span class="p">()</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">train_x</span><span class="p">,</span><span class="n">train_y</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">test_x</span><span class="p">,</span> <span class="n">test_y</span><span class="p">))</span>
+<span class="n">main</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+    </div>
     </article><article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title"><a href="posts/quick-and-dirty-machine-learning/" class="u-url">Quick and Dirty Machine Learning</a></h1>
         <div class="metadata">
             <p class="byline author vcard"><span class="byline-name fn" itemprop="author">
