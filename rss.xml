@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Forked</title><link>https://pspiagicw.github.io/</link><description>Fork all worries away</description><atom:link href="https://pspiagicw.github.io/rss.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2021 &lt;a href="mailto:pspiagicw@gmail.com"&gt;pspiagicw&lt;/a&gt; </copyright><lastBuildDate>Sun, 23 May 2021 04:08:30 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Quick and Dirty Machine Learning</title><link>https://pspiagicw.github.io/posts/quick-and-dirty-machine-learning/</link><dc:creator>pspiagicw</dc:creator><description>&lt;div id="outline-container-orgbd1f0e0" class="outline-2"&gt;
+<?xml-stylesheet type="text/xsl" href="assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Forked</title><link>https://pspiagicw.github.io/</link><description>Fork all worries away</description><atom:link href="https://pspiagicw.github.io/rss.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2021 &lt;a href="mailto:pspiagicw@gmail.com"&gt;pspiagicw&lt;/a&gt; </copyright><lastBuildDate>Sun, 27 Jun 2021 13:28:52 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Quick and Dirty Machine Learning</title><link>https://pspiagicw.github.io/posts/quick-and-dirty-machine-learning/</link><dc:creator>pspiagicw</dc:creator><description>&lt;div id="outline-container-orgbd1f0e0" class="outline-2"&gt;
 &lt;h2 id="orgbd1f0e0"&gt;Quick and Dirty Machine Learning.&lt;/h2&gt;
 &lt;div class="outline-text-2" id="text-orgbd1f0e0"&gt;
 &lt;p&gt;
@@ -211,9 +211,9 @@ Well you can try more models or learn more about the models, we used.Anyway keep
 &lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;/div&gt;</description><guid>https://pspiagicw.github.io/posts/quick-and-dirty-machine-learning/</guid><pubDate>Mon, 17 May 2021 14:08:59 GMT</pubDate></item><item><title>Rough Guide on Matplotlib</title><link>https://pspiagicw.github.io/posts/rough-guide-on-matplotlib/</link><dc:creator>pspiagicw</dc:creator><description>&lt;div id="outline-container-org423c218" class="outline-2"&gt;
-&lt;h2 id="org423c218"&gt;Rough Guide to Matplotlib&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-org423c218"&gt;
+&lt;/div&gt;</description><guid>https://pspiagicw.github.io/posts/quick-and-dirty-machine-learning/</guid><pubDate>Mon, 17 May 2021 14:08:59 GMT</pubDate></item><item><title>Rough Guide on Matplotlib</title><link>https://pspiagicw.github.io/posts/rough-guide-on-matplotlib/</link><dc:creator>pspiagicw</dc:creator><description>&lt;div id="outline-container-org957fc7a" class="outline-2"&gt;
+&lt;h2 id="org957fc7a"&gt;Rough Guide to Matplotlib&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org957fc7a"&gt;
 &lt;p&gt;
 Do you have the need to create graphs? Visualize highly numerical data , or just look at beautifully generated graphs and get turned on!
 &lt;/p&gt;
@@ -246,9 +246,9 @@ Pyplot is inspired from &lt;i&gt;MATLAB&lt;/i&gt; . If you have used &lt;i&gt;MA
 This guide only focuses on PyPlot API , for a more object-based approach , see matplotlib's documentation, or refer to this guide.
 &lt;/p&gt;
 &lt;/div&gt;
-&lt;div id="outline-container-orgc9b25fa" class="outline-3"&gt;
-&lt;h3 id="orgc9b25fa"&gt;Important Funcs&lt;/h3&gt;
-&lt;div class="outline-text-3" id="text-orgc9b25fa"&gt;
+&lt;div id="outline-container-org85c8ea3" class="outline-3"&gt;
+&lt;h3 id="org85c8ea3"&gt;Important Funcs&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-org85c8ea3"&gt;
 &lt;p&gt;
 PyPlot provides some useful functions mainly &lt;code&gt;pyplot.show()&lt;/code&gt; and &lt;code&gt;pyplot.savefig()&lt;/code&gt;.
 These provide functionality to show and save the graphs we create!.
@@ -287,9 +287,9 @@ To alias pyplot to plt
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org02a32d4" class="outline-3"&gt;
-&lt;h3 id="org02a32d4"&gt;Basic Plotting&lt;/h3&gt;
-&lt;div class="outline-text-3" id="text-org02a32d4"&gt;
+&lt;div id="outline-container-org5e09c1a" class="outline-3"&gt;
+&lt;h3 id="org5e09c1a"&gt;Basic Plotting&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-org5e09c1a"&gt;
 &lt;p&gt;
 For plotting basic lines , &lt;code&gt;plt.plot()&lt;/code&gt; function is enough, it takes list of x and y coordinates as arguments.
 &lt;/p&gt;
@@ -315,9 +315,9 @@ The graph created is
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org702576a" class="outline-3"&gt;
-&lt;h3 id="org702576a"&gt;Simple Scattering&lt;/h3&gt;
-&lt;div class="outline-text-3" id="text-org702576a"&gt;
+&lt;div id="outline-container-orgaced015" class="outline-3"&gt;
+&lt;h3 id="orgaced015"&gt;Simple Scattering&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-orgaced015"&gt;
 &lt;p&gt;
 Scatter plot simply shows all the coordinates/points without connecting them with a line.
 &lt;/p&gt;
@@ -348,9 +348,9 @@ The end result
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org5e42f03" class="outline-3"&gt;
-&lt;h3 id="org5e42f03"&gt;Histograms&lt;/h3&gt;
-&lt;div class="outline-text-3" id="text-org5e42f03"&gt;
+&lt;div id="outline-container-org68d3291" class="outline-3"&gt;
+&lt;h3 id="org68d3291"&gt;Histograms&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-org68d3291"&gt;
 &lt;p&gt;
 Histograms in matplotlib is as easy as just giving the list of values you want a histogram of.
 &lt;/p&gt;
@@ -367,9 +367,9 @@ It provides a good view of how the data is distributed , over the range.
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-orgabbb963" class="outline-3"&gt;
-&lt;h3 id="orgabbb963"&gt;Showing Images.&lt;/h3&gt;
-&lt;div class="outline-text-3" id="text-orgabbb963"&gt;
+&lt;div id="outline-container-org89ec3b1" class="outline-3"&gt;
+&lt;h3 id="org89ec3b1"&gt;Showing Images.&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-org89ec3b1"&gt;
 &lt;p&gt;
 One more useful function , I use most of the time , is &lt;code&gt;plt.imshow()&lt;/code&gt; . When working with a lot of images  this can show your image , with extra info/special filters etc.
 &lt;/p&gt;
@@ -397,9 +397,9 @@ For example this is an handwritten 5 , from MNIST dataset(Coming in future posts
 &lt;/div&gt;
 
 
-&lt;div id="outline-container-org1260814" class="outline-3"&gt;
-&lt;h3 id="org1260814"&gt;Aesthetics.&lt;/h3&gt;
-&lt;div class="outline-text-3" id="text-org1260814"&gt;
+&lt;div id="outline-container-org4598f1c" class="outline-3"&gt;
+&lt;h3 id="org4598f1c"&gt;Aesthetics.&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-org4598f1c"&gt;
 &lt;p&gt;
 Graphs being almost 100% visual feedback , you might need to add some bling to it.
 Matplotlib supports everything a graph might have.Make sure to read it's documentation afterwards.
@@ -468,7 +468,7 @@ You can customize plotting style by , specifying parameters such as
 &lt;p&gt;
 This graph uses linestyle of &lt;code&gt;--&lt;/code&gt; and linewidth of 3.5 ,marker type of &lt;code&gt;+&lt;/code&gt; and color green.
 &lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;plt&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;plot&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;x_coodinates&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;y_coordinates&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;label&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;'Line'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;linestyle&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;'--'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;linewidth&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mf"&gt;3.5&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;marke&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;'+'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;color&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;'g'&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;plt&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;plot&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;x_coodinates&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;y_coordinates&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;label&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;'Line'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;linestyle&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;'--'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;linewidth&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mf"&gt;3.5&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;marker&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;'+'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;color&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;'g'&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;span class="n"&gt;plt&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;show&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
@@ -491,9 +491,9 @@ Anyway , here's how to use a default dark-style(included in matplotlib) , for in
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org79fa5e9" class="outline-3"&gt;
-&lt;h3 id="org79fa5e9"&gt;Bon Voyage!&lt;/h3&gt;
-&lt;div class="outline-text-3" id="text-org79fa5e9"&gt;
+&lt;div id="outline-container-org8f8155d" class="outline-3"&gt;
+&lt;h3 id="org8f8155d"&gt;Bon Voyage!&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-org8f8155d"&gt;
 &lt;p&gt;
 That's basic matplotlib for you.You should definately look at their documentation.
 You can also look at the Object API for matplotlib. It is a little advanced , but is highly configurable.

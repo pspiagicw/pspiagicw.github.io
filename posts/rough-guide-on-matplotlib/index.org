@@ -185,7 +185,7 @@ You can customize plotting style by , specifying parameters such as
 
 This graph uses linestyle of =--= and linewidth of 3.5 ,marker type of =+= and color green.
 #+begin_src python :results output
-plt.plot(x_coodinates,y_coordinates,label='Line',linestyle='--',linewidth=3.5,marke='+',color='g')
+plt.plot(x_coodinates,y_coordinates,label='Line',linestyle='--',linewidth=3.5,marker='+',color='g')
 plt.show()
 #+end_src
 
