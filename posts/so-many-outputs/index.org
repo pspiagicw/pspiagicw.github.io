@@ -1,0 +1,64 @@
+#+BEGIN_COMMENT
+.. title: So many outputs!
+.. slug: so-many-outputs
+.. date: 2021-05-24 18:14:36 UTC+05:30
+.. tags: 
+.. category: 
+.. link: 
+.. description: 
+.. type: text
+
+#+END_COMMENT
+
+
+* So Many Outputs!
+
+#+begin_src python :session :results output
+from sklearn import datasets
+#+end_src
+
+#+RESULTS:
+
+#+begin_src python :session :results output
+rawdata = datasets.make_regression(n_samples=400,n_targets=3)
+#+end_src
+
+#+RESULTS:
+
+#+begin_src python :session :results output
+x = rawdata[0]
+y = rawdata[1]
+#+end_src
+
+#+RESULTS:
+: 100
+
+#+begin_src python :session :results output
+from sklearn.multioutput import MultiOutputRegressor
+from sklearn.linear_model import SGDRegressor
+from sklearn.linear_model import LinearRegression
+model = MultiOutputRegressor(LinearRegression())
+#+end_src
+
+#+RESULTS:
+
+#+begin_src python :session :results output
+from sklearn.model_selection import train_test_split
+train_x , test_x ,  train_y , test_y = train_test_split(x,y)
+#+end_src
+
+#+RESULTS:
+
+#+begin_src python :session :results output
+model.fit(train_x,train_y)
+#+end_src
+
+#+RESULTS:
+: MultiOutputRegressor(estimator=LinearRegression())
+
+#+begin_src python :session :results output
+print(model.score(test_x,test_y))
+#+end_src
+
+#+RESULTS:
+: 1.0
