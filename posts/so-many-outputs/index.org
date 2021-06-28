@@ -12,6 +12,24 @@
 
 
 * So Many Outputs!
+** Outputs , Outputs , Outputs
+When anybody starts in Machine Learning , they focus on learning to make solid and reliable models.They learn everything there is to learn about creating accurate models.
+
+But when the model predicts , nobody cares about the output (atleast in the Learning Phase) , as they only see the performance of the model.Today we are going to look at outputs , how to generate multiple ones , or even interdependent outputs!
+
+** Multiple Outputs
+They are easy depending on the model choosen , if a flexible model like SGDRegressor is used , they inherently support multiple outputs. *But* models like SVM Regressor , Bayesian Classifier need external help , for MultiOutput data , we have to train multiple models , one for each output.
+These model work indenpendently of each other and predict it's output , which is appended as single 2D array.
+
+*/Which is better?/*
+Well that depends , if the ouputs are inversely proportional or don't have any correlation , use multiple models approach else use models like SGD etc.
+The reason being models like SGD use same weights for predicting both outputs , so if they are unrelated or inversely related the weights will not change , as both errors push the weights in their side , thus weights being in a /Tug of War/.
+Keep in Mind there is a difference between Dependent and Correlated , Correlated means that one output follows the same trend as the other output( Both increase or both decrease etc) , but Dependent means , one output cannot be predicted accurately without using the other output.
+Here one output might increase while other decreases , but the decreasing one depends on the increasing one.
+
+SKlearn automatically does this if such models are used , but we can also explicitly do this using ~sklearn.multioutput.MultiOutputRegressor()~ which takes in one estimator(model) , this model can even be custom model.
+
+*** Here is an Example!
 
 #+begin_src python :session :results output
 from sklearn import datasets
@@ -19,46 +37,61 @@ from sklearn import datasets
 
 #+RESULTS:
 
+We are using ~sklearn.datasets.make_regression()~ which gives a dataset having 3 output/target variables. So MultiOutputRegressor trains 3 independent models.
+
 #+begin_src python :session :results output
 rawdata = datasets.make_regression(n_samples=400,n_targets=3)
 #+end_src
 
 #+RESULTS:
 
+The remaining code is pretty standard ML code . There is absolutely no difference in training and testing as sklearn automatically handles all the complexity of 3 outputs(Scoring of each output seperately , averaging the three seperate scores of the models) begind the scenes!
+
 #+begin_src python :session :results output
 x = rawdata[0]
 y = rawdata[1]
-#+end_src
-
-#+RESULTS:
-: 100
-
-#+begin_src python :session :results output
 from sklearn.multioutput import MultiOutputRegressor
 from sklearn.linear_model import SGDRegressor
 from sklearn.linear_model import LinearRegression
 model = MultiOutputRegressor(LinearRegression())
-#+end_src
-
-#+RESULTS:
-
-#+begin_src python :session :results output
 from sklearn.model_selection import train_test_split
 train_x , test_x ,  train_y , test_y = train_test_split(x,y)
-#+end_src
-
-#+RESULTS:
-
-#+begin_src python :session :results output
 model.fit(train_x,train_y)
-#+end_src
-
-#+RESULTS:
-: MultiOutputRegressor(estimator=LinearRegression())
-
-#+begin_src python :session :results output
 print(model.score(test_x,test_y))
 #+end_src
 
 #+RESULTS:
 : 1.0
+
+*** Model's supporting multioutput inherently
+These model do not require external help for multioutput classification/regression.The reason being their internal working , if you are curious try to research how they work.
+
+- K Neighbors Classifier/Regressor
+- Stochastic Gradient Descent Regressor/Classifier
+- Linear Regression (Least Squares / Closed Form Solution) , Ridge , LASSO .
+
+** Interdependent MultiOutput
+
+Till now we were using multiple models that work independently of each other i.e one models output does not influence others. *But* sometimes one output may influence the other , in such cases we have to use Chain Models.
+These models act like a chain . One model's output is given as input along with the origin input dataset to the second model , whose output is included along with seond model's input  as input to the third model and so on.
+The important point being the reused output , each model's output is given as input to the next model , along with that model's input.
+The order is decided by us. This model is very useful in filling missing data  , as one bad data column can be improved by one model , while the final model predicts the final output.
+
+Here is how to create a Chain Model , specifically ~sklearn.multioutput.RegressorChain()~ which takes in a single estimator , along with the order of the outputs.
+
+#+begin_src python 
+# .. Previous code (Mostly data preparation)
+model = RegressorChain(LinearRegression(),order=[1,3,2])
+# .. Later code (Mostly testing and training)
+#+end_src
+
+Here the order is 1 then 3 then 2 , which means the first model will predict the first column in the output matrix then second model will predict third column using previous data , and third model will predict second column using it's previous data.
+
+** Next Time!
+Exploring the less travelled roads is a hard but fun exercise.
+Hope you learnt something new today and are curious about Machine Learning!
+
+
+
+
+

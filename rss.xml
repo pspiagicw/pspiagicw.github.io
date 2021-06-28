@@ -1,32 +1,122 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Forked</title><link>https://pspiagicw.github.io/</link><description>Fork all worries away</description><atom:link href="https://pspiagicw.github.io/rss.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2021 &lt;a href="mailto:pspiagicw@gmail.com"&gt;pspiagicw&lt;/a&gt; </copyright><lastBuildDate>Sun, 27 Jun 2021 13:39:52 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>So many outputs!</title><link>https://pspiagicw.github.io/posts/so-many-outputs/</link><dc:creator>pspiagicw</dc:creator><description>&lt;div id="outline-container-orgf439c94" class="outline-2"&gt;
-&lt;h2 id="orgf439c94"&gt;So Many Outputs!&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-orgf439c94"&gt;
+<?xml-stylesheet type="text/xsl" href="assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Forked</title><link>https://pspiagicw.github.io/</link><description>Fork all worries away</description><atom:link href="https://pspiagicw.github.io/rss.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2021 &lt;a href="mailto:pspiagicw@gmail.com"&gt;pspiagicw&lt;/a&gt; </copyright><lastBuildDate>Mon, 28 Jun 2021 04:25:38 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>So many outputs!</title><link>https://pspiagicw.github.io/posts/so-many-outputs/</link><dc:creator>pspiagicw</dc:creator><description>&lt;div id="outline-container-org20e13e2" class="outline-2"&gt;
+&lt;h2 id="org20e13e2"&gt;So Many Outputs!&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org20e13e2"&gt;
+&lt;/div&gt;
+&lt;div id="outline-container-org5fe2571" class="outline-3"&gt;
+&lt;h3 id="org5fe2571"&gt;Outputs , Outputs , Outputs&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-org5fe2571"&gt;
+&lt;p&gt;
+When anybody starts in Machine Learning , they focus on learning to make solid and reliable models.They learn everything there is to learn about creating accurate models.
+&lt;/p&gt;
+
+&lt;p&gt;
+But when the model predicts , nobody cares about the output (atleast in the Learning Phase) , as they only see the performance of the model.Today we are going to look at outputs , how to generate multiple ones , or even interdependent outputs!
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org0c40d56" class="outline-3"&gt;
+&lt;h3 id="org0c40d56"&gt;Multiple Outputs&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-org0c40d56"&gt;
+&lt;p&gt;
+They are easy depending on the model choosen , if a flexible model like SGDRegressor is used , they inherently support multiple outputs. &lt;b&gt;But&lt;/b&gt; models like SVM Regressor , Bayesian Classifier need external help , for MultiOutput data , we have to train multiple models , one for each output.
+These model work indenpendently of each other and predict it's output , which is appended as single 2D array.
+&lt;/p&gt;
+
+&lt;p&gt;
+&lt;b&gt;&lt;i&gt;Which is better?&lt;/i&gt;&lt;/b&gt;
+Well that depends , if the ouputs are inversely proportional or don't have any correlation , use multiple models approach else use models like SGD etc.
+The reason being models like SGD use same weights for predicting both outputs , so if they are unrelated or inversely related the weights will not change , as both errors push the weights in their side , thus weights being in a &lt;i&gt;Tug of War&lt;/i&gt;.
+Keep in Mind there is a difference between Dependent and Correlated , Correlated means that one output follows the same trend as the other output( Both increase or both decrease etc) , but Dependent means , one output cannot be predicted accurately without using the other output.
+Here one output might increase while other decreases , but the decreasing one depends on the increasing one.
+&lt;/p&gt;
+
+&lt;p&gt;
+SKlearn automatically does this if such models are used , but we can also explicitly do this using &lt;code&gt;sklearn.multioutput.MultiOutputRegressor()&lt;/code&gt; which takes in one estimator(model) , this model can even be custom model.
+&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org4198ca4" class="outline-4"&gt;
+&lt;h4 id="org4198ca4"&gt;Here is an Example!&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-org4198ca4"&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;sklearn&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;datasets&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;
+We are using &lt;code&gt;sklearn.datasets.make_regression()&lt;/code&gt; which gives a dataset having 3 output/target variables. So MultiOutputRegressor trains 3 independent models.
+&lt;/p&gt;
 
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;rawdata&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;datasets&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;make_regression&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;n_samples&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;400&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;n_targets&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
+&lt;p&gt;
+The remaining code is pretty standard ML code . There is absolutely no difference in training and testing as sklearn automatically handles all the complexity of 3 outputs(Scoring of each output seperately , averaging the three seperate scores of the models) begind the scenes!
+&lt;/p&gt;
+
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;rawdata&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
 &lt;span class="n"&gt;y&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;rawdata&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;sklearn.multioutput&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;MultiOutputRegressor&lt;/span&gt;
+&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;sklearn.multioutput&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;MultiOutputRegressor&lt;/span&gt;
 &lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;sklearn.linear_model&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;SGDRegressor&lt;/span&gt;
 &lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;sklearn.linear_model&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;LinearRegression&lt;/span&gt;
 &lt;span class="n"&gt;model&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;MultiOutputRegressor&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;LinearRegression&lt;/span&gt;&lt;span class="p"&gt;())&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;sklearn.model_selection&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;train_test_split&lt;/span&gt;
+&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;sklearn.model_selection&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;train_test_split&lt;/span&gt;
 &lt;span class="n"&gt;train_x&lt;/span&gt; &lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;test_x&lt;/span&gt; &lt;span class="p"&gt;,&lt;/span&gt;  &lt;span class="n"&gt;train_y&lt;/span&gt; &lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;test_y&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;train_test_split&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;y&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;model&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;fit&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;train_x&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;train_y&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;model&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;score&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;test_x&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;test_y&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-orga1f0cca" class="outline-4"&gt;
+&lt;h4 id="orga1f0cca"&gt;Model's supporting multioutput inherently&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-orga1f0cca"&gt;
+&lt;p&gt;
+These model do not require external help for multioutput classification/regression.The reason being their internal working , if you are curious try to research how they work.
+&lt;/p&gt;
+
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;K Neighbors Classifier/Regressor&lt;/li&gt;
+&lt;li&gt;Stochastic Gradient Descent Regressor/Classifier&lt;/li&gt;
+&lt;li&gt;Linear Regression (Least Squares / Closed Form Solution) , Ridge , LASSO .&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-orgcad8448" class="outline-3"&gt;
+&lt;h3 id="orgcad8448"&gt;Interdependent MultiOutput&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-orgcad8448"&gt;
+&lt;p&gt;
+Till now we were using multiple models that work independently of each other i.e one models output does not influence others. &lt;b&gt;But&lt;/b&gt; sometimes one output may influence the other , in such cases we have to use Chain Models.
+These models act like a chain . One model's output is given as input along with the origin input dataset to the second model , whose output is included along with seond model's input  as input to the third model and so on.
+The important point being the reused output , each model's output is given as input to the next model , along with that model's input.
+The order is decided by us. This model is very useful in filling missing data  , as one bad data column can be improved by one model , while the final model predicts the final output.
+&lt;/p&gt;
+
+&lt;p&gt;
+Here is how to create a Chain Model , specifically &lt;code&gt;sklearn.multioutput.RegressorChain()&lt;/code&gt; which takes in a single estimator , along with the order of the outputs.
+&lt;/p&gt;
+
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;# .. Previous code (Mostly data preparation)&lt;/span&gt;
+&lt;span class="n"&gt;model&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;RegressorChain&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;LinearRegression&lt;/span&gt;&lt;span class="p"&gt;(),&lt;/span&gt;&lt;span class="n"&gt;order&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
+&lt;span class="c1"&gt;# .. Later code (Mostly testing and training)&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;model&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;fit&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;train_x&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;train_y&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;
+Here the order is 1 then 3 then 2 , which means the first model will predict the first column in the output matrix then second model will predict third column using previous data , and third model will predict second column using it's previous data.
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
 
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;model&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;score&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;test_x&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;test_y&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
+&lt;div id="outline-container-org23dc5b2" class="outline-3"&gt;
+&lt;h3 id="org23dc5b2"&gt;Next Time!&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-org23dc5b2"&gt;
+&lt;p&gt;
+Exploring the less travelled roads is a hard but fun exercise.
+Hope you learnt something new today and are curious about Machine Learning!
+&lt;/p&gt;
+&lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;</description><guid>https://pspiagicw.github.io/posts/so-many-outputs/</guid><pubDate>Mon, 24 May 2021 12:44:36 GMT</pubDate></item><item><title>A little math would not kill you!</title><link>https://pspiagicw.github.io/posts/a-little-math-would-not-kill-you/</link><dc:creator>pspiagicw</dc:creator><description>&lt;div id="outline-container-org9e5b516" class="outline-2"&gt;
 &lt;h2 id="org9e5b516"&gt;A little maths would not kill you&lt;/h2&gt;

@@ -51,34 +51,124 @@
             </p>
         </div>
     </header><div class="e-content entry-content">
-    <div id="outline-container-orgf439c94" class="outline-2">
-<h2 id="orgf439c94">So Many Outputs!</h2>
-<div class="outline-text-2" id="text-orgf439c94">
+    <div id="outline-container-org20e13e2" class="outline-2">
+<h2 id="org20e13e2">So Many Outputs!</h2>
+<div class="outline-text-2" id="text-org20e13e2">
+</div>
+<div id="outline-container-org5fe2571" class="outline-3">
+<h3 id="org5fe2571">Outputs , Outputs , Outputs</h3>
+<div class="outline-text-3" id="text-org5fe2571">
+<p>
+When anybody starts in Machine Learning , they focus on learning to make solid and reliable models.They learn everything there is to learn about creating accurate models.
+</p>
+
+<p>
+But when the model predicts , nobody cares about the output (atleast in the Learning Phase) , as they only see the performance of the model.Today we are going to look at outputs , how to generate multiple ones , or even interdependent outputs!
+</p>
+</div>
+</div>
+
+<div id="outline-container-org0c40d56" class="outline-3">
+<h3 id="org0c40d56">Multiple Outputs</h3>
+<div class="outline-text-3" id="text-org0c40d56">
+<p>
+They are easy depending on the model choosen , if a flexible model like SGDRegressor is used , they inherently support multiple outputs. <b>But</b> models like SVM Regressor , Bayesian Classifier need external help , for MultiOutput data , we have to train multiple models , one for each output.
+These model work indenpendently of each other and predict it's output , which is appended as single 2D array.
+</p>
+
+<p>
+<b><i>Which is better?</i></b>
+Well that depends , if the ouputs are inversely proportional or don't have any correlation , use multiple models approach else use models like SGD etc.
+The reason being models like SGD use same weights for predicting both outputs , so if they are unrelated or inversely related the weights will not change , as both errors push the weights in their side , thus weights being in a <i>Tug of War</i>.
+Keep in Mind there is a difference between Dependent and Correlated , Correlated means that one output follows the same trend as the other output( Both increase or both decrease etc) , but Dependent means , one output cannot be predicted accurately without using the other output.
+Here one output might increase while other decreases , but the decreasing one depends on the increasing one.
+</p>
+
+<p>
+SKlearn automatically does this if such models are used , but we can also explicitly do this using <code>sklearn.multioutput.MultiOutputRegressor()</code> which takes in one estimator(model) , this model can even be custom model.
+</p>
+</div>
+
+<div id="outline-container-org4198ca4" class="outline-4">
+<h4 id="org4198ca4">Here is an Example!</h4>
+<div class="outline-text-4" id="text-org4198ca4">
 <div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn</span> <span class="kn">import</span> <span class="n">datasets</span>
 </pre></div>
+
+<p>
+We are using <code>sklearn.datasets.make_regression()</code> which gives a dataset having 3 output/target variables. So MultiOutputRegressor trains 3 independent models.
+</p>
 
 <div class="highlight"><pre><span></span><span class="n">rawdata</span> <span class="o">=</span> <span class="n">datasets</span><span class="o">.</span><span class="n">make_regression</span><span class="p">(</span><span class="n">n_samples</span><span class="o">=</span><span class="mi">400</span><span class="p">,</span><span class="n">n_targets</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
 </pre></div>
 
+<p>
+The remaining code is pretty standard ML code . There is absolutely no difference in training and testing as sklearn automatically handles all the complexity of 3 outputs(Scoring of each output seperately , averaging the three seperate scores of the models) begind the scenes!
+</p>
+
 <div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">rawdata</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
 <span class="n">y</span> <span class="o">=</span> <span class="n">rawdata</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
-</pre></div>
-
-<div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.multioutput</span> <span class="kn">import</span> <span class="n">MultiOutputRegressor</span>
+<span class="kn">from</span> <span class="nn">sklearn.multioutput</span> <span class="kn">import</span> <span class="n">MultiOutputRegressor</span>
 <span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">SGDRegressor</span>
 <span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">LinearRegression</span>
 <span class="n">model</span> <span class="o">=</span> <span class="n">MultiOutputRegressor</span><span class="p">(</span><span class="n">LinearRegression</span><span class="p">())</span>
-</pre></div>
-
-<div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
+<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
 <span class="n">train_x</span> <span class="p">,</span> <span class="n">test_x</span> <span class="p">,</span>  <span class="n">train_y</span> <span class="p">,</span> <span class="n">test_y</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span>
+<span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">train_x</span><span class="p">,</span><span class="n">train_y</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">test_x</span><span class="p">,</span><span class="n">test_y</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+
+<div id="outline-container-orga1f0cca" class="outline-4">
+<h4 id="orga1f0cca">Model's supporting multioutput inherently</h4>
+<div class="outline-text-4" id="text-orga1f0cca">
+<p>
+These model do not require external help for multioutput classification/regression.The reason being their internal working , if you are curious try to research how they work.
+</p>
+
+<ul class="org-ul">
+<li>K Neighbors Classifier/Regressor</li>
+<li>Stochastic Gradient Descent Regressor/Classifier</li>
+<li>Linear Regression (Least Squares / Closed Form Solution) , Ridge , LASSO .</li>
+</ul>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgcad8448" class="outline-3">
+<h3 id="orgcad8448">Interdependent MultiOutput</h3>
+<div class="outline-text-3" id="text-orgcad8448">
+<p>
+Till now we were using multiple models that work independently of each other i.e one models output does not influence others. <b>But</b> sometimes one output may influence the other , in such cases we have to use Chain Models.
+These models act like a chain . One model's output is given as input along with the origin input dataset to the second model , whose output is included along with seond model's input  as input to the third model and so on.
+The important point being the reused output , each model's output is given as input to the next model , along with that model's input.
+The order is decided by us. This model is very useful in filling missing data  , as one bad data column can be improved by one model , while the final model predicts the final output.
+</p>
+
+<p>
+Here is how to create a Chain Model , specifically <code>sklearn.multioutput.RegressorChain()</code> which takes in a single estimator , along with the order of the outputs.
+</p>
+
+<div class="highlight"><pre><span></span><span class="c1"># .. Previous code (Mostly data preparation)</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">RegressorChain</span><span class="p">(</span><span class="n">LinearRegression</span><span class="p">(),</span><span class="n">order</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">2</span><span class="p">])</span>
+<span class="c1"># .. Later code (Mostly testing and training)</span>
 </pre></div>
 
-<div class="highlight"><pre><span></span><span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">train_x</span><span class="p">,</span><span class="n">train_y</span><span class="p">)</span>
-</pre></div>
+<p>
+Here the order is 1 then 3 then 2 , which means the first model will predict the first column in the output matrix then second model will predict third column using previous data , and third model will predict second column using it's previous data.
+</p>
+</div>
+</div>
 
-<div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">test_x</span><span class="p">,</span><span class="n">test_y</span><span class="p">))</span>
-</pre></div>
+<div id="outline-container-org23dc5b2" class="outline-3">
+<h3 id="org23dc5b2">Next Time!</h3>
+<div class="outline-text-3" id="text-org23dc5b2">
+<p>
+Exploring the less travelled roads is a hard but fun exercise.
+Hope you learnt something new today and are curious about Machine Learning!
+</p>
+</div>
 </div>
 </div>
     </div>
