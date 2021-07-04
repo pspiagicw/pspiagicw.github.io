@@ -1,11 +1,72 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Forked</title><link>https://pspiagicw.github.io/</link><description>Fork all worries away</description><atom:link href="https://pspiagicw.github.io/rss.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2021 &lt;a href="mailto:pspiagicw@gmail.com"&gt;pspiagicw&lt;/a&gt; </copyright><lastBuildDate>Mon, 28 Jun 2021 04:25:38 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>So many outputs!</title><link>https://pspiagicw.github.io/posts/so-many-outputs/</link><dc:creator>pspiagicw</dc:creator><description>&lt;div id="outline-container-org20e13e2" class="outline-2"&gt;
-&lt;h2 id="org20e13e2"&gt;So Many Outputs!&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-org20e13e2"&gt;
+<?xml-stylesheet type="text/xsl" href="assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Forked</title><link>https://pspiagicw.github.io/</link><description>Fork all worries away</description><atom:link href="https://pspiagicw.github.io/rss.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2021 &lt;a href="mailto:pspiagicw@gmail.com"&gt;pspiagicw&lt;/a&gt; </copyright><lastBuildDate>Sun, 04 Jul 2021 15:02:09 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>My First Hackathon!</title><link>https://pspiagicw.github.io/posts/my-first-hackthon/</link><dc:creator>pspiagicw</dc:creator><description>&lt;div id="outline-container-orga77ba34" class="outline-2"&gt;
+&lt;h2 id="orga77ba34"&gt;Sylvie&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-orga77ba34"&gt;
+&lt;p&gt;
+My newest creation for my first Hackathon!
+&lt;/p&gt;
 &lt;/div&gt;
-&lt;div id="outline-container-org5fe2571" class="outline-3"&gt;
-&lt;h3 id="org5fe2571"&gt;Outputs , Outputs , Outputs&lt;/h3&gt;
-&lt;div class="outline-text-3" id="text-org5fe2571"&gt;
+
+&lt;div id="outline-container-org0e0b91c" class="outline-3"&gt;
+&lt;h3 id="org0e0b91c"&gt;Hack the Terminal&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-org0e0b91c"&gt;
+&lt;p&gt;
+My first hackathon required me to build a terminal app.The &lt;i&gt;Terminal&lt;/i&gt; word caught my attention and considering myself quite a command line maestro , decided to try it.
+&lt;/p&gt;
+
+&lt;p&gt;
+The hacktahon was organized by some website known as &lt;i&gt;DevPost&lt;/i&gt; , I had never heard of it.That meant I needed to sign for one more website!
+Anyway the organizer was quite good and provided with enough information and the given time was 48 hours.
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org9988e12" class="outline-3"&gt;
+&lt;h3 id="org9988e12"&gt;My Experience&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-org9988e12"&gt;
+&lt;p&gt;
+I loved the part of creating my first hackathon project. For the first time I was not creating something because of personal reason , but some materialistic objective.
+&lt;/p&gt;
+
+&lt;p&gt;
+For the time part , I managed to write major portion of my app within the first 12 hours.The next 24 hours were for resolving bugs and adding some extra features.
+One of the biggest bugs was confusing me till the end , but I was able to solve just in time.
+&lt;/p&gt;
+
+&lt;p&gt;
+The next 12 hours was allocated for creating the GitHub repo , uploading a video to Youtube and filling out the project info in the website.
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org29e6abb" class="outline-3"&gt;
+&lt;h3 id="org29e6abb"&gt;My App&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-org29e6abb"&gt;
+&lt;p&gt;
+My app is quite a simple terminal application.It is just a Python file with 500 lines(Right Now!) , the details of the program will be covered by me in the next post.
+&lt;/p&gt;
+
+&lt;p&gt;
+It is available at  &lt;a href="https://github.com/pspiagicw/sylvie.git"&gt;github&lt;/a&gt;. The youtube video will be updated in the repo.
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org88c5840" class="outline-3"&gt;
+&lt;h3 id="org88c5840"&gt;Conclusion&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-org88c5840"&gt;
+&lt;p&gt;
+I loved the experience and definately would love to do more of such hackathons , the only concern is that most hackthon promote some development platform , when I am instead interested in making unique apps without any limitation.
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;</description><guid>https://pspiagicw.github.io/posts/my-first-hackthon/</guid><pubDate>Fri, 04 Jun 2021 17:09:18 GMT</pubDate></item><item><title>So many outputs!</title><link>https://pspiagicw.github.io/posts/so-many-outputs/</link><dc:creator>pspiagicw</dc:creator><description>&lt;div id="outline-container-orgd39bea1" class="outline-2"&gt;
+&lt;h2 id="orgd39bea1"&gt;So Many Outputs!&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-orgd39bea1"&gt;
+&lt;/div&gt;
+&lt;div id="outline-container-orge9740f4" class="outline-3"&gt;
+&lt;h3 id="orge9740f4"&gt;Outputs , Outputs , Outputs&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-orge9740f4"&gt;
 &lt;p&gt;
 When anybody starts in Machine Learning , they focus on learning to make solid and reliable models.They learn everything there is to learn about creating accurate models.
 &lt;/p&gt;
@@ -16,9 +77,9 @@ But when the model predicts , nobody cares about the output (atleast in the Lear
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org0c40d56" class="outline-3"&gt;
-&lt;h3 id="org0c40d56"&gt;Multiple Outputs&lt;/h3&gt;
-&lt;div class="outline-text-3" id="text-org0c40d56"&gt;
+&lt;div id="outline-container-orgad2b9d4" class="outline-3"&gt;
+&lt;h3 id="orgad2b9d4"&gt;Multiple Outputs&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-orgad2b9d4"&gt;
 &lt;p&gt;
 They are easy depending on the model choosen , if a flexible model like SGDRegressor is used , they inherently support multiple outputs. &lt;b&gt;But&lt;/b&gt; models like SVM Regressor , Bayesian Classifier need external help , for MultiOutput data , we have to train multiple models , one for each output.
 These model work indenpendently of each other and predict it's output , which is appended as single 2D array.
@@ -37,9 +98,9 @@ SKlearn automatically does this if such models are used , but we can also explic
 &lt;/p&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org4198ca4" class="outline-4"&gt;
-&lt;h4 id="org4198ca4"&gt;Here is an Example!&lt;/h4&gt;
-&lt;div class="outline-text-4" id="text-org4198ca4"&gt;
+&lt;div id="outline-container-orgf31e4cb" class="outline-4"&gt;
+&lt;h4 id="orgf31e4cb"&gt;Here is an Example!&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-orgf31e4cb"&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;sklearn&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;datasets&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
@@ -68,9 +129,9 @@ The remaining code is pretty standard ML code . There is absolutely no differenc
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-orga1f0cca" class="outline-4"&gt;
-&lt;h4 id="orga1f0cca"&gt;Model's supporting multioutput inherently&lt;/h4&gt;
-&lt;div class="outline-text-4" id="text-orga1f0cca"&gt;
+&lt;div id="outline-container-orgb4e75cb" class="outline-4"&gt;
+&lt;h4 id="orgb4e75cb"&gt;Model's supporting multioutput inherently&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-orgb4e75cb"&gt;
 &lt;p&gt;
 These model do not require external help for multioutput classification/regression.The reason being their internal working , if you are curious try to research how they work.
 &lt;/p&gt;
@@ -84,9 +145,9 @@ These model do not require external help for multioutput classification/regressi
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-orgcad8448" class="outline-3"&gt;
-&lt;h3 id="orgcad8448"&gt;Interdependent MultiOutput&lt;/h3&gt;
-&lt;div class="outline-text-3" id="text-orgcad8448"&gt;
+&lt;div id="outline-container-orgf262fd0" class="outline-3"&gt;
+&lt;h3 id="orgf262fd0"&gt;Interdependent MultiOutput&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-orgf262fd0"&gt;
 &lt;p&gt;
 Till now we were using multiple models that work independently of each other i.e one models output does not influence others. &lt;b&gt;But&lt;/b&gt; sometimes one output may influence the other , in such cases we have to use Chain Models.
 These models act like a chain . One model's output is given as input along with the origin input dataset to the second model , whose output is included along with seond model's input  as input to the third model and so on.
@@ -109,12 +170,12 @@ Here the order is 1 then 3 then 2 , which means the first model will predict the
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org23dc5b2" class="outline-3"&gt;
-&lt;h3 id="org23dc5b2"&gt;Next Time!&lt;/h3&gt;
-&lt;div class="outline-text-3" id="text-org23dc5b2"&gt;
+&lt;div id="outline-container-org433c445" class="outline-3"&gt;
+&lt;h3 id="org433c445"&gt;Next Time!&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-org433c445"&gt;
 &lt;p&gt;
 Exploring the less travelled roads is a hard but fun exercise.
-Hope you learnt something new today and are curious about Machine Learning!
+Hope you learnt something new today and are curious about Machine Learning.
 &lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;

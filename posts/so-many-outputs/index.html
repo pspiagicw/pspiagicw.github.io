@@ -16,6 +16,7 @@
 <link rel="canonical" href="https://pspiagicw.github.io/posts/so-many-outputs/">
 <!--[if lt IE 9]><script src="../../assets/js/html5.js"></script><![endif]--><meta name="author" content="pspiagicw">
 <link rel="prev" href="../a-little-math-would-not-kill-you/" title="A little math would not kill you!" type="text/html">
+<link rel="next" href="../my-first-hackthon/" title="My First Hackathon!" type="text/html">
 <meta property="og:site_name" content="Forked">
 <meta property="og:title" content="So many outputs!">
 <meta property="og:url" content="https://pspiagicw.github.io/posts/so-many-outputs/">
@@ -69,13 +70,13 @@ When anybody starts in Machine Learning , they focus on learning to make solid a
         
 
     </header><div class="e-content entry-content" itemprop="articleBody text">
-    <div id="outline-container-org20e13e2" class="outline-2">
-<h2 id="org20e13e2">So Many Outputs!</h2>
-<div class="outline-text-2" id="text-org20e13e2">
+    <div id="outline-container-orgd39bea1" class="outline-2">
+<h2 id="orgd39bea1">So Many Outputs!</h2>
+<div class="outline-text-2" id="text-orgd39bea1">
 </div>
-<div id="outline-container-org5fe2571" class="outline-3">
-<h3 id="org5fe2571">Outputs , Outputs , Outputs</h3>
-<div class="outline-text-3" id="text-org5fe2571">
+<div id="outline-container-orge9740f4" class="outline-3">
+<h3 id="orge9740f4">Outputs , Outputs , Outputs</h3>
+<div class="outline-text-3" id="text-orge9740f4">
 <p>
 When anybody starts in Machine Learning , they focus on learning to make solid and reliable models.They learn everything there is to learn about creating accurate models.
 </p>
@@ -86,9 +87,9 @@ But when the model predicts , nobody cares about the output (atleast in the Lear
 </div>
 </div>
 
-<div id="outline-container-org0c40d56" class="outline-3">
-<h3 id="org0c40d56">Multiple Outputs</h3>
-<div class="outline-text-3" id="text-org0c40d56">
+<div id="outline-container-orgad2b9d4" class="outline-3">
+<h3 id="orgad2b9d4">Multiple Outputs</h3>
+<div class="outline-text-3" id="text-orgad2b9d4">
 <p>
 They are easy depending on the model choosen , if a flexible model like SGDRegressor is used , they inherently support multiple outputs. <b>But</b> models like SVM Regressor , Bayesian Classifier need external help , for MultiOutput data , we have to train multiple models , one for each output.
 These model work indenpendently of each other and predict it's output , which is appended as single 2D array.
@@ -107,9 +108,9 @@ SKlearn automatically does this if such models are used , but we can also explic
 </p>
 </div>
 
-<div id="outline-container-org4198ca4" class="outline-4">
-<h4 id="org4198ca4">Here is an Example!</h4>
-<div class="outline-text-4" id="text-org4198ca4">
+<div id="outline-container-orgf31e4cb" class="outline-4">
+<h4 id="orgf31e4cb">Here is an Example!</h4>
+<div class="outline-text-4" id="text-orgf31e4cb">
 <div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn</span> <span class="kn">import</span> <span class="n">datasets</span>
 </pre></div>
 
@@ -138,9 +139,9 @@ The remaining code is pretty standard ML code . There is absolutely no differenc
 </div>
 </div>
 
-<div id="outline-container-orga1f0cca" class="outline-4">
-<h4 id="orga1f0cca">Model's supporting multioutput inherently</h4>
-<div class="outline-text-4" id="text-orga1f0cca">
+<div id="outline-container-orgb4e75cb" class="outline-4">
+<h4 id="orgb4e75cb">Model's supporting multioutput inherently</h4>
+<div class="outline-text-4" id="text-orgb4e75cb">
 <p>
 These model do not require external help for multioutput classification/regression.The reason being their internal working , if you are curious try to research how they work.
 </p>
@@ -154,9 +155,9 @@ These model do not require external help for multioutput classification/regressi
 </div>
 </div>
 
-<div id="outline-container-orgcad8448" class="outline-3">
-<h3 id="orgcad8448">Interdependent MultiOutput</h3>
-<div class="outline-text-3" id="text-orgcad8448">
+<div id="outline-container-orgf262fd0" class="outline-3">
+<h3 id="orgf262fd0">Interdependent MultiOutput</h3>
+<div class="outline-text-3" id="text-orgf262fd0">
 <p>
 Till now we were using multiple models that work independently of each other i.e one models output does not influence others. <b>But</b> sometimes one output may influence the other , in such cases we have to use Chain Models.
 These models act like a chain . One model's output is given as input along with the origin input dataset to the second model , whose output is included along with seond model's input  as input to the third model and so on.
@@ -179,12 +180,12 @@ Here the order is 1 then 3 then 2 , which means the first model will predict the
 </div>
 </div>
 
-<div id="outline-container-org23dc5b2" class="outline-3">
-<h3 id="org23dc5b2">Next Time!</h3>
-<div class="outline-text-3" id="text-org23dc5b2">
+<div id="outline-container-org433c445" class="outline-3">
+<h3 id="org433c445">Next Time!</h3>
+<div class="outline-text-3" id="text-org433c445">
 <p>
 Exploring the less travelled roads is a hard but fun exercise.
-Hope you learnt something new today and are curious about Machine Learning!
+Hope you learnt something new today and are curious about Machine Learning.
 </p>
 </div>
 </div>
@@ -193,6 +194,9 @@ Hope you learnt something new today and are curious about Machine Learning!
     <aside class="postpromonav"><nav><ul class="pager hidden-print">
 <li class="previous">
                 <a href="../a-little-math-would-not-kill-you/" rel="prev" title="A little math would not kill you!">Previous post</a>
+            </li>
+            <li class="next">
+                <a href="../my-first-hackthon/" rel="next" title="My First Hackathon!">Next post</a>
             </li>
         </ul></nav></aside></article></main><footer id="footer"><p>Contents © 2021         <a href="mailto:pspiagicw@gmail.com">pspiagicw</a> - Powered by         <a href="https://getnikola.com" rel="nofollow">Nikola</a>         </p>
             

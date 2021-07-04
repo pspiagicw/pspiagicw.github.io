@@ -89,7 +89,7 @@ Here the order is 1 then 3 then 2 , which means the first model will predict the
 
 ** Next Time!
 Exploring the less travelled roads is a hard but fun exercise.
-Hope you learnt something new today and are curious about Machine Learning!
+Hope you learnt something new today and are curious about Machine Learning.
 
 
 

@@ -1,0 +1,35 @@
+#+BEGIN_COMMENT
+.. title: My First Hackathon!
+.. slug: my-first-hackthon
+.. date: 2021-06-04 22:39:18 UTC+05:30
+.. tags: 
+.. category: 
+.. link: 
+.. description: 
+.. type: text
+
+#+END_COMMENT
+* Sylvie
+  My newest creation for my first Hackathon!
+
+** Hack the Terminal
+   My first hackathon required me to build a terminal app.The /Terminal/ word caught my attention and considering myself quite a command line maestro , decided to try it.
+
+   The hacktahon was organized by some website known as /DevPost/ , I had never heard of it.That meant I needed to sign for one more website!
+   Anyway the organizer was quite good and provided with enough information and the given time was 48 hours.
+
+** My Experience
+   I loved the part of creating my first hackathon project. For the first time I was not creating something because of personal reason , but some materialistic objective.
+
+   For the time part , I managed to write major portion of my app within the first 12 hours.The next 24 hours were for resolving bugs and adding some extra features.
+   One of the biggest bugs was confusing me till the end , but I was able to solve just in time.
+
+   The next 12 hours was allocated for creating the GitHub repo , uploading a video to Youtube and filling out the project info in the website.
+
+** My App
+   My app is quite a simple terminal application.It is just a Python file with 500 lines(Right Now!) , the details of the program will be covered by me in the next post.
+
+   It is available at  [[https://github.com/pspiagicw/sylvie.git][github]]. The youtube video will be updated in the repo.
+
+** Conclusion
+   I loved the experience and definately would love to do more of such hackathons , the only concern is that most hackthon promote some development platform , when I am instead interested in making unique apps without any limitation.
