@@ -15,7 +15,8 @@
 <meta name="generator" content="Nikola (getnikola.com)">
 <link rel="alternate" type="application/rss+xml" title="RSS" href="rss.xml">
 <link rel="canonical" href="https://pspiagicw.github.io/">
-<!--[if lt IE 9]><script src="assets/js/html5.js"></script><![endif]--><link rel="prefetch" href="posts/my-first-hackthon/" type="text/html">
+<link rel="next" href="index-1.html" type="text/html">
+<!--[if lt IE 9]><script src="assets/js/html5.js"></script><![endif]--><link rel="prefetch" href="posts/teeny-tiny-neural-network/" type="text/html">
 </head>
 <body class="hack dark">
 
@@ -40,7 +41,194 @@
     
     
     </ul></nav></header><main id="content"><div class="postindex">
-    <article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title"><a href="posts/my-first-hackthon/" class="u-url">My First Hackathon!</a></h1>
+    <article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title"><a href="posts/teeny-tiny-neural-network/" class="u-url">Teeny Tiny Neural Network</a></h1>
+        <div class="metadata">
+            <p class="byline author vcard"><span class="byline-name fn" itemprop="author">
+                pspiagicw
+            </span></p>
+            <p class="dateline">
+            <a href="posts/teeny-tiny-neural-network/" rel="bookmark">
+            <time class="published dt-published" datetime="2021-07-08T20:53:11+05:30" itemprop="datePublished" title="2021-07-08 20:53">2021-07-08 20:53</time></a>
+            </p>
+        </div>
+    </header><div class="e-content entry-content">
+    <div id="outline-container-org8c24c5d" class="outline-2">
+<h2 id="org8c24c5d">Teeny Tiny Neural Network</h2>
+<div class="outline-text-2" id="text-org8c24c5d">
+<p>
+We have discussing Machine Leanring algorithms for quite along time here.While Machine Learning algorithms are very powerful , they suffer from the bias/variance problem.
+Either model considers data to be in some predetermined form (Linear , Quadratic , Exponential) or predictions are highly dependent on training data itself(Bayes , Nearest Neighbors , DecisionTree).
+</p>
+
+<p>
+Thus <i>bias</i> can be said to be assumptions about the data before training and <i>variance</i> is effect of changing dataset on model.We need something that is flexible to have no assumptions about the data
+and something that does not get affected by change in dataset.Something that can generalize to any data irrespective of it's form.
+</p>
+</div>
+
+<div id="outline-container-org833ab35" class="outline-3">
+<h3 id="org833ab35">Your Saviour is Here!</h3>
+<div class="outline-text-3" id="text-org833ab35">
+<p>
+Neural Network is comes to the rescue.If you have not heard about NN then you must be living under a rock!
+</p>
+
+<p>
+Neural Networks work on any data(Image , Words , Sound) and can do interesting things , such as create faces , scripts and even art!.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org05980a7" class="outline-3">
+<h3 id="org05980a7">How do they work?</h3>
+<div class="outline-text-3" id="text-org05980a7">
+<p>
+Their fundamentals lie in the fact of using large number of small models in conjuction.A typical 3 node network contain  5 mini-models within itself.
+This also mean all those mini-model's can work in parallel(More on that later).It can also learn to ignore some of them based on condition.
+Multiple models also means it can support multiple input and outputs.It does not have any closed-form solution , thus supports online learning.
+</p>
+
+<p>
+From above words it seems like Neural Network are work of magic.Let's make one and burn it to the ground.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org2c2906f" class="outline-3">
+<h3 id="org2c2906f">Predict , Error and Learn.</h3>
+<div class="outline-text-3" id="text-org2c2906f">
+<p>
+We need to have some input and some output (Atleast of supervised learning) .Let's have a simple input of 8 and output of 80.
+</p>
+
+<p>
+As we discussed before every Neural Network has mini-models , we call these mini-models <i>Nodes</i> , every node has a list of weights , whose length depends on no of input.
+</p>
+
+<p>
+Here we are making a single node NN , thus we need a single Node with a single weight(As no of input is just one).
+</p>
+<div class="highlight"><pre><span></span>   <span class="kn">import</span> <span class="nn">random</span>
+   <span class="nb">input</span> <span class="o">=</span> <span class="mi">8</span>
+   <span class="n">output</span> <span class="o">=</span> <span class="mi">80</span>
+   <span class="n">weight</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">()</span>
+</pre></div>
+
+<p>
+For prediction , we simply do a dot product of weights and inputs , for above situation that means simply multiplying input and weight.
+</p>
+
+<div class="highlight"><pre><span></span>   <span class="n">prediction</span> <span class="o">=</span> <span class="n">weight</span> <span class="o">*</span> <span class="nb">input</span>
+</pre></div>
+
+
+<p>
+Error is the difference between our prediction and actual output , for now let's take a absolute difference between them.
+</p>
+
+<div class="highlight"><pre><span></span>   <span class="n">error</span> <span class="o">=</span> <span class="nb">abs</span><span class="p">(</span><span class="n">prediction</span> <span class="o">-</span> <span class="n">output</span><span class="p">)</span>
+</pre></div>
+
+<p>
+You might feel we can use this to improve the model , in reality error is for us humans to see.The model uses something called loss to improve itself.
+</p>
+
+<p>
+The difference being that loss can be hard to understand by humans(Like cross-entropy) , but more accurately represent our data.It is possible for loss and error to be the same thing.
+Here loss is difference between prediction and output.Why?
+</p>
+
+<p>
+Cause we need to take into account wether our prediction was higher than our output or not.
+</p>
+
+<div class="highlight"><pre><span></span>   <span class="n">loss</span> <span class="o">=</span> <span class="n">prediction</span> <span class="o">-</span> <span class="n">output</span>
+</pre></div>
+
+<p>
+Learning is the most hardest part of Neural Network . It requires to find out how much error was contributed by every specific weight and use it accordingly.In our case we had only one weight.
+</p>
+
+<p>
+It's contribution to the error is the partial differentiation of loss and itself.Your calculus class is helpful here , for more help regarding partical differentiation look here.
+Calculus and algebra are very useful for getting down and dirty with Deep Learning.
+</p>
+
+<p>
+For now let me tell you the answer! The partial differentiation of loss and our weight is input.In other words if you change weight by 1 , loss will change by input.
+</p>
+
+<p>
+Therefore the change in weight should be <i>loss/*/input</i>.We are multiplying by loss to take loss into effect too(If no loss , don't change anything).
+</p>
+
+<p>
+There is another problem , we can't change weight rigourously as it may cause weights to fluctuate , instead we need to make small changes over large iterations.So we use something call learning rate.
+We simply have to multiply it with our change.
+</p>
+
+
+<div class="highlight"><pre><span></span>   <span class="n">learning_rate</span> <span class="o">=</span> <span class="mf">0.00001</span>
+   <span class="n">change</span> <span class="o">=</span> <span class="nb">input</span><span class="o">*</span><span class="n">loss</span><span class="o">*</span><span class="n">learning_rate</span>
+</pre></div>
+
+<p>
+We have to do this multiple times to make some  actual effect.The num of times we have to do this is called epochs , smaller the training data , larger the no of epochs.
+</p>
+
+<p>
+Here the no of epochs is arbitary and based on trial and error.
+</p>
+
+<div class="highlight"><pre><span></span>   <span class="n">epochs</span> <span class="o">=</span> <span class="mi">100000</span>
+   <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">epochs</span><span class="p">):</span>
+       <span class="n">prediction</span> <span class="o">=</span> <span class="n">weight</span> <span class="o">*</span> <span class="nb">input</span>
+       <span class="n">loss</span> <span class="o">=</span> <span class="n">prediction</span> <span class="o">-</span> <span class="n">output</span>
+       <span class="n">change</span> <span class="o">=</span> <span class="nb">input</span><span class="o">*</span><span class="n">loss</span><span class="o">*</span><span class="n">learning_rate</span>
+       <span class="n">weight</span> <span class="o">+=</span> <span class="n">change</span>
+   <span class="nb">print</span><span class="p">(</span><span class="n">weight</span><span class="o">*</span><span class="nb">input</span><span class="p">)</span>
+</pre></div>
+
+<p>
+The final weight must be near to 10 , if less try increasing no of epochs , or else decreasing value of learning<sub>rate</sub>. High learning rate simply drives weight away from it.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orge550bc7" class="outline-3">
+<h3 id="orge550bc7">Experiment</h3>
+<div class="outline-text-3" id="text-orge550bc7">
+<p>
+Try to experiment with some input and output values. If it works, Great! . Else our model is very small and simple to capture that data.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org3415b43" class="outline-3">
+<h3 id="org3415b43">Till Next Time!</h3>
+<div class="outline-text-3" id="text-org3415b43">
+<p>
+I hope to see you in the next article with some cool activation functions.
+</p>
+</div>
+</div>
+</div>
+    </div>
+    </article><article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title"><a href="posts/build-a-tiny-neural-network/" class="u-url">Build a Tiny Neural Network</a></h1>
+        <div class="metadata">
+            <p class="byline author vcard"><span class="byline-name fn" itemprop="author">
+                pspiagicw
+            </span></p>
+            <p class="dateline">
+            <a href="posts/build-a-tiny-neural-network/" rel="bookmark">
+            <time class="published dt-published" datetime="2021-07-05T10:07:58+05:30" itemprop="datePublished" title="2021-07-05 10:07">2021-07-05 10:07</time></a>
+            </p>
+        </div>
+    </header><div class="e-content entry-content">
+    <p>
+Write your post here.</p>
+    </div>
+    </article><article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title"><a href="posts/my-first-hackthon/" class="u-url">My First Hackathon!</a></h1>
         <div class="metadata">
             <p class="byline author vcard"><span class="byline-name fn" itemprop="author">
                 pspiagicw
@@ -1637,43 +1825,14 @@ Let us meet again in the next post where we will learn more about Machine Learni
 </div>
 </div>
     </div>
-    </article><article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title"><a href="posts/a-world-full-of-ssgs/" class="u-url">A world full of SSG's</a></h1>
-        <div class="metadata">
-            <p class="byline author vcard"><span class="byline-name fn" itemprop="author">
-                pspiagicw
-            </span></p>
-            <p class="dateline">
-            <a href="posts/a-world-full-of-ssgs/" rel="bookmark">
-            <time class="published dt-published" datetime="2021-05-14T15:11:24+05:30" itemprop="datePublished" title="2021-05-14 15:11">2021-05-14 15:11</time></a>
-            </p>
-        </div>
-    </header><div class="e-content entry-content">
-    <section id="blog-dilemma"><h2>Blog Dilemma</h2>
-<section id="making-a-blog-is-hard"><h3>Making a blog is hard!</h3>
-<p>The amount of preparation for a stable SSG system is crazy!
-Well SSG stands for Static Site Generators.</p>
-<p>They allow anyone to have a solid and efficient way of writing blogs.
-The biggest problem being , which to choose.</p>
-<p>Some are huge , some are written in other languages , some are discontinued.</p>
-<p>Well right now I am using <em>Nikola</em> . It is a python based SSG which worked well enough for me.
-I intend to push this to GitHub but I cannot promise it will happen!</p>
-<p>Well if you are reading it , it has already happened , or has it?
-Writing from this perspective , anything can happen.This post can just be a RST document in my system or this can be read by anyone acessing the internet.</p>
-<p>Whatever may happen , I have already read it which means the post will die with me irrespective of the outcome.</p>
-<p>Just like Neil already saw the moon. It did not matter whether NASA showed it to everyone , the sight would always be in Neil's neurons.</p>
-<p>Enough talking , I have to try posting this.</p>
-</section></section>
-</div>
     </article>
 </div>
 
-
-
-
-
-
-
-         </main><footer id="footer"><p>Contents © 2021         <a href="mailto:pspiagicw@gmail.com">pspiagicw</a> - Powered by         <a href="https://getnikola.com" rel="nofollow">Nikola</a>         </p>
+        <nav class="postindexpager"><ul class="pager">
+<li class="next">
+                <a href="index-1.html" rel="next">Older posts</a>
+            </li>
+        </ul></nav></main><footer id="footer"><p>Contents © 2021         <a href="mailto:pspiagicw@gmail.com">pspiagicw</a> - Powered by         <a href="https://getnikola.com" rel="nofollow">Nikola</a>         </p>
             
         </footer>
 </div>

@@ -1,0 +1,110 @@
+#+BEGIN_COMMENT
+.. title: Teeny Tiny Neural Network
+.. slug: teeny-tiny-neural-network
+.. date: 2021-07-08 20:53:11 UTC+05:30
+.. tags: 
+.. category: 
+.. link: 
+.. description: 
+.. type: text
+
+#+END_COMMENT
+
+
+* Teeny Tiny Neural Network
+  We have discussing Machine Leanring algorithms for quite along time here.While Machine Learning algorithms are very powerful , they suffer from the bias/variance problem.
+  Either model considers data to be in some predetermined form (Linear , Quadratic , Exponential) or predictions are highly dependent on training data itself(Bayes , Nearest Neighbors , DecisionTree).
+
+  Thus /bias/ can be said to be assumptions about the data before training and /variance/ is effect of changing dataset on model.We need something that is flexible to have no assumptions about the data
+  and something that does not get affected by change in dataset.Something that can generalize to any data irrespective of it's form.
+
+** Your Saviour is Here!
+   Neural Network is comes to the rescue.If you have not heard about NN then you must be living under a rock!
+
+   Neural Networks work on any data(Image , Words , Sound) and can do interesting things , such as create faces , scripts and even art!.
+
+** How do they work?
+   Their fundamentals lie in the fact of using large number of small models in conjuction.A typical 3 node network contain  5 mini-models within itself.
+   This also mean all those mini-model's can work in parallel(More on that later).It can also learn to ignore some of them based on condition.
+   Multiple models also means it can support multiple input and outputs.It does not have any closed-form solution , thus supports online learning.
+
+   From above words it seems like Neural Network are work of magic.Let's make one and burn it to the ground.
+
+** Predict , Error and Learn.
+   We need to have some input and some output (Atleast of supervised learning) .Let's have a simple input of 8 and output of 80.
+
+   As we discussed before every Neural Network has mini-models , we call these mini-models /Nodes/ , every node has a list of weights , whose length depends on no of input.
+
+   Here we are making a single node NN , thus we need a single Node with a single weight(As no of input is just one).
+   #+begin_src python :session
+   import random
+   input = 8
+   output = 80
+   weight = random.random()
+   #+end_src
+
+   For prediction , we simply do a dot product of weights and inputs , for above situation that means simply multiplying input and weight.
+
+   #+begin_src python :session
+   prediction = weight * input
+   #+end_src
+
+
+   Error is the difference between our prediction and actual output , for now let's take a absolute difference between them.
+
+   #+begin_src python :session
+   error = abs(prediction - output)
+   #+end_src
+
+   You might feel we can use this to improve the model , in reality error is for us humans to see.The model uses something called loss to improve itself.
+
+   The difference being that loss can be hard to understand by humans(Like cross-entropy) , but more accurately represent our data.It is possible for loss and error to be the same thing.
+   Here loss is difference between prediction and output.Why?
+
+   Cause we need to take into account wether our prediction was higher than our output or not.
+
+   #+begin_src python :session
+   loss = prediction - output
+   #+end_src
+
+   Learning is the most hardest part of Neural Network . It requires to find out how much error was contributed by every specific weight and use it accordingly.In our case we had only one weight.
+
+   It's contribution to the error is the partial differentiation of loss and itself.Your calculus class is helpful here , for more help regarding partical differentiation look here.
+   Calculus and algebra are very useful for getting down and dirty with Deep Learning.
+
+   For now let me tell you the answer! The partial differentiation of loss and our weight is input.In other words if you change weight by 1 , loss will change by input.
+
+   Therefore the change in weight should be /loss/*/input/.We are multiplying by loss to take loss into effect too(If no loss , don't change anything).
+
+   There is another problem , we can't change weight rigourously as it may cause weights to fluctuate , instead we need to make small changes over large iterations.So we use something call learning rate.
+   We simply have to multiply it with our change.
+
+
+   #+begin_src python :session
+   learning_rate = 0.00001
+   change = input*loss*learning_rate
+   #+end_src
+
+   We have to do this multiple times to make some  actual effect.The num of times we have to do this is called epochs , smaller the training data , larger the no of epochs.
+
+   Here the no of epochs is arbitary and based on trial and error.
+
+   #+begin_src python :session :exports both
+   epochs = 100000
+   for i in range(epochs):
+       prediction = weight * input
+       loss = prediction - output
+       change = input*loss*learning_rate
+       weight += change
+   print(weight*input)
+   #+end_src
+
+   The final weight must be near to 10 , if less try increasing no of epochs , or else decreasing value of learning_rate. High learning rate simply drives weight away from it.
+
+** Experiment
+   Try to experiment with some input and output values. If it works, Great! . Else our model is very small and simple to capture that data.
+
+** Till Next Time!
+   I hope to see you in the next article with some cool activation functions.
+
+

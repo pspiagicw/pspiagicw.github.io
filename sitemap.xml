@@ -7,7 +7,7 @@
                         http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
  <url>
   <loc>https://pspiagicw.github.io/</loc>
-  <lastmod>2021-06-25T05:33:00Z</lastmod>
+  <lastmod>2021-07-10T06:13:00Z</lastmod>
  </url>
  <url>
   <loc>https://pspiagicw.github.io/2021/</loc>
@@ -15,7 +15,7 @@
  </url>
  <url>
   <loc>https://pspiagicw.github.io/archive.html</loc>
-  <lastmod>2021-07-04T14:59:00Z</lastmod>
+  <lastmod>2021-07-10T06:13:00Z</lastmod>
  </url>
  <url>
   <loc>https://pspiagicw.github.io/categories/</loc>
@@ -46,6 +46,10 @@
   <lastmod>2021-06-25T05:33:00Z</lastmod>
  </url>
  <url>
+  <loc>https://pspiagicw.github.io/index-1.html</loc>
+  <lastmod>2021-07-10T06:13:00Z</lastmod>
+ </url>
+ <url>
   <loc>https://pspiagicw.github.io/listings/</loc>
   <lastmod>2021-06-25T05:33:00Z</lastmod>
  </url>
@@ -56,6 +60,10 @@
  <url>
   <loc>https://pspiagicw.github.io/posts/a-world-full-of-ssgs/</loc>
   <lastmod>2021-06-25T05:33:00Z</lastmod>
+ </url>
+ <url>
+  <loc>https://pspiagicw.github.io/posts/build-a-tiny-neural-network/</loc>
+  <lastmod>2021-07-10T06:13:00Z</lastmod>
  </url>
  <url>
   <loc>https://pspiagicw.github.io/posts/my-cool-new-setup/</loc>
@@ -80,6 +88,10 @@
  <url>
   <loc>https://pspiagicw.github.io/posts/street-city-state-country-continent-whats-next/</loc>
   <lastmod>2021-06-25T05:33:00Z</lastmod>
+ </url>
+ <url>
+  <loc>https://pspiagicw.github.io/posts/teeny-tiny-neural-network/</loc>
+  <lastmod>2021-07-10T06:13:00Z</lastmod>
  </url>
  <url>
   <loc>https://pspiagicw.github.io/posts/the-rise-of-the-machines/</loc>

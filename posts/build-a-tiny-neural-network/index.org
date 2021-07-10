@@ -1,0 +1,14 @@
+#+BEGIN_COMMENT
+.. title: Build a Tiny Neural Network
+.. slug: build-a-tiny-neural-network
+.. date: 2021-07-05 10:07:58 UTC+05:30
+.. tags: 
+.. category: 
+.. link: 
+.. description: 
+.. type: text
+
+#+END_COMMENT
+
+
+Write your post here.

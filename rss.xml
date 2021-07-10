@@ -1,5 +1,166 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Forked</title><link>https://pspiagicw.github.io/</link><description>Fork all worries away</description><atom:link href="https://pspiagicw.github.io/rss.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2021 &lt;a href="mailto:pspiagicw@gmail.com"&gt;pspiagicw&lt;/a&gt; </copyright><lastBuildDate>Sun, 04 Jul 2021 15:02:09 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>My First Hackathon!</title><link>https://pspiagicw.github.io/posts/my-first-hackthon/</link><dc:creator>pspiagicw</dc:creator><description>&lt;div id="outline-container-orga77ba34" class="outline-2"&gt;
+<?xml-stylesheet type="text/xsl" href="assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Forked</title><link>https://pspiagicw.github.io/</link><description>Fork all worries away</description><atom:link href="https://pspiagicw.github.io/rss.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2021 &lt;a href="mailto:pspiagicw@gmail.com"&gt;pspiagicw&lt;/a&gt; </copyright><lastBuildDate>Sat, 10 Jul 2021 06:13:50 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Teeny Tiny Neural Network</title><link>https://pspiagicw.github.io/posts/teeny-tiny-neural-network/</link><dc:creator>pspiagicw</dc:creator><description>&lt;div id="outline-container-org8c24c5d" class="outline-2"&gt;
+&lt;h2 id="org8c24c5d"&gt;Teeny Tiny Neural Network&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org8c24c5d"&gt;
+&lt;p&gt;
+We have discussing Machine Leanring algorithms for quite along time here.While Machine Learning algorithms are very powerful , they suffer from the bias/variance problem.
+Either model considers data to be in some predetermined form (Linear , Quadratic , Exponential) or predictions are highly dependent on training data itself(Bayes , Nearest Neighbors , DecisionTree).
+&lt;/p&gt;
+
+&lt;p&gt;
+Thus &lt;i&gt;bias&lt;/i&gt; can be said to be assumptions about the data before training and &lt;i&gt;variance&lt;/i&gt; is effect of changing dataset on model.We need something that is flexible to have no assumptions about the data
+and something that does not get affected by change in dataset.Something that can generalize to any data irrespective of it's form.
+&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org833ab35" class="outline-3"&gt;
+&lt;h3 id="org833ab35"&gt;Your Saviour is Here!&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-org833ab35"&gt;
+&lt;p&gt;
+Neural Network is comes to the rescue.If you have not heard about NN then you must be living under a rock!
+&lt;/p&gt;
+
+&lt;p&gt;
+Neural Networks work on any data(Image , Words , Sound) and can do interesting things , such as create faces , scripts and even art!.
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org05980a7" class="outline-3"&gt;
+&lt;h3 id="org05980a7"&gt;How do they work?&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-org05980a7"&gt;
+&lt;p&gt;
+Their fundamentals lie in the fact of using large number of small models in conjuction.A typical 3 node network contain  5 mini-models within itself.
+This also mean all those mini-model's can work in parallel(More on that later).It can also learn to ignore some of them based on condition.
+Multiple models also means it can support multiple input and outputs.It does not have any closed-form solution , thus supports online learning.
+&lt;/p&gt;
+
+&lt;p&gt;
+From above words it seems like Neural Network are work of magic.Let's make one and burn it to the ground.
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org2c2906f" class="outline-3"&gt;
+&lt;h3 id="org2c2906f"&gt;Predict , Error and Learn.&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-org2c2906f"&gt;
+&lt;p&gt;
+We need to have some input and some output (Atleast of supervised learning) .Let's have a simple input of 8 and output of 80.
+&lt;/p&gt;
+
+&lt;p&gt;
+As we discussed before every Neural Network has mini-models , we call these mini-models &lt;i&gt;Nodes&lt;/i&gt; , every node has a list of weights , whose length depends on no of input.
+&lt;/p&gt;
+
+&lt;p&gt;
+Here we are making a single node NN , thus we need a single Node with a single weight(As no of input is just one).
+&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;   &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;random&lt;/span&gt;
+   &lt;span class="nb"&gt;input&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;8&lt;/span&gt;
+   &lt;span class="n"&gt;output&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;80&lt;/span&gt;
+   &lt;span class="n"&gt;weight&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;random&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;random&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;
+For prediction , we simply do a dot product of weights and inputs , for above situation that means simply multiplying input and weight.
+&lt;/p&gt;
+
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;   &lt;span class="n"&gt;prediction&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;weight&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="nb"&gt;input&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;
+Error is the difference between our prediction and actual output , for now let's take a absolute difference between them.
+&lt;/p&gt;
+
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;   &lt;span class="n"&gt;error&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;abs&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;prediction&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="n"&gt;output&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;
+You might feel we can use this to improve the model , in reality error is for us humans to see.The model uses something called loss to improve itself.
+&lt;/p&gt;
+
+&lt;p&gt;
+The difference being that loss can be hard to understand by humans(Like cross-entropy) , but more accurately represent our data.It is possible for loss and error to be the same thing.
+Here loss is difference between prediction and output.Why?
+&lt;/p&gt;
+
+&lt;p&gt;
+Cause we need to take into account wether our prediction was higher than our output or not.
+&lt;/p&gt;
+
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;   &lt;span class="n"&gt;loss&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;prediction&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="n"&gt;output&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;
+Learning is the most hardest part of Neural Network . It requires to find out how much error was contributed by every specific weight and use it accordingly.In our case we had only one weight.
+&lt;/p&gt;
+
+&lt;p&gt;
+It's contribution to the error is the partial differentiation of loss and itself.Your calculus class is helpful here , for more help regarding partical differentiation look here.
+Calculus and algebra are very useful for getting down and dirty with Deep Learning.
+&lt;/p&gt;
+
+&lt;p&gt;
+For now let me tell you the answer! The partial differentiation of loss and our weight is input.In other words if you change weight by 1 , loss will change by input.
+&lt;/p&gt;
+
+&lt;p&gt;
+Therefore the change in weight should be &lt;i&gt;loss/*/input&lt;/i&gt;.We are multiplying by loss to take loss into effect too(If no loss , don't change anything).
+&lt;/p&gt;
+
+&lt;p&gt;
+There is another problem , we can't change weight rigourously as it may cause weights to fluctuate , instead we need to make small changes over large iterations.So we use something call learning rate.
+We simply have to multiply it with our change.
+&lt;/p&gt;
+
+
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;   &lt;span class="n"&gt;learning_rate&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mf"&gt;0.00001&lt;/span&gt;
+   &lt;span class="n"&gt;change&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;input&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;loss&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;learning_rate&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;
+We have to do this multiple times to make some  actual effect.The num of times we have to do this is called epochs , smaller the training data , larger the no of epochs.
+&lt;/p&gt;
+
+&lt;p&gt;
+Here the no of epochs is arbitary and based on trial and error.
+&lt;/p&gt;
+
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;   &lt;span class="n"&gt;epochs&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;100000&lt;/span&gt;
+   &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="nb"&gt;range&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;epochs&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+       &lt;span class="n"&gt;prediction&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;weight&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="nb"&gt;input&lt;/span&gt;
+       &lt;span class="n"&gt;loss&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;prediction&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="n"&gt;output&lt;/span&gt;
+       &lt;span class="n"&gt;change&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;input&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;loss&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;learning_rate&lt;/span&gt;
+       &lt;span class="n"&gt;weight&lt;/span&gt; &lt;span class="o"&gt;+=&lt;/span&gt; &lt;span class="n"&gt;change&lt;/span&gt;
+   &lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;weight&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="nb"&gt;input&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;
+The final weight must be near to 10 , if less try increasing no of epochs , or else decreasing value of learning&lt;sub&gt;rate&lt;/sub&gt;. High learning rate simply drives weight away from it.
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-orge550bc7" class="outline-3"&gt;
+&lt;h3 id="orge550bc7"&gt;Experiment&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-orge550bc7"&gt;
+&lt;p&gt;
+Try to experiment with some input and output values. If it works, Great! . Else our model is very small and simple to capture that data.
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org3415b43" class="outline-3"&gt;
+&lt;h3 id="org3415b43"&gt;Till Next Time!&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-org3415b43"&gt;
+&lt;p&gt;
+I hope to see you in the next article with some cool activation functions.
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;</description><guid>https://pspiagicw.github.io/posts/teeny-tiny-neural-network/</guid><pubDate>Thu, 08 Jul 2021 15:23:11 GMT</pubDate></item><item><title>Build a Tiny Neural Network</title><link>https://pspiagicw.github.io/posts/build-a-tiny-neural-network/</link><dc:creator>pspiagicw</dc:creator><description>&lt;p&gt;
+Write your post here.&lt;/p&gt;</description><guid>https://pspiagicw.github.io/posts/build-a-tiny-neural-network/</guid><pubDate>Mon, 05 Jul 2021 04:37:58 GMT</pubDate></item><item><title>My First Hackathon!</title><link>https://pspiagicw.github.io/posts/my-first-hackthon/</link><dc:creator>pspiagicw</dc:creator><description>&lt;div id="outline-container-orga77ba34" class="outline-2"&gt;
 &lt;h2 id="orga77ba34"&gt;Sylvie&lt;/h2&gt;
 &lt;div class="outline-text-2" id="text-orga77ba34"&gt;
 &lt;p&gt;
@@ -1496,21 +1657,4 @@ Let us meet again in the next post where we will learn more about Machine Learni
 &lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;/div&gt;</description><category>machinelearning</category><guid>https://pspiagicw.github.io/posts/write-a-blog-they-said/</guid><pubDate>Fri, 14 May 2021 23:46:01 GMT</pubDate></item><item><title>A world full of SSG's</title><link>https://pspiagicw.github.io/posts/a-world-full-of-ssgs/</link><dc:creator>pspiagicw</dc:creator><description>&lt;section id="blog-dilemma"&gt;
-&lt;h2&gt;Blog Dilemma&lt;/h2&gt;
-&lt;section id="making-a-blog-is-hard"&gt;
-&lt;h3&gt;Making a blog is hard!&lt;/h3&gt;
-&lt;p&gt;The amount of preparation for a stable SSG system is crazy!
-Well SSG stands for Static Site Generators.&lt;/p&gt;
-&lt;p&gt;They allow anyone to have a solid and efficient way of writing blogs.
-The biggest problem being , which to choose.&lt;/p&gt;
-&lt;p&gt;Some are huge , some are written in other languages , some are discontinued.&lt;/p&gt;
-&lt;p&gt;Well right now I am using &lt;em&gt;Nikola&lt;/em&gt; . It is a python based SSG which worked well enough for me.
-I intend to push this to GitHub but I cannot promise it will happen!&lt;/p&gt;
-&lt;p&gt;Well if you are reading it , it has already happened , or has it?
-Writing from this perspective , anything can happen.This post can just be a RST document in my system or this can be read by anyone acessing the internet.&lt;/p&gt;
-&lt;p&gt;Whatever may happen , I have already read it which means the post will die with me irrespective of the outcome.&lt;/p&gt;
-&lt;p&gt;Just like Neil already saw the moon. It did not matter whether NASA showed it to everyone , the sight would always be in Neil's neurons.&lt;/p&gt;
-&lt;p&gt;Enough talking , I have to try posting this.&lt;/p&gt;
-&lt;/section&gt;
-&lt;/section&gt;</description><guid>https://pspiagicw.github.io/posts/a-world-full-of-ssgs/</guid><pubDate>Fri, 14 May 2021 09:41:24 GMT</pubDate></item></channel></rss>
+&lt;/div&gt;</description><category>machinelearning</category><guid>https://pspiagicw.github.io/posts/write-a-blog-they-said/</guid><pubDate>Fri, 14 May 2021 23:46:01 GMT</pubDate></item></channel></rss>
